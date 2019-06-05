@@ -6,6 +6,7 @@ import strings from "../../strings";
 import ModalSelector from "react-native-modal-selector";
 import colors from "../../colors";
 import constants from "../../constants";
+import ListItem from "../ListItem";
 
 class Home extends Component {
   constructor(props) {
@@ -88,12 +89,13 @@ class Home extends Component {
         <FlatList
           data={this.state.results}
           renderItem={({ item }) => (
-            <View>
-              <Image
-                source={{ uri: item.key }}
-                style={{ height: 275, width: 275 }}
-              />
-            </View>
+            <ListItem item={item} />
+            // <View>
+            //   <Image
+            //     source={{ uri: item.key }}
+            //     style={{ height: 275, width: 275 }}
+            //   />
+            // </View>
           )}
         />
       </SafeAreaView>
