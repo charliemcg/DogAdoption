@@ -3,21 +3,22 @@ import constants from "./constants";
 //default state
 function getPlaceholderData() {
   return {
-    data: null // <- get some real data
+    selectedDog: { key: null, location: null, price: null, description: null }
   };
 }
 
 const reducer = (state = getPlaceholderData(), action) => {
   switch (action.type) {
-    case constants.changeCountry:
-      //Do stuff here...
+    case constants.actions.selectedDog:
       state = {
-        ...state
+        ...state,
+        selectedDog: action.payload
       };
       break;
     default:
       return state;
   }
+  return state;
 };
 
 export default reducer;

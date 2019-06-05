@@ -1,5 +1,6 @@
 import { createAppContainer, createStackNavigator } from "react-navigation";
 import Home from "../Home";
+import DogProfile from "../DogProfile";
 import Splash from "../Splash";
 
 const Navigator = createStackNavigator({
@@ -14,6 +15,9 @@ const Navigator = createStackNavigator({
     navigationOptions: {
       header: null
     }
+  },
+  DogProfile: {
+    screen: DogProfile
   }
 });
 
