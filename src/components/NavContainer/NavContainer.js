@@ -3,12 +3,12 @@ import Home from "../Home";
 import Splash from "../Splash";
 
 const Navigator = createStackNavigator({
-  Splash: {
-    screen: Splash,
-    navigationOptions: {
-      header: null
-    }
-  },
+  // Splash: {
+  //   screen: Splash,
+  //   navigationOptions: {
+  //     header: null
+  //   }
+  // },
   Home: {
     screen: Home,
     navigationOptions: {
