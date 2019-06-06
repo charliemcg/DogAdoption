@@ -6,5 +6,9 @@ export default {
     backgroundColor: colors.primary,
     justifyContent: "center",
     alignItems: "center"
+  },
+  title: {
+    color: colors.white,
+    fontSize: 30
   }
 };

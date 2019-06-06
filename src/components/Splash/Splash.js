@@ -12,7 +12,7 @@ class Splash extends Component {
   render() {
     return (
       <View style={styles.parent}>
-        <Text>{strings.appName}</Text>
+        <Text style={styles.title}>{strings.appName}</Text>
       </View>
     );
   }

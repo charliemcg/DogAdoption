@@ -12,13 +12,13 @@ import DogProfile from "../DogProfile";
 import Messages from "../Messages";
 import SignIn from "../SignIn";
 import PrivacyPolicy from "../PrivacyPolicy";
-import Splash from "../Splash";
 import colors from "../../colors";
 import LinearGradient from "react-native-linear-gradient";
 import strings from "../../strings";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
+import consants from "../../constants";
 
 const DrawerHeader = props => (
   <View>
@@ -48,7 +48,7 @@ const DrawerHeader = props => (
   </View>
 );
 
-const HomeStack = createStackNavigator(
+const Stack = createStackNavigator(
   {
     // Splash: {
     //   screen: Splash,
@@ -56,22 +56,23 @@ const HomeStack = createStackNavigator(
     //     header: null
     //   }
     // },
-    Home: {
-      screen: Home,
-      navigationOptions: {
-        headerTitle: strings.appName,
-        headerTitleStyle: {
-          fontSize: 17,
-          width: Dimensions.get("window").width
-        }
-      }
-    },
-    DogProfile: {
-      screen: DogProfile
-    },
-    Messages: {
-      screen: Messages
-    },
+    // Home: {
+    //   screen: Home,
+    //   navigationOptions: {
+    //     headerTitle: strings.appName,
+    //     headerTitleStyle: {
+    //       fontSize: 17,
+    //       width: Dimensions.get("window").width,
+    //       color: colors.white
+    //     }
+    //   }
+    // },
+    // DogProfile: {
+    //   screen: DogProfile
+    // },
+    // Messages: {
+    //   screen: Messages
+    // },
     SignIn: {
       screen: SignIn
     },
@@ -85,7 +86,7 @@ const HomeStack = createStackNavigator(
 const Drawer = createDrawerNavigator(
   {
     Home: {
-      screen: HomeStack
+      screen: Stack
     }
   },
   {
@@ -102,48 +103,5 @@ const Drawer = createDrawerNavigator(
     contentComponent: DrawerHeader
   }
 );
-
-// const Navigator = createStackNavigator(
-//   {
-//     // Splash: {
-//     //   screen: Splash,
-//     //   navigationOptions: {
-//     //     header: null
-//     //   }
-//     // },
-//     Home: {
-//       screen: Home
-//       // navigationOptions: {
-//       //   header: null
-//       // }
-//     },
-//     DogProfile: {
-//       screen: DogProfile
-//     }
-//   }
-//   // {
-//   //   defaultNavigationOptions: {
-//   //     headerStyle: {
-//   //       backgroundColor: colors.primary
-//   //     },
-//   //     headerTintColor: colors.white,
-//   //     headerTitleStyle: {
-//   //       fontWeight: "bold"
-//   //     },
-//   //     // headerLeft: (
-//   //     //   <IconMCI
-//   //     //     name="menu"
-//   //     //     size={35}
-//   //     //     color={colors.white}
-//   //     //     // onPress={() => alert()}
-//   //     //   />
-//   //     // ),
-//   //     headerRight: [
-//   //       <IconEntypo name="message" size={35} color={colors.white} />,
-//   //       <IconAwesome name="user-circle" size={35} color={colors.white} />
-//   //     ]
-//   //   }
-//   // }
-// );
 
 export default (NavContainer = createAppContainer(Drawer));

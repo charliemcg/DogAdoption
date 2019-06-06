@@ -1,22 +1,74 @@
 import React, { Component } from "react";
-import { View, Text, TouchableHighlight } from "react-native";
-import styles from "../ListItem/styles";
+import { View, Text, TouchableHighlight, TextInput } from "react-native";
+import styles from "./styles";
+import IconAwesome from "react-native-vector-icons/FontAwesome5";
+import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
+import colors from "../../colors";
 
 export default class SignIn extends Component {
   render() {
     return (
       <View style={styles.parent}>
-        <TouchableHighlight style={{ flex: 1 }}>
-          <View style={{ flex: 1 }}>
-            <Text>Sign in</Text>
-            <Text
-              style={{ color: "blue" }}
-              onPress={() => alert("go to Privacy Policy")}
-            >
-              Privacy Policy
-            </Text>
+        {/* icon */}
+        <View style={styles.iconWrapper}>
+          <IconAwesome name="dog" size={100} color={colors.primary} />
+        </View>
+        {/* username */}
+        <View style={styles.usernameWrapper}>
+          <View style={styles.textInput}>
+            <IconAwesome
+              name="user"
+              size={30}
+              color={colors.primary}
+              style={styles.inputIcon}
+            />
+            {/* textContentType is for autofill */}
+            <TextInput
+              textContentType="username"
+              placeholder="Username"
+              style={styles.inputText}
+            />
           </View>
-        </TouchableHighlight>
+        </View>
+        {/* password */}
+        <View style={styles.passwordWrapper}>
+          <View style={styles.textInput}>
+            <IconMCI
+              name="textbox-password"
+              size={30}
+              color={colors.primary}
+              style={styles.inputIcon}
+            />
+            {/* textContentType is for autofill use newPassword for sign up page*/}
+            <TextInput
+              textContentType="password"
+              placeholder="Password"
+              secureTextEntry={true}
+              style={styles.inputText}
+            />
+          </View>
+        </View>
+        {/* sign in */}
+        <View style={styles.signInWrapper}>
+          <TouchableHighlight style={styles.signIn}>
+            <Text>Sign In</Text>
+          </TouchableHighlight>
+        </View>
+        {/* sign in with Facebook */}
+        <View style={styles.facebookWrapper}>
+          <TouchableHighlight style={styles.facebook}>
+            <Text>Sign in with Facebook</Text>
+          </TouchableHighlight>
+        </View>
+        {/* new user link */}
+        <View style={styles.privacyWrapper}>
+          <Text
+            style={{ color: "blue" }}
+            onPress={() => this.props.navigation.navigate("PrivacyPolicy")}
+          >
+            Privacy Policy
+          </Text>
+        </View>
       </View>
     );
   }
