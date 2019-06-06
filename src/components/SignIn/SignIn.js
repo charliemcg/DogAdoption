@@ -6,6 +6,12 @@ import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import colors from "../../colors";
 
 export default class SignIn extends Component {
+  static navigationOptions = {
+    headerStyle: {
+      backgroundColor: colors.primary
+    },
+    headerTintColor: colors.white
+  };
   render() {
     return (
       <View style={styles.parent}>
@@ -39,7 +45,7 @@ export default class SignIn extends Component {
               color={colors.primary}
               style={styles.inputIcon}
             />
-            {/* textContentType is for autofill use newPassword for sign up page*/}
+            {/* textContentType is for autofill use newPassword for sign up page */}
             <TextInput
               textContentType="password"
               placeholder="Password"

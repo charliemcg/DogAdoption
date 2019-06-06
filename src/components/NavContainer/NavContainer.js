@@ -56,23 +56,23 @@ const Stack = createStackNavigator(
     //     header: null
     //   }
     // },
-    // Home: {
-    //   screen: Home,
-    //   navigationOptions: {
-    //     headerTitle: strings.appName,
-    //     headerTitleStyle: {
-    //       fontSize: 17,
-    //       width: Dimensions.get("window").width,
-    //       color: colors.white
-    //     }
-    //   }
-    // },
-    // DogProfile: {
-    //   screen: DogProfile
-    // },
-    // Messages: {
-    //   screen: Messages
-    // },
+    Home: {
+      screen: Home,
+      navigationOptions: {
+        headerTitle: strings.appName,
+        headerTitleStyle: {
+          fontSize: 17,
+          width: Dimensions.get("window").width,
+          color: colors.white
+        }
+      }
+    },
+    DogProfile: {
+      screen: DogProfile
+    },
+    Messages: {
+      screen: Messages
+    },
     SignIn: {
       screen: SignIn
     },

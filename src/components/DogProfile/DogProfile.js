@@ -2,8 +2,15 @@ import React, { Component } from "react";
 import { View, SafeAreaView, Text, Image } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
+import colors from "../../colors";
 
 class DogProfile extends Component {
+  static navigationOptions = {
+    headerStyle: {
+      backgroundColor: colors.primary
+    },
+    headerTintColor: colors.white
+  };
   render() {
     return (
       <SafeAreaView style={styles.parent}>
