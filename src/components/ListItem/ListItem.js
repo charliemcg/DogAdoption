@@ -14,7 +14,8 @@ class ListItem extends Component {
           <Image source={{ uri: this.props.item.key }} style={styles.image} />
         </View>
         <View style={styles.locationRow}>
-          <Text>Location: {this.props.item.location}</Text>
+          <Text>Location: {this.props.item.breed}</Text>
+          {/* ^^ change back to location ^^*/}
           <Text>Price: {this.props.item.price}</Text>
         </View>
         <Text style={styles.description}>{this.props.item.description}</Text>

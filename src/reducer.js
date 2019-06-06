@@ -3,7 +3,13 @@ import constants from "./constants";
 //default state
 function getPlaceholderData() {
   return {
-    selectedDog: { key: null, location: null, price: null, description: null }
+    selectedDog: {
+      key: null,
+      location: null,
+      price: null,
+      breed: null,
+      description: null
+    }
   };
 }
 

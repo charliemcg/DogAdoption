@@ -1,6 +1,7 @@
 export default {
   api: {
     breedsList: "https://dog.ceo/api/breeds/list/all",
+    allDogs: "https://dog.ceo/api/breeds/image/random/50",
     imagesStart: "https://dog.ceo/api/breed/",
     imagesEnd: "/images"
   },
