@@ -15,8 +15,18 @@ import ModalSelector from "react-native-modal-selector";
 import colors from "../../colors";
 import constants from "../../constants";
 import ListItem from "../ListItem";
+import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
+import IconAwesome from "react-native-vector-icons/FontAwesome5";
+import IconEntypo from "react-native-vector-icons/Entypo";
 
 class Home extends Component {
+  static navigationOptions = {
+    headerLeft: <IconMCI name="menu" size={35} color={colors.white} />,
+    headerRight: [
+      <IconEntypo name="message" size={35} color={colors.white} />,
+      <IconAwesome name="user-circle" size={35} color={colors.white} />
+    ]
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -136,12 +146,19 @@ class Home extends Component {
       <SafeAreaView style={styles.parent}>
         {/* select a breed */}
         <ModalSelector
+          style={styles.breedSelector}
           data={this.state.breeds}
           initValue={this.state.selectedBreed}
           onChange={option => {
             // setting results to nothing will bring up the activity indicator for better UX
             this.setState({ results: [] });
             this.getDogs(option);
+          }}
+          selectTextStyle={{
+            color: colors.dark
+          }}
+          optionTextStyle={{
+            color: colors.notQuiteBlack
           }}
         />
         {/* scrollable list of dogs */}

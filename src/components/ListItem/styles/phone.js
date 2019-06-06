@@ -36,8 +36,13 @@ export default {
   },
   price: {
     flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end",
     textAlign: "right",
     paddingRight: "10%"
+  },
+  coloredPrice: {
+    color: colors.dark
   },
   description: {
     height: "20%",
