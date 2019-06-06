@@ -8,5 +8,9 @@ export default {
   actions: {
     selectedDog: "SELECTED_DOG"
   },
-  states: ["WA", "NT", "SA", "QLD", "NSW", "ACT", "VIC", "TAS"]
+  states: ["WA", "NT", "SA", "QLD", "NSW", "ACT", "VIC", "TAS"],
+  legal: {
+    privacy:
+      "This app will not do anything with your data except blah blah blah"
+  }
 };

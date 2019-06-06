@@ -20,12 +20,34 @@ import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
 
 class Home extends Component {
-  static navigationOptions = {
-    headerLeft: <IconMCI name="menu" size={35} color={colors.white} />,
-    headerRight: [
-      <IconEntypo name="message" size={35} color={colors.white} />,
-      <IconAwesome name="user-circle" size={35} color={colors.white} />
-    ]
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerLeft: (
+        <IconMCI
+          name="menu"
+          size={35}
+          color={colors.white}
+          onPress={() => navigation.toggleDrawer()}
+        />
+      ),
+      headerStyle: {
+        backgroundColor: colors.primary
+      },
+      headerRight: [
+        <IconEntypo
+          name="message"
+          size={35}
+          color={colors.white}
+          onPress={() => navigation.navigate("Messages")}
+        />,
+        <IconAwesome
+          name="user-circle"
+          size={35}
+          color={colors.white}
+          onPress={() => navigation.navigate("SignIn")}
+        />
+      ]
+    };
   };
   constructor(props) {
     super(props);

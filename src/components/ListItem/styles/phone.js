@@ -58,7 +58,6 @@ export default {
   more: {
     flex: 1,
     width,
-    // justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.white
   }
