@@ -11,6 +11,7 @@ import Home from "../Home";
 import DogProfile from "../DogProfile";
 import Messages from "../Messages";
 import SignIn from "../SignIn";
+import SignUp from "../SignUp";
 import PrivacyPolicy from "../PrivacyPolicy";
 import colors from "../../colors";
 import LinearGradient from "react-native-linear-gradient";
@@ -75,6 +76,9 @@ const Stack = createStackNavigator(
     },
     SignIn: {
       screen: SignIn
+    },
+    SignUp: {
+      screen: SignUp
     },
     PrivacyPolicy: {
       screen: PrivacyPolicy

@@ -48,6 +48,7 @@ export default class SignIn extends Component {
             {/* textContentType is for autofill use newPassword for sign up page */}
             <TextInput
               textContentType="password"
+              newPassword={true}
               placeholder="Password"
               secureTextEntry={true}
               style={styles.inputText}
@@ -57,23 +58,22 @@ export default class SignIn extends Component {
         {/* sign in */}
         <View style={styles.signInWrapper}>
           <TouchableHighlight style={styles.signIn}>
-            <Text>Sign In</Text>
+            <Text>Sign Up</Text>
           </TouchableHighlight>
         </View>
         {/* sign in with Facebook */}
-        <View style={styles.facebookWrapper}>
+        {/* <View style={styles.facebookWrapper}>
           <TouchableHighlight style={styles.facebook}>
             <Text>Sign in with Facebook</Text>
           </TouchableHighlight>
-        </View>
+        </View> */}
         {/* new user link */}
         <View style={styles.privacyWrapper}>
-          <Text>New member?</Text>
           <Text
-            style={{ color: colors.dark }}
-            onPress={() => this.props.navigation.navigate("SignUp")}
+            style={{ color: "blue" }}
+            onPress={() => this.props.navigation.navigate("PrivacyPolicy")}
           >
-            Sign Up!
+            Privacy Policy
           </Text>
         </View>
       </View>
