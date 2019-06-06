@@ -5,7 +5,7 @@ const width = Dimensions.get("window").width;
 
 export default {
   parent: {
-    height: width,
+    height: width * 0.95,
     width,
     backgroundColor: colors.notQuiteWhite,
     alignItems: "center"
@@ -18,11 +18,26 @@ export default {
     flex: 1
   },
   locationRow: {
-    height: "10%",
+    height: "5%",
     width,
     flexDirection: "row",
-    justifyContent: "space-around",
     alignItems: "center"
+  },
+  breedRow: {
+    height: "5%",
+    width
+  },
+  breed: {
+    paddingLeft: "10%"
+  },
+  location: {
+    flex: 1,
+    paddingLeft: "10%"
+  },
+  price: {
+    flex: 1,
+    textAlign: "right",
+    paddingRight: "10%"
   },
   description: {
     height: "20%",
@@ -38,7 +53,7 @@ export default {
   more: {
     flex: 1,
     width,
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.white
   }

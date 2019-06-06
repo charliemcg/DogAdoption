@@ -20,9 +20,13 @@ class ListItem extends Component {
           <Image source={{ uri: this.props.item.key }} style={styles.image} />
         </View>
         <View style={styles.locationRow}>
-          <Text>Location: {this.props.item.breed}</Text>
-          {/* ^^ change back to location ^^*/}
-          <Text>Price: {this.props.item.price}</Text>
+          <Text style={styles.location}>
+            Location: {this.props.item.location}
+          </Text>
+          <Text style={styles.price}>Price: {this.props.item.price}</Text>
+        </View>
+        <View style={styles.breedRow}>
+          <Text style={styles.breed}>{this.props.item.breed}</Text>
         </View>
         <Text style={styles.description}>{this.props.item.description}</Text>
         <LinearGradient
