@@ -68,8 +68,8 @@ class Home extends Component {
         for (let i = 0; i < data.message.length; i++) {
           imgArr.push({
             key: String(data.message[i]),
-            location: "Blahsville",
-            price: "Free",
+            location: constants.states[Math.floor(Math.random() * 8)],
+            price: this.generatePrice(),
             description:
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae ultricies dolor. Aenean lacus nisi, viverra consequat consequat nec, pulvinar nec magna. Donec ac augue turpis. Curabitur vel sem nec arcu fermentum sollicitudin nec vitae ex. Proin tempus, orci nec facilisis dapibus, dolor velit efficitur purus, quis hendrerit ipsum nulla quis augue. Ut condimentum, nisi et hendrerit sagittis, libero enim dignissim sapien, in laoreet elit eros ut arcu. Phasellus venenatis elit in risus eleifend, a mollis justo bibendum. Fusce neque enim, lacinia eget neque vel, egestas blandit ante. Vestibulum rutrum ipsum nisi, in imperdiet mauris ultrices vitae. Morbi ultricies leo vitae purus varius, vel euismod nisi finibus. In et semper orci, ut dignissim lorem. Maecenas vitae consectetur augue. Vivamus condimentum a ipsum ut efficitur. Cras non mauris vitae nulla pellentesque volutpat. Quisque vitae nibh maximus, maximus sem vitae, hendrerit nisi."
           });
@@ -82,6 +82,20 @@ class Home extends Component {
     this.setState({
       selectedBreed: option.label
     });
+  };
+
+  //generating placeholder prices. Not to be used in production
+  generatePrice = () => {
+    // Getting a price between 0 and 2000 rounded up to the nearest 100
+    // prettier-ignore
+    let price = Math.ceil(Math.floor((Math.random() * 2000) + 1) / 100) * 100;
+
+    // some dogs should be free
+    // prettier-ignore
+    if (Math.floor(Math.random() * 6) === 0) {
+      return "Free";
+    }
+    return `$${price}`;
   };
 
   render() {

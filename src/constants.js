@@ -6,5 +6,6 @@ export default {
   },
   actions: {
     selectedDog: "SELECTED_DOG"
-  }
+  },
+  states: ["WA", "NT", "SA", "QLD", "NSW", "ACT", "VIC", "TAS"]
 };
