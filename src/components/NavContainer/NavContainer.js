@@ -70,20 +70,22 @@ const Stack = createStackNavigator(
         }
       }
     },
-    DogProfile: {
-      screen: DogProfile
-    },
-    Messages: {
-      screen: Messages
-    },
-    SignIn: {
-      screen: SignIn
-    },
-    SignUp: {
-      screen: SignUp
-    },
-    PrivacyPolicy: {
-      screen: PrivacyPolicy
+    DogProfile,
+    Messages,
+    SignIn,
+    SignUp,
+    PrivacyPolicy,
+    // putting drawer screens in stack so that they will have a back button
+    Favorites,
+    Resolution
+  },
+  {
+    // styling the header for each screen
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.primary
+      },
+      headerTintColor: colors.white
     }
   },
   { headerLayoutPreset: "center" }

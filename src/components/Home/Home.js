@@ -30,9 +30,6 @@ class Home extends Component {
           onPress={() => navigation.toggleDrawer()}
         />
       ),
-      headerStyle: {
-        backgroundColor: colors.primary
-      },
       headerRight: [
         <IconEntypo
           name="message"
@@ -164,9 +161,8 @@ class Home extends Component {
         />
       );
 
-    return (
-      <SafeAreaView style={styles.parent}>
-        {/* select a breed */}
+    const fab = (
+      <View style={styles.fab}>
         <ModalSelector
           style={styles.breedSelector}
           data={this.state.breeds}
@@ -183,8 +179,15 @@ class Home extends Component {
             color: colors.notQuiteBlack
           }}
         />
+      </View>
+    );
+
+    return (
+      <SafeAreaView style={styles.parent}>
         {/* scrollable list of dogs */}
         {theList}
+        {/* select a breed */}
+        {fab}
       </SafeAreaView>
     );
   }

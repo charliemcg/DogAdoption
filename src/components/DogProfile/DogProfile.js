@@ -5,12 +5,6 @@ import styles from "./styles";
 import colors from "../../colors";
 
 class DogProfile extends Component {
-  static navigationOptions = {
-    headerStyle: {
-      backgroundColor: colors.primary
-    },
-    headerTintColor: colors.white
-  };
   render() {
     return (
       <SafeAreaView style={styles.parent}>

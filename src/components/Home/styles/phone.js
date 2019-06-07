@@ -10,7 +10,10 @@ export default {
     justifyContent: "center",
     alignItems: "center"
   },
-  breedSelector: {
-    width
-  }
+  fab: {
+    position: "absolute",
+    backgroundColor: colors.primary,
+    bottom: "5%"
+  },
+  breedSelector: {}
 };

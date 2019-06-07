@@ -6,12 +6,6 @@ import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import colors from "../../colors";
 
 export default class SignIn extends Component {
-  static navigationOptions = {
-    headerStyle: {
-      backgroundColor: colors.primary
-    },
-    headerTintColor: colors.white
-  };
   render() {
     return (
       <View style={styles.parent}>
