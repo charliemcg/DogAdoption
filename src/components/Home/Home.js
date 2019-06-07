@@ -103,7 +103,6 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    selectedBreed: state.selectedBreed,
     breeds: state.breeds,
     searchResults: state.searchResults
   };

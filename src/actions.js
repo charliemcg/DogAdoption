@@ -14,9 +14,9 @@ export function breedsList(breeds) {
   };
 }
 
-export function setSelectedBreed(breed) {
+export function setSearchFilters(breed) {
   return {
-    type: constants.actions.setSelectedBreed,
+    type: constants.actions.setSearchFilters,
     payload: breed
   };
 }

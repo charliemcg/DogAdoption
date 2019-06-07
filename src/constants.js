@@ -8,7 +8,7 @@ export default {
   actions: {
     selectedDog: "SELECTED_DOG",
     breedsList: "BREEDS_LIST",
-    setSelectedBreed: "SET_SELECTED_BREED",
+    setSearchFilters: "SET_SEARCH_FILTERS",
     setResults: "SET_RESULTS"
   },
   states: ["WA", "NT", "SA", "QLD", "NSW", "ACT", "VIC", "TAS"],

@@ -3,7 +3,7 @@ import constants from "./constants";
 import { setResults } from "./actions";
 
 export function getDogs() {
-  const option = store.getState().selectedBreed;
+  const option = store.getState().searchFilters.breed;
   let imgArr = [];
   fetch(
     //get all breeds when no breed selected

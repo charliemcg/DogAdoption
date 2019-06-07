@@ -11,7 +11,7 @@ function getPlaceholderData() {
       description: null
     },
     breeds: [],
-    selectedBreed: null,
+    searchFilters: { breed: null },
     searchResults: []
   };
 }
@@ -33,10 +33,10 @@ const reducer = (state = getPlaceholderData(), action) => {
       };
       break;
     //the filtered breed
-    case constants.actions.setSelectedBreed:
+    case constants.actions.setSearchFilters:
       state = {
         ...state,
-        selectedBreed: action.payload
+        searchFilters: { breed: action.payload }
       };
       break;
     //the search results
