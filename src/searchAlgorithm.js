@@ -23,6 +23,12 @@ export function loadAllDogsInSystem() {
         //removing the tail
         let tailString = trimmedString.substring(trimmedString.indexOf("/"));
         trimmedString = trimmedString.replace(tailString, "");
+        //simplifying more complicated breed types
+        let subBreedIndex = trimmedString.indexOf("-");
+        let subTailString = trimmedString.substring(subBreedIndex);
+        if (subBreedIndex > 0) {
+          trimmedString = trimmedString.replace(subTailString, "");
+        }
         imgArr.push({
           key: String(data.message[i]),
           location: constants.states[Math.floor(Math.random() * 8)],

@@ -50,6 +50,11 @@ class Home extends Component {
     loadAllDogsInSystem();
     loadAllDogsInSystem();
     loadAllDogsInSystem();
+    loadAllDogsInSystem();
+    loadAllDogsInSystem();
+    loadAllDogsInSystem();
+    loadAllDogsInSystem();
+    loadAllDogsInSystem();
   }
 
   getBreeds = () => {
