@@ -11,6 +11,7 @@ export default {
     alignItems: "center"
   },
   fab: {
+    flexDirection: "row",
     position: "absolute",
     backgroundColor: colors.primary,
     bottom: "5%"

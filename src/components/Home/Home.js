@@ -18,6 +18,7 @@ import ListItem from "../ListItem";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
+import { TouchableHighlight } from "react-native-gesture-handler";
 
 class Home extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -179,6 +180,9 @@ class Home extends Component {
             color: colors.notQuiteBlack
           }}
         />
+        <TouchableHighlight onPress={() => alert("Filter pressed")}>
+          <IconMCI name="filter-outline" size={35} color={colors.white} />
+        </TouchableHighlight>
       </View>
     );
 
