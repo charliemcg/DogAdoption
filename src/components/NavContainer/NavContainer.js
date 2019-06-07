@@ -14,6 +14,7 @@ import SignIn from "../SignIn";
 import SignUp from "../SignUp";
 import Favorites from "../Favorites";
 import Resolution from "../Resolution";
+import Filter from "../Filter";
 import PrivacyPolicy from "../PrivacyPolicy";
 import colors from "../../colors";
 import LinearGradient from "react-native-linear-gradient";
@@ -75,6 +76,7 @@ const Stack = createStackNavigator(
     SignIn,
     SignUp,
     PrivacyPolicy,
+    Filter,
     // putting drawer screens in stack so that they will have a back button
     Favorites,
     Resolution

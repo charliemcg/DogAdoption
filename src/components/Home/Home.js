@@ -19,6 +19,7 @@ import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import { TouchableHighlight } from "react-native-gesture-handler";
+import { breedsList } from "../../actions";
 
 class Home extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -50,10 +51,8 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //api is retrieving data
-      loading: false,
       //list of selectable breeds
-      breeds: [],
+      // breeds: [],
       //breed that user chose
       selectedBreed: strings.select,
       //images of dogs of the selected breed
@@ -77,10 +76,10 @@ class Home extends Component {
         for (var key in data.message) {
           breedsArr.push({ key: index++, label: key });
         }
-        this.setState({
-          loading: false,
-          breeds: breedsArr
-        });
+        // this.setState({
+        //   breeds: breedsArr
+        // });
+        this.props.breedsList(breedsArr);
       })
       .catch(e => console.log(e));
   };
@@ -164,9 +163,9 @@ class Home extends Component {
 
     const fab = (
       <View style={styles.fab}>
-        <ModalSelector
+        {/* <ModalSelector
           style={styles.breedSelector}
-          data={this.state.breeds}
+          data={this.props.breeds}
           initValue={this.state.selectedBreed}
           onChange={option => {
             // setting results to nothing will bring up the activity indicator for better UX
@@ -179,9 +178,14 @@ class Home extends Component {
           optionTextStyle={{
             color: colors.notQuiteBlack
           }}
-        />
-        <TouchableHighlight onPress={() => alert("Filter pressed")}>
+        /> */}
+        <TouchableHighlight
+          onPress={() => this.props.navigation.navigate("Filter")}
+        >
           <IconMCI name="filter-outline" size={35} color={colors.white} />
+        </TouchableHighlight>
+        <TouchableHighlight onPress={() => alert("Sort pressed")}>
+          <IconAwesome name="sort" size={35} color={colors.white} />
         </TouchableHighlight>
       </View>
     );
@@ -199,13 +203,15 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    //props go here...
+    breeds: state.breeds
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    //actions go here...
+    breedsList: breeds => {
+      dispatch(breedsList(breeds));
+    }
   };
 };
 

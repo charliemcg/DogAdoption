@@ -6,7 +6,8 @@ export default {
     imagesEnd: "/images"
   },
   actions: {
-    selectedDog: "SELECTED_DOG"
+    selectedDog: "SELECTED_DOG",
+    breedsList: "BREEDS_LIST"
   },
   states: ["WA", "NT", "SA", "QLD", "NSW", "ACT", "VIC", "TAS"],
   legal: {

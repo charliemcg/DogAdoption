@@ -6,3 +6,10 @@ export function selectedDog(dog) {
     payload: dog
   };
 }
+
+export function breedsList(breeds) {
+  return {
+    type: constants.actions.breedsList,
+    payload: breeds
+  };
+}
