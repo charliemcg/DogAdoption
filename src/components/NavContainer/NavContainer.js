@@ -12,6 +12,8 @@ import DogProfile from "../DogProfile";
 import Messages from "../Messages";
 import SignIn from "../SignIn";
 import SignUp from "../SignUp";
+import Favorites from "../Favorites";
+import Resolution from "../Resolution";
 import PrivacyPolicy from "../PrivacyPolicy";
 import colors from "../../colors";
 import LinearGradient from "react-native-linear-gradient";
@@ -91,6 +93,12 @@ const Drawer = createDrawerNavigator(
   {
     Home: {
       screen: Stack
+    },
+    Favorites: {
+      screen: Favorites
+    },
+    Resolution: {
+      screen: Resolution
     }
   },
   {
