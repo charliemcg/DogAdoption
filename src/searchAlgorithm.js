@@ -1,15 +1,12 @@
 import store from "./store";
 import constants from "./constants";
-import { setResults } from "./actions";
+import { setResults, setAllDogs } from "./actions";
 
-export function getDogs() {
-  const option = store.getState().searchFilters.breed;
+export function loadAllDogsInSystem() {
   let imgArr = [];
   fetch(
-    //get all breeds when no breed selected
-    option === null
-      ? constants.api.allDogs
-      : `${constants.api.imagesStart}${option}${constants.api.imagesEnd}`
+    //get all dogs of all breeds
+    constants.api.allDogs
   )
     .then(resp => {
       return resp.json();
@@ -17,32 +14,48 @@ export function getDogs() {
     .then(data => {
       for (let i = 0; i < data.message.length; i++) {
         let trimmedString = "";
-        if (option === null) {
-          // need to extract breed from the image url
-          //removing the head
-          trimmedString = String(data.message[i]).replace(
-            "https://images.dog.ceo/breeds/",
-            ""
-          );
-          //removing the tail
-          let tailString = trimmedString.substring(trimmedString.indexOf("/"));
-          trimmedString = trimmedString.replace(tailString, "");
-        }
+        // need to extract breed from the image url
+        //removing the head
+        trimmedString = String(data.message[i]).replace(
+          "https://images.dog.ceo/breeds/",
+          ""
+        );
+        //removing the tail
+        let tailString = trimmedString.substring(trimmedString.indexOf("/"));
+        trimmedString = trimmedString.replace(tailString, "");
         imgArr.push({
           key: String(data.message[i]),
           location: constants.states[Math.floor(Math.random() * 8)],
           price: this.generatePrice(),
-          breed: option === null ? trimmedString : option,
+          breed: trimmedString,
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae ultricies dolor. Aenean lacus nisi, viverra consequat consequat nec, pulvinar nec magna. Donec ac augue turpis. Curabitur vel sem nec arcu fermentum sollicitudin nec vitae ex. Proin tempus, orci nec facilisis dapibus, dolor velit efficitur purus, quis hendrerit ipsum nulla quis augue. Ut condimentum, nisi et hendrerit sagittis, libero enim dignissim sapien, in laoreet elit eros ut arcu. Phasellus venenatis elit in risus eleifend, a mollis justo bibendum. Fusce neque enim, lacinia eget neque vel, egestas blandit ante. Vestibulum rutrum ipsum nisi, in imperdiet mauris ultrices vitae. Morbi ultricies leo vitae purus varius, vel euismod nisi finibus. In et semper orci, ut dignissim lorem. Maecenas vitae consectetur augue. Vivamus condimentum a ipsum ut efficitur. Cras non mauris vitae nulla pellentesque volutpat. Quisque vitae nibh maximus, maximus sem vitae, hendrerit nisi."
         });
       }
-      store.dispatch(setResults(imgArr));
+      store.dispatch(setAllDogs(imgArr));
+      getDogs();
     })
     .catch(e => console.log(e));
-
-  // return null;
 }
+
+//get dogs filtered by search results
+export function getDogs() {
+  const breed = store.getState().searchFilters.breed;
+  const imgArr =
+    breed === null
+      ? store.getState().allDogs
+      : this.getFilteredDogs(store.getState().allDogs);
+  store.dispatch(setResults(imgArr));
+}
+
+getFilteredDogs = dogs => {
+  const breed = store.getState().searchFilters.breed;
+  let filteredArr = [];
+  for (let i = 0; i < dogs.length; i++) {
+    dogs[i].breed === breed && filteredArr.push(dogs[i]);
+  }
+  return filteredArr;
+};
 
 //generating placeholder prices. Not to be used in production
 generatePrice = () => {
@@ -55,5 +68,6 @@ generatePrice = () => {
   if (Math.floor(Math.random() * 6) === 0) {
     return "Free";
   }
+
   return `$${price}`;
 };

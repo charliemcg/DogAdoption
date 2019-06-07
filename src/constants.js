@@ -6,6 +6,7 @@ export default {
     imagesEnd: "/images"
   },
   actions: {
+    setAllDogs: "SET_ALL_DOGS",
     selectedDog: "SELECTED_DOG",
     breedsList: "BREEDS_LIST",
     setSearchFilters: "SET_SEARCH_FILTERS",

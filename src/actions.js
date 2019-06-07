@@ -1,5 +1,12 @@
 import constants from "./constants";
 
+export function setAllDogs(results) {
+  return {
+    type: constants.actions.setAllDogs,
+    payload: results
+  };
+}
+
 export function selectedDog(dog) {
   return {
     type: constants.actions.selectedDog,
@@ -14,10 +21,10 @@ export function breedsList(breeds) {
   };
 }
 
-export function setSearchFilters(breed) {
+export function setSearchFilters(filters) {
   return {
     type: constants.actions.setSearchFilters,
-    payload: breed
+    payload: filters
   };
 }
 

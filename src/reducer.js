@@ -3,6 +3,9 @@ import constants from "./constants";
 //default state
 function getPlaceholderData() {
   return {
+    //all dogs in system
+    allDogs: [],
+    //the dog which the user is currently looking at
     selectedDog: {
       key: null,
       location: null,
@@ -10,14 +13,27 @@ function getPlaceholderData() {
       breed: null,
       description: null
     },
+    //all the different types of breeds
     breeds: [],
-    searchFilters: { breed: null },
+    //the filters chosen by the user for filtering the results
+    searchFilters: { breed: null, location: null },
+    //all the dogs in the system accounting for user selected filters
     searchResults: []
   };
 }
 
 const reducer = (state = getPlaceholderData(), action) => {
   switch (action.type) {
+    //all dogs in the system
+    case constants.actions.setAllDogs:
+      // let moreDogs = state.allDogs;
+      let moreDogsArr = [...action.payload];
+      let concatenatedArr = moreDogsArr.concat([...state.allDogs]);
+      state = {
+        ...state,
+        allDogs: concatenatedArr
+      };
+      break;
     //the dog which the user is currently viewing
     case constants.actions.selectedDog:
       state = {
@@ -32,11 +48,11 @@ const reducer = (state = getPlaceholderData(), action) => {
         breeds: action.payload
       };
       break;
-    //the filtered breed
+    //the search filters
     case constants.actions.setSearchFilters:
       state = {
         ...state,
-        searchFilters: { breed: action.payload }
+        searchFilters: action.payload
       };
       break;
     //the search results

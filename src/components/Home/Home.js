@@ -10,7 +10,7 @@ import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { breedsList } from "../../actions";
-import { getDogs } from "../../searchAlgorithm";
+import { getDogs, loadAllDogsInSystem } from "../../searchAlgorithm";
 
 class Home extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -45,7 +45,11 @@ class Home extends Component {
 
   componentDidMount() {
     this.getBreeds();
-    getDogs();
+    loadAllDogsInSystem();
+    loadAllDogsInSystem();
+    loadAllDogsInSystem();
+    loadAllDogsInSystem();
+    loadAllDogsInSystem();
   }
 
   getBreeds = () => {
@@ -56,7 +60,7 @@ class Home extends Component {
       .then(data => {
         let breedsArr = [];
         let index = 0;
-        for (var key in data.message) {
+        for (let key in data.message) {
           breedsArr.push({ key: index++, label: key });
         }
         this.props.breedsList(breedsArr);
