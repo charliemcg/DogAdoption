@@ -19,7 +19,8 @@ import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import { TouchableHighlight } from "react-native-gesture-handler";
-import { setSelectedBreed } from "../../actions";
+import { setSelectedBreed, setResults } from "../../actions";
+import { getDogs } from "../../searchAlgorithm";
 
 class Filter extends Component {
   render() {
@@ -34,6 +35,8 @@ class Filter extends Component {
             // this.setState({ results: [] });
             // this.getDogs(option);
             this.props.setSelectedBreed(option.label);
+            this.props.setResults([]);
+            getDogs();
             this.props.navigation.navigate("Home");
           }}
           selectTextStyle={{
@@ -59,6 +62,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setSelectedBreed: breed => {
       dispatch(setSelectedBreed(breed));
+    },
+    setResults: results => {
+      dispatch(setResults(results));
     }
   };
 };
