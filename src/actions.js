@@ -13,3 +13,17 @@ export function breedsList(breeds) {
     payload: breeds
   };
 }
+
+export function setSelectedBreed(breed) {
+  return {
+    type: constants.actions.setSelectedBreed,
+    payload: breed
+  };
+}
+
+export function setResults(results) {
+  return {
+    type: constants.actions.setResults,
+    payload: results
+  };
+}

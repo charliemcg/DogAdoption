@@ -19,10 +19,10 @@ import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import { TouchableHighlight } from "react-native-gesture-handler";
+import { setSelectedBreed } from "../../actions";
 
 class Filter extends Component {
   render() {
-    alert(this.props.breedsList);
     return (
       <SafeAreaView style={styles.parent}>
         <ModalSelector
@@ -31,8 +31,10 @@ class Filter extends Component {
           initValue={this.props.selectedBreed}
           onChange={option => {
             // setting results to nothing will bring up the activity indicator for better UX
-            this.setState({ results: [] });
-            this.getDogs(option);
+            // this.setState({ results: [] });
+            // this.getDogs(option);
+            this.props.setSelectedBreed(option.label);
+            this.props.navigation.navigate("Home");
           }}
           selectTextStyle={{
             color: colors.dark
@@ -55,7 +57,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    //actions go here...
+    setSelectedBreed: breed => {
+      dispatch(setSelectedBreed(breed));
+    }
   };
 };
 

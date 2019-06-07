@@ -10,7 +10,9 @@ function getPlaceholderData() {
       breed: null,
       description: null
     },
-    breeds: []
+    breeds: [],
+    selectedBreed: null,
+    searchResults: []
   };
 }
 
@@ -28,6 +30,20 @@ const reducer = (state = getPlaceholderData(), action) => {
       state = {
         ...state,
         breeds: action.payload
+      };
+      break;
+    //the filtered breed
+    case constants.actions.setSelectedBreed:
+      state = {
+        ...state,
+        selectedBreed: action.payload
+      };
+      break;
+    //the search results
+    case constants.actions.setResults:
+      state = {
+        ...state,
+        searchResults: action.payload
       };
       break;
     default:

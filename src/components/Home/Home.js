@@ -19,7 +19,8 @@ import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import { TouchableHighlight } from "react-native-gesture-handler";
-import { breedsList } from "../../actions";
+import { breedsList, setResults } from "../../actions";
+import { getDogs } from "../../searchAlgorithm";
 
 class Home extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -50,19 +51,12 @@ class Home extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = {
-      //list of selectable breeds
-      // breeds: [],
-      //breed that user chose
-      selectedBreed: strings.select,
-      //images of dogs of the selected breed
-      results: []
-    };
   }
 
   componentDidMount() {
     this.getBreeds();
-    this.getDogs("");
+    // this.getDogs(this.props.selectedBreed);
+    getDogs();
   }
 
   getBreeds = () => {
@@ -84,12 +78,12 @@ class Home extends Component {
       .catch(e => console.log(e));
   };
 
-  //getting results. All dogs or those of a choseen breed
+  //getting results. All dogs or those of a chosen breed
   getDogs = option => {
     let imgArr = [];
     fetch(
       //get all breeds when no breed selected
-      option === ""
+      option === null
         ? constants.api.allDogs
         : `${constants.api.imagesStart}${option.label}${
             constants.api.imagesEnd
@@ -102,7 +96,7 @@ class Home extends Component {
         for (let i = 0; i < data.message.length; i++) {
           let trimmedString = "";
           //
-          if (option === "") {
+          if (option === null) {
             // need to extract breed from the image url
             //removing the head
             trimmedString = String(data.message[i]).replace(
@@ -119,19 +113,21 @@ class Home extends Component {
             key: String(data.message[i]),
             location: constants.states[Math.floor(Math.random() * 8)],
             price: this.generatePrice(),
-            breed: option === "" ? trimmedString : this.state.selectedBreed,
+            breed: option === null ? trimmedString : this.state.selectedBreed,
             description:
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae ultricies dolor. Aenean lacus nisi, viverra consequat consequat nec, pulvinar nec magna. Donec ac augue turpis. Curabitur vel sem nec arcu fermentum sollicitudin nec vitae ex. Proin tempus, orci nec facilisis dapibus, dolor velit efficitur purus, quis hendrerit ipsum nulla quis augue. Ut condimentum, nisi et hendrerit sagittis, libero enim dignissim sapien, in laoreet elit eros ut arcu. Phasellus venenatis elit in risus eleifend, a mollis justo bibendum. Fusce neque enim, lacinia eget neque vel, egestas blandit ante. Vestibulum rutrum ipsum nisi, in imperdiet mauris ultrices vitae. Morbi ultricies leo vitae purus varius, vel euismod nisi finibus. In et semper orci, ut dignissim lorem. Maecenas vitae consectetur augue. Vivamus condimentum a ipsum ut efficitur. Cras non mauris vitae nulla pellentesque volutpat. Quisque vitae nibh maximus, maximus sem vitae, hendrerit nisi."
           });
         }
-        this.setState({
-          results: imgArr
-        });
+        // this.setState({
+        //   results: imgArr
+        // });
+        this.props.setResults(imgArr);
       })
       .catch(e => console.log(e));
-    this.setState({
-      selectedBreed: option.label
-    });
+    // this.setState({
+    //   selectedBreed: option.label
+    // });
+    // this.props.setSelectedBreed(option.label);
   };
 
   //generating placeholder prices. Not to be used in production
@@ -150,11 +146,11 @@ class Home extends Component {
 
   render() {
     const theList =
-      this.state.results.length === 0 ? (
+      this.props.searchResults.length === 0 ? (
         <ActivityIndicator size="large" style={{ flex: 1 }} />
       ) : (
         <FlatList
-          data={this.state.results}
+          data={this.props.searchResults}
           renderItem={({ item }) => (
             <ListItem item={item} navigation={this.props.navigation} />
           )}
@@ -166,7 +162,7 @@ class Home extends Component {
         {/* <ModalSelector
           style={styles.breedSelector}
           data={this.props.breeds}
-          initValue={this.state.selectedBreed}
+          initValue={this.props.selectedBreed}
           onChange={option => {
             // setting results to nothing will bring up the activity indicator for better UX
             this.setState({ results: [] });
@@ -194,7 +190,7 @@ class Home extends Component {
       <SafeAreaView style={styles.parent}>
         {/* scrollable list of dogs */}
         {theList}
-        {/* select a breed */}
+        {/* manipulate search results */}
         {fab}
       </SafeAreaView>
     );
@@ -203,7 +199,9 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    breeds: state.breeds
+    selectedBreed: state.selectedBreed,
+    breeds: state.breeds,
+    searchResults: state.searchResults
   };
 };
 
@@ -211,6 +209,9 @@ const mapDispatchToProps = dispatch => {
   return {
     breedsList: breeds => {
       dispatch(breedsList(breeds));
+    },
+    setResults: results => {
+      dispatch(setResults(results));
     }
   };
 };
