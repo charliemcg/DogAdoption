@@ -10,7 +10,8 @@ export default {
     selectedDog: "SELECTED_DOG",
     breedsList: "BREEDS_LIST",
     setSearchFilters: "SET_SEARCH_FILTERS",
-    setResults: "SET_RESULTS"
+    setResults: "SET_RESULTS",
+    signInOut: "SIGN_IN_OUT"
   },
   states: ["WA", "NT", "SA", "QLD", "NSW", "ACT", "VIC", "TAS"],
   legal: {

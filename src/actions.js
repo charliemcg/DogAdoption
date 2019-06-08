@@ -34,3 +34,9 @@ export function setResults(results) {
     payload: results
   };
 }
+
+export function signInOut() {
+  return {
+    type: constants.actions.signInOut
+  };
+}

@@ -16,13 +16,13 @@ import Favorites from "../Favorites";
 import Resolution from "../Resolution";
 import Filter from "../Filter";
 import PrivacyPolicy from "../PrivacyPolicy";
+import UserProfile from "../UserProfile";
 import colors from "../../colors";
 import LinearGradient from "react-native-linear-gradient";
 import strings from "../../strings";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
-import consants from "../../constants";
 
 const DrawerHeader = props => (
   <View>
@@ -77,6 +77,7 @@ const Stack = createStackNavigator(
     SignUp,
     PrivacyPolicy,
     Filter,
+    UserProfile,
     // putting drawer screens in stack so that they will have a back button
     Favorites,
     Resolution

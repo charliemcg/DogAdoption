@@ -4,8 +4,11 @@ import styles from "./styles";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import colors from "../../colors";
+import strings from "../../strings";
+import { signInOut } from "../../actions";
+import { connect } from "react-redux";
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   render() {
     return (
       <View style={styles.parent}>
@@ -50,7 +53,13 @@ export default class SignIn extends Component {
         </View>
         {/* sign in */}
         <View style={styles.signInWrapper}>
-          <TouchableHighlight style={styles.signIn}>
+          <TouchableHighlight
+            style={styles.signIn}
+            onPress={() => {
+              this.props.signInOut();
+              this.props.navigation.navigate("Home");
+            }}
+          >
             <Text>Sign In</Text>
           </TouchableHighlight>
         </View>
@@ -74,3 +83,16 @@ export default class SignIn extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signInOut: () => {
+      dispatch(signInOut());
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignIn);

@@ -11,6 +11,7 @@ import IconEntypo from "react-native-vector-icons/Entypo";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { breedsList } from "../../actions";
 import { loadAllDogsInSystem } from "../../generator";
+import store from "../../store";
 
 class Home extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -34,7 +35,11 @@ class Home extends Component {
           name="user-circle"
           size={35}
           color={colors.white}
-          onPress={() => navigation.navigate("SignIn")}
+          onPress={() => {
+            store.getState().signedIn
+              ? navigation.navigate("UserProfile")
+              : navigation.navigate("SignIn");
+          }}
         />
       ]
     };
@@ -113,7 +118,8 @@ class Home extends Component {
 const mapStateToProps = state => {
   return {
     breeds: state.breeds,
-    searchResults: state.searchResults
+    searchResults: state.searchResults,
+    signedIn: state.signedIn
   };
 };
 

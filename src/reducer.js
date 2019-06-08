@@ -23,7 +23,9 @@ function getPlaceholderData() {
       priceMax: null
     },
     //all the dogs in the system accounting for user selected filters
-    searchResults: []
+    searchResults: [],
+    //user user signed in
+    signedIn: false
   };
 }
 
@@ -67,6 +69,11 @@ const reducer = (state = getPlaceholderData(), action) => {
         searchResults: action.payload
       };
       break;
+    case constants.actions.signInOut:
+      state = {
+        ...state,
+        signedIn: !state.signedIn
+      };
     default:
       return state;
   }
