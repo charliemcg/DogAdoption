@@ -34,10 +34,10 @@ const DrawerHeader = props => (
         justifyContent: "center"
       }}
     >
-      <IconAwesome name="dog" size={50} color={colors.white} />
+      <IconAwesome name="dog" size={50} color={colors.contrast} />
       <Text
         style={{
-          color: "white",
+          color: colors.contrast,
           fontSize: 30,
           textAlign: "center",
           paddingLeft: "3%",
@@ -67,7 +67,7 @@ const Stack = createStackNavigator(
         headerTitleStyle: {
           fontSize: 17,
           width: Dimensions.get("window").width,
-          color: colors.white
+          color: colors.contrast
         }
       }
     },
@@ -88,7 +88,7 @@ const Stack = createStackNavigator(
       headerStyle: {
         backgroundColor: colors.primary
       },
-      headerTintColor: colors.white
+      headerTintColor: colors.contrast
     }
   },
   { headerLayoutPreset: "center" }

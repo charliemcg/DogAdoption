@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, SafeAreaView, FlatList, ActivityIndicator } from "react-native";
+import {
+  View,
+  SafeAreaView,
+  FlatList,
+  ActivityIndicator,
+  Text
+} from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
 import colors from "../../colors";
@@ -20,7 +26,7 @@ class Home extends Component {
         <IconMCI
           name="menu"
           size={35}
-          color={colors.white}
+          color={colors.contrast}
           onPress={() => navigation.toggleDrawer()}
         />
       ),
@@ -28,13 +34,14 @@ class Home extends Component {
         <IconEntypo
           name="message"
           size={35}
-          color={colors.white}
+          color={colors.contrast}
           onPress={() => navigation.navigate("Messages")}
         />,
         <IconAwesome
+          style={{ paddingRight: 10, paddingLeft: 8 }}
           name="user-circle"
-          size={35}
-          color={colors.white}
+          size={30}
+          color={colors.contrast}
           onPress={() => {
             store.getState().signedIn
               ? navigation.navigate("UserProfile")
@@ -44,12 +51,10 @@ class Home extends Component {
       ]
     };
   };
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.getBreeds();
+    //maximum results returned by api is 50. Necessary to call several times to get a decent size database
     loadAllDogsInSystem();
     loadAllDogsInSystem();
     loadAllDogsInSystem();
@@ -93,13 +98,41 @@ class Home extends Component {
 
     const fab = (
       <View style={styles.fab}>
+        {/* filter */}
         <TouchableHighlight
+          style={styles.filterTouchable}
           onPress={() => this.props.navigation.navigate("Filter")}
         >
-          <IconMCI name="filter-outline" size={35} color={colors.white} />
+          <View style={styles.fabButton}>
+            <View style={styles.fabIconWrapper}>
+              <IconMCI
+                name="filter-outline"
+                size={20}
+                color={colors.contrast}
+              />
+            </View>
+            <View style={styles.fabTextWrapper}>
+              <Text style={styles.text}>Filter</Text>
+            </View>
+          </View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => alert("Sort pressed")}>
-          <IconAwesome name="sort" size={35} color={colors.white} />
+        {/* divider */}
+        <View style={styles.dividerWrapper}>
+          <View style={styles.divider} />
+        </View>
+        {/* sort */}
+        <TouchableHighlight
+          style={styles.sortTouchable}
+          onPress={() => alert("Sort pressed")}
+        >
+          <View style={styles.fabButton}>
+            <View style={styles.fabIconWrapper}>
+              <IconMCI name="sort" size={20} color={colors.contrast} />
+            </View>
+            <View style={styles.fabTextWrapper}>
+              <Text style={styles.text}>Sort</Text>
+            </View>
+          </View>
         </TouchableHighlight>
       </View>
     );

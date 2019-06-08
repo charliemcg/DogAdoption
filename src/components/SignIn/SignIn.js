@@ -28,7 +28,7 @@ class SignIn extends Component {
             {/* textContentType is for autofill */}
             <TextInput
               textContentType="username"
-              placeholder="Username"
+              placeholder="Email"
               style={styles.inputText}
             />
           </View>
