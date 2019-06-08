@@ -7,6 +7,7 @@ import {
   DrawerItems,
   DrawerActions
 } from "react-navigation";
+import Splash from "../Splash";
 import Home from "../Home";
 import DogProfile from "../DogProfile";
 import Messages from "../Messages";

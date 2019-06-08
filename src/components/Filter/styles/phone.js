@@ -20,12 +20,15 @@ export default {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.white,
-    marginRight: 10
+    marginRight: 10,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20
   },
   optionWrapperRight: {
     flex: 7,
     alignItems: "flex-end",
-    backgroundColor: colors.white
+    backgroundColor: colors.white,
+    borderBottomRightRadius: 8
   },
   iconWrapper: {
     flex: 2,
@@ -37,19 +40,25 @@ export default {
     paddingTop: "4%"
   },
   nameText: {
-    fontSize: 30
+    fontSize: 20,
+    color: "#333"
   },
   topRightWrapper: {
     flex: 2,
     flexDirection: "row"
   },
-  resetBtnWrapper: {},
+  modalSelectorWrapper: {
+    flex: 2,
+    width: "100%",
+    alignItems: "center"
+  },
   modalSelector: {
-    width: "100%"
+    width: "90%"
   },
   statesWrapper: {
     flex: 2,
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    width: "100%"
   },
   topRowStates: {
     flexDirection: "row",
@@ -61,11 +70,19 @@ export default {
     width: "100%",
     justifyContent: "space-around"
   },
+  state: {
+    width: "20%",
+    textAlign: "center"
+  },
   priceWrapper: {
-    flexDirection: "row"
+    flexDirection: "row",
+    flex: 3
   },
   minPriceWrapper: { flex: 1 },
   maxPriceWrapper: { flex: 1 },
+  priceSelectorWrapper: { alignItems: "center" },
+  priceSelector: { width: "90%" },
+  priceText: { color: "#333", paddingLeft: "8%" },
   updateBtn: {
     backgroundColor: colors.primary,
     width: width * 0.7,

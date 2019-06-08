@@ -76,13 +76,7 @@ class Filter extends Component {
             <View style={styles.textWrapper}>
               <Text style={styles.nameText}>{props.filterName}</Text>
             </View>
-            <View style={styles.resetBtnWrapper}>
-              <IconAwesome
-                name="window-close"
-                size={20}
-                color={colors.primary}
-              />
-            </View>
+            <IconAwesome name="window-close" size={20} color="#333" />
           </View>
           {props.filterOptions}
         </View>
@@ -92,37 +86,39 @@ class Filter extends Component {
 
   render() {
     const breedOptions = (
-      <ModalSelector
-        style={styles.modalSelector}
-        data={this.props.breeds}
-        initValue={
-          this.state.breed === null ? strings.select : this.state.breed
-        }
-        onChange={option => {
-          this.setState({ breed: option.label });
-        }}
-        selectTextStyle={{
-          color: colors.dark
-        }}
-        optionTextStyle={{
-          color: colors.notQuiteBlack
-        }}
-      />
+      <View style={styles.modalSelectorWrapper}>
+        <ModalSelector
+          style={styles.modalSelector}
+          data={this.props.breeds}
+          initValue={
+            this.state.breed === null ? strings.select : this.state.breed
+          }
+          onChange={option => {
+            this.setState({ breed: option.label });
+          }}
+          selectTextStyle={{
+            color: colors.dark
+          }}
+          optionTextStyle={{
+            color: colors.notQuiteBlack
+          }}
+        />
+      </View>
     );
 
     const locationOptions = (
       <View style={styles.statesWrapper}>
         <View style={styles.topRowStates}>
-          <Text>WA</Text>
-          <Text>NT</Text>
-          <Text>QLD</Text>
-          <Text>VIC</Text>
+          <Text style={styles.state}>WA</Text>
+          <Text style={styles.state}>NT</Text>
+          <Text style={styles.state}>QLD</Text>
+          <Text style={styles.state}>VIC</Text>
         </View>
         <View style={styles.bottomRowStates}>
-          <Text>SA</Text>
-          <Text>NSW</Text>
-          <Text>ACT</Text>
-          <Text>TAS</Text>
+          <Text style={styles.state}>SA</Text>
+          <Text style={styles.state}>NSW</Text>
+          <Text style={styles.state}>ACT</Text>
+          <Text style={styles.state}>TAS</Text>
         </View>
       </View>
     );
@@ -130,48 +126,54 @@ class Filter extends Component {
     const priceOptions = (
       <View style={styles.priceWrapper}>
         <View style={styles.minPriceWrapper}>
-          <Text>Price min.</Text>
-          <ModalSelector
-            data={this.minPrices()}
-            initValue={
-              this.state.priceMin === null
-                ? strings.select
-                : this.state.priceMin
-            }
-            onChange={option => {
-              this.setState({
-                priceMin: option.label
-              });
-            }}
-            selectTextStyle={{
-              color: colors.dark
-            }}
-            optionTextStyle={{
-              color: colors.notQuiteBlack
-            }}
-          />
+          <Text style={styles.priceText}>Price min.</Text>
+          <View style={styles.priceSelectorWrapper}>
+            <ModalSelector
+              style={styles.priceSelector}
+              data={this.minPrices()}
+              initValue={
+                this.state.priceMin === null
+                  ? strings.select
+                  : this.state.priceMin
+              }
+              onChange={option => {
+                this.setState({
+                  priceMin: option.label
+                });
+              }}
+              selectTextStyle={{
+                color: colors.dark
+              }}
+              optionTextStyle={{
+                color: colors.notQuiteBlack
+              }}
+            />
+          </View>
         </View>
         <View style={styles.maxPriceWrapper}>
-          <Text>Price max.</Text>
-          <ModalSelector
-            data={this.maxPrices()}
-            initValue={
-              this.state.priceMax === null
-                ? strings.select
-                : this.state.priceMax
-            }
-            onChange={option => {
-              this.setState({
-                priceMax: option.label
-              });
-            }}
-            selectTextStyle={{
-              color: colors.dark
-            }}
-            optionTextStyle={{
-              color: colors.notQuiteBlack
-            }}
-          />
+          <Text style={styles.priceText}>Price max.</Text>
+          <View style={styles.priceSelectorWrapper}>
+            <ModalSelector
+              style={styles.priceSelector}
+              data={this.maxPrices()}
+              initValue={
+                this.state.priceMax === null
+                  ? strings.select
+                  : this.state.priceMax
+              }
+              onChange={option => {
+                this.setState({
+                  priceMax: option.label
+                });
+              }}
+              selectTextStyle={{
+                color: colors.dark
+              }}
+              optionTextStyle={{
+                color: colors.notQuiteBlack
+              }}
+            />
+          </View>
         </View>
       </View>
     );
@@ -198,7 +200,7 @@ class Filter extends Component {
         onPress={() => this.handleUpdate()}
         style={styles.updateBtn}
       >
-        <Text>{strings.updateSearch}</Text>
+        <Text style={styles.nameText}>{strings.updateSearch}</Text>
       </TouchableHighlight>
     );
 
