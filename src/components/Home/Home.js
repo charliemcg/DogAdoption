@@ -10,7 +10,7 @@ import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { breedsList } from "../../actions";
-import { getDogs, loadAllDogsInSystem } from "../../searchAlgorithm";
+import { loadAllDogsInSystem } from "../../generator";
 
 class Home extends Component {
   static navigationOptions = ({ navigation }) => {
