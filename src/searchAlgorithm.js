@@ -44,24 +44,64 @@ export function loadAllDogsInSystem() {
     .catch(e => console.log(e));
 }
 
+//////////////////////Following code only gets exact matches. Need to get close matches too/////////////////////////////
+// //get dogs filtered by search results
+// export function getDogs() {
+//   const breed = store.getState().searchFilters.breed;
+//   const imgArr =
+//     breed === null
+//       ? store.getState().allDogs
+//       : this.getFilteredDogs(store.getState().allDogs);
+//   store.dispatch(setResults(imgArr));
+// }
+
+// getFilteredDogs = dogs => {
+//   let filteredArr = [...this.checkBreed(dogs)];
+//   return filteredArr;
+// };
+
+// checkBreed = dogs => {
+//   const breed = store.getState().searchFilters.breed;
+//   let filteredArr = [];
+//   for (let i = 0; i < dogs.length; i++) {
+//     const validated = dogs[i].breed === breed && this.checkLocation(dogs[i]);
+//     validated && filteredArr.push(dogs[i]);
+//   }
+//   return filteredArr;
+// };
+
+// checkLocation = breedVerifiedDog => {
+//   const location = store.getState().searchFilters.location;
+//   return breedVerifiedDog.location === location && true;
+// };
+///////////////////////////////////////////////////
+
 //get dogs filtered by search results
 export function getDogs() {
   const breed = store.getState().searchFilters.breed;
-  const imgArr =
-    breed === null
-      ? store.getState().allDogs
-      : this.getFilteredDogs(store.getState().allDogs);
-  store.dispatch(setResults(imgArr));
-}
-
-getFilteredDogs = dogs => {
-  const breed = store.getState().searchFilters.breed;
-  let filteredArr = [];
-  for (let i = 0; i < dogs.length; i++) {
-    dogs[i].breed === breed && filteredArr.push(dogs[i]);
+  const location = store.getState().searchFilters.location;
+  const unfilteredDogsArr = [...store.getState().allDogs];
+  let exactMatchesArr = [];
+  let oneDegreeFromExactArr = [];
+  for (let i = 0; i < unfilteredDogsArr.length; i++) {
+    const dog = unfilteredDogsArr[i];
+    let count = 0;
+    dog.breed === breed && count++;
+    dog.location === location && count++;
+    switch (count) {
+      case 2:
+        exactMatchesArr.push(unfilteredDogsArr[i]);
+        break;
+      case 1:
+        oneDegreeFromExactArr.push(unfilteredDogsArr[i]);
+        break;
+    }
   }
-  return filteredArr;
-};
+  const orderedByMatchArr = exactMatchesArr.concat(oneDegreeFromExactArr);
+  oneDegreeFromExactArr.length === 0
+    ? store.dispatch(setResults(unfilteredDogsArr))
+    : store.dispatch(setResults(orderedByMatchArr));
+}
 
 //generating placeholder prices. Not to be used in production
 generatePrice = () => {
