@@ -66,41 +66,6 @@ class Filter extends Component {
   };
 
   render() {
-    // const breedSelector = (
-    //   <View style={styles.optionWrapper}>
-    //     <View style={styles.optionWrapperLeft}>
-    //       <View style={styles.iconWrapper}>
-    //         <IconAwesome name="dog" size={45} color={colors.primary} />
-    //       </View>
-    //       <View style={styles.textWrapper}>
-    //         <Text style={styles.nameText}>Breed</Text>
-    //       </View>
-    //     </View>
-    //     <View style={styles.optionWrapperRight}>
-    //       <View style={styles.resetBtnWrapper}>
-    //         <IconAwesome name="window-close" size={20} color={colors.primary} />
-    //       </View>
-    //       {/* consider using a picker instead */}
-    //       <ModalSelector
-    //         style={styles.modalSelector}
-    //         data={this.props.breeds}
-    //         initValue={
-    //           this.state.breed === null ? strings.select : this.state.breed
-    //         }
-    //         onChange={option => {
-    //           this.setState({ breed: option.label });
-    //         }}
-    //         selectTextStyle={{
-    //           color: colors.dark
-    //         }}
-    //         optionTextStyle={{
-    //           color: colors.notQuiteBlack
-    //         }}
-    //       />
-    //     </View>
-    //   </View>
-    // );
-
     const breedSelector = (
       <View style={styles.optionWrapper}>
         <View style={styles.optionWrapperLeft}>
@@ -148,13 +113,19 @@ class Filter extends Component {
           <View style={styles.iconWrapper}>
             <IconEntypo name="location-pin" size={45} color={colors.primary} />
           </View>
-          <View style={styles.textWrapper}>
-            <Text style={styles.nameText}>Location</Text>
-          </View>
         </View>
         <View style={styles.optionWrapperRight}>
-          <View style={styles.resetBtnWrapper}>
-            <IconAwesome name="window-close" size={20} color={colors.primary} />
+          <View style={styles.topRightWrapper}>
+            <View style={styles.textWrapper}>
+              <Text style={styles.nameText}>Location</Text>
+            </View>
+            <View style={styles.resetBtnWrapper}>
+              <IconAwesome
+                name="window-close"
+                size={20}
+                color={colors.primary}
+              />
+            </View>
           </View>
           <View style={styles.statesWrapper}>
             <View style={styles.topRowStates}>
@@ -198,13 +169,19 @@ class Filter extends Component {
           <View style={styles.iconWrapper}>
             <IconAwesome name="dollar-sign" size={45} color={colors.primary} />
           </View>
-          <View style={styles.textWrapper}>
-            <Text style={styles.nameText}>Price</Text>
-          </View>
         </View>
         <View style={styles.optionWrapperRight}>
-          <View style={styles.resetBtnWrapper}>
-            <IconAwesome name="window-close" size={20} color={colors.primary} />
+          <View style={styles.topRightWrapper}>
+            <View style={styles.textWrapper}>
+              <Text style={styles.nameText}>Price</Text>
+            </View>
+            <View style={styles.resetBtnWrapper}>
+              <IconAwesome
+                name="window-close"
+                size={20}
+                color={colors.primary}
+              />
+            </View>
           </View>
           <View style={styles.priceWrapper}>
             <View style={styles.minPriceWrapper}>

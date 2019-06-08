@@ -12,18 +12,20 @@ export default {
   },
   optionWrapper: {
     flexDirection: "row",
-    backgroundColor: colors.white,
     width: width * 0.8,
     height: width * 0.3
   },
   optionWrapperLeft: {
     flex: 3,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: colors.white,
+    marginRight: 10
   },
   optionWrapperRight: {
     flex: 7,
-    alignItems: "flex-end"
+    alignItems: "flex-end",
+    backgroundColor: colors.white
   },
   iconWrapper: {
     flex: 2,
@@ -31,7 +33,8 @@ export default {
   },
   textWrapper: {
     flex: 1,
-    justifyContent: "center"
+    paddingLeft: "10%",
+    paddingTop: "4%"
   },
   nameText: {
     fontSize: 30
