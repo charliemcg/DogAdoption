@@ -19,8 +19,8 @@ function getPlaceholderData() {
     searchFilters: {
       breed: null,
       location: null,
-      priceLow: null,
-      priceHigh: null
+      priceMin: null,
+      priceMax: null
     },
     //all the dogs in the system accounting for user selected filters
     searchResults: []

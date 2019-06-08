@@ -44,46 +44,20 @@ export function loadAllDogsInSystem() {
     .catch(e => console.log(e));
 }
 
-//////////////////////Following code only gets exact matches. Need to get close matches too/////////////////////////////
-// //get dogs filtered by search results
-// export function getDogs() {
-//   const breed = store.getState().searchFilters.breed;
-//   const imgArr =
-//     breed === null
-//       ? store.getState().allDogs
-//       : this.getFilteredDogs(store.getState().allDogs);
-//   store.dispatch(setResults(imgArr));
-// }
-
-// getFilteredDogs = dogs => {
-//   let filteredArr = [...this.checkBreed(dogs)];
-//   return filteredArr;
-// };
-
-// checkBreed = dogs => {
-//   const breed = store.getState().searchFilters.breed;
-//   let filteredArr = [];
-//   for (let i = 0; i < dogs.length; i++) {
-//     const validated = dogs[i].breed === breed && this.checkLocation(dogs[i]);
-//     validated && filteredArr.push(dogs[i]);
-//   }
-//   return filteredArr;
-// };
-
-// checkLocation = breedVerifiedDog => {
-//   const location = store.getState().searchFilters.location;
-//   return breedVerifiedDog.location === location && true;
-// };
-///////////////////////////////////////////////////
-
 //get dogs filtered by search results
 export function getDogs() {
   const filters = store.getState().searchFilters;
   const breed = filters.breed;
   const location = filters.location;
-  const priceLow = filters.priceLow;
+  const priceMin = filters.priceMin;
+  const priceMax = filters.priceMax;
   //no filters selected. Show all dogs
-  if (breed === null && location === null && priceLow === null) {
+  if (
+    breed === null &&
+    location === null &&
+    priceMin === null &&
+    priceMax === null
+  ) {
     store.dispatch(setResults(store.getState().allDogs));
     //apply filters
   } else {
@@ -99,15 +73,28 @@ export function getDogs() {
       dog.breed === breed && count++;
       //check if location matches
       dog.location === location && count++;
-      //check if price is above minimum
-      priceLow === "Free"
-        ? //all dogs qulify if user set minimum price to free
-          count++
-        : //discard free dogs if minimum price filter is not free.
-          dog.price !== "Free" &&
-          //check that dogs price is greater than user selected minimum
-          Number(dog.price.replace("$", "")) >= priceLow &&
-          count++;
+      //increment for a positive result when checking the min and max price each
+      let priceChecks = 0;
+      //checking minimum price
+      priceMin === "Free"
+        ? //all free dogs immediately pass the low pass threshold
+          priceChecks++
+        : //no need to check min price if user hasn't specified one
+        priceMin === null
+        ? priceChecks++
+        : //checking dog's price is above minimum
+          Number(dog.price.replace("$", "")) >= priceMin && priceChecks++;
+      //checking maximum price
+      priceMax === "Free"
+        ? //only free dogs qualify
+          dog.price === "Free" && priceChecks++
+        : //no need to check max price if user hasn't specified one
+        priceMax === null
+        ? priceChecks++
+        : // checking dog's price is below maximum
+          Number(dog.price.replace("$", "") <= priceMax) && priceChecks++;
+      //two positive price checks means the dog's price is within the filter range
+      priceChecks === 2 && count++;
       switch (count) {
         case 3:
           exactMatchesArr.push(unfilteredDogsArr[i]);
