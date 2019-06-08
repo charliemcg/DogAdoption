@@ -9,5 +9,8 @@ export default {
     backgroundColor: colors.notQuiteWhite,
     justifyContent: "center",
     alignItems: "center"
+  },
+  optionWrapper: {
+    flexDirection: "row"
   }
 };

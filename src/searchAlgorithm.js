@@ -78,29 +78,54 @@ export function loadAllDogsInSystem() {
 
 //get dogs filtered by search results
 export function getDogs() {
-  const breed = store.getState().searchFilters.breed;
-  const location = store.getState().searchFilters.location;
-  const unfilteredDogsArr = [...store.getState().allDogs];
-  let exactMatchesArr = [];
-  let oneDegreeFromExactArr = [];
-  for (let i = 0; i < unfilteredDogsArr.length; i++) {
-    const dog = unfilteredDogsArr[i];
-    let count = 0;
-    dog.breed === breed && count++;
-    dog.location === location && count++;
-    switch (count) {
-      case 2:
-        exactMatchesArr.push(unfilteredDogsArr[i]);
-        break;
-      case 1:
-        oneDegreeFromExactArr.push(unfilteredDogsArr[i]);
-        break;
+  const filters = store.getState().searchFilters;
+  const breed = filters.breed;
+  const location = filters.location;
+  const priceLow = filters.priceLow;
+  //no filters selected. Show all dogs
+  if (breed === null && location === null && priceLow === null) {
+    store.dispatch(setResults(store.getState().allDogs));
+    //apply filters
+  } else {
+    const unfilteredDogsArr = [...store.getState().allDogs];
+    let exactMatchesArr = [];
+    let oneDegreeFromExactArr = [];
+    let twoDegreesFromExactArr = [];
+    for (let i = 0; i < unfilteredDogsArr.length; i++) {
+      const dog = unfilteredDogsArr[i];
+      //count how many filters match the current dog
+      let count = 0;
+      //check if breed matches
+      dog.breed === breed && count++;
+      //check if location matches
+      dog.location === location && count++;
+      //check if price is above minimum
+      priceLow === "Free"
+        ? //all dogs qulify if user set minimum price to free
+          count++
+        : //discard free dogs if minimum price filter is not free.
+          dog.price !== "Free" &&
+          //check that dogs price is greater than user selected minimum
+          Number(dog.price.replace("$", "")) >= priceLow &&
+          count++;
+      switch (count) {
+        case 3:
+          exactMatchesArr.push(unfilteredDogsArr[i]);
+          break;
+        case 2:
+          oneDegreeFromExactArr.push(unfilteredDogsArr[i]);
+          break;
+        case 1:
+          twoDegreesFromExactArr.push(unfilteredDogsArr[i]);
+          break;
+      }
     }
+    //create array of dogs ordered from best match to worst match
+    const orderedByMatchArr = exactMatchesArr
+      .concat(oneDegreeFromExactArr)
+      .concat(twoDegreesFromExactArr);
+    store.dispatch(setResults(orderedByMatchArr));
   }
-  const orderedByMatchArr = exactMatchesArr.concat(oneDegreeFromExactArr);
-  oneDegreeFromExactArr.length === 0
-    ? store.dispatch(setResults(unfilteredDogsArr))
-    : store.dispatch(setResults(orderedByMatchArr));
 }
 
 //generating placeholder prices. Not to be used in production

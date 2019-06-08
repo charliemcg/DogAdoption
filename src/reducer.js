@@ -16,7 +16,12 @@ function getPlaceholderData() {
     //all the different types of breeds
     breeds: [],
     //the filters chosen by the user for filtering the results
-    searchFilters: { breed: null, location: null },
+    searchFilters: {
+      breed: null,
+      location: null,
+      priceLow: null,
+      priceHigh: null
+    },
     //all the dogs in the system accounting for user selected filters
     searchResults: []
   };

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { SafeAreaView, Text } from "react-native";
+import { SafeAreaView, Text, View } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
 import ModalSelector from "react-native-modal-selector";
@@ -15,7 +15,8 @@ class Filter extends Component {
     super(props);
     this.state = {
       breed: this.props.searchFilters.breed,
-      filter: this.props.searchFilters.location
+      filter: this.props.searchFilters.location,
+      priceLow: this.props.searchFilters.priceLow
     };
   }
 
@@ -35,47 +36,83 @@ class Filter extends Component {
     return locations;
   };
 
+  lowPrices = () => {
+    let prices = [];
+    for (let i = 0; i <= 2000; i += 100) {
+      prices.push({ key: i / 10, label: i === 0 ? "Free" : i });
+    }
+    return prices;
+  };
+
   render() {
     return (
       <SafeAreaView style={styles.parent}>
         {/* breed selector */}
-        <ModalSelector
-          style={styles.breedSelector}
-          data={this.props.breeds}
-          initValue={
-            this.props.searchFilters.breed === null
-              ? strings.select
-              : this.props.searchFilters.breed
-          }
-          onChange={option => {
-            this.setState({ breed: option.label });
-          }}
-          selectTextStyle={{
-            color: colors.dark
-          }}
-          optionTextStyle={{
-            color: colors.notQuiteBlack
-          }}
-        />
+        <View style={styles.optionWrapper}>
+          <Text>Breed</Text>
+          <ModalSelector
+            style={styles.breedSelector}
+            data={this.props.breeds}
+            initValue={
+              this.state.breed === null ? strings.select : this.state.breed
+            }
+            onChange={option => {
+              this.setState({ breed: option.label });
+            }}
+            selectTextStyle={{
+              color: colors.dark
+            }}
+            optionTextStyle={{
+              color: colors.notQuiteBlack
+            }}
+          />
+        </View>
         {/* location selector */}
-        <ModalSelector
-          style={styles.breedSelector}
-          data={this.locations()}
-          initValue={
-            this.props.searchFilters.location === null
-              ? strings.select
-              : this.props.searchFilters.location
-          }
-          onChange={option => {
-            this.setState({ location: option.label });
-          }}
-          selectTextStyle={{
-            color: colors.dark
-          }}
-          optionTextStyle={{
-            color: colors.notQuiteBlack
-          }}
-        />
+        <View style={styles.optionWrapper}>
+          <Text>Location</Text>
+          <ModalSelector
+            style={styles.breedSelector}
+            data={this.locations()}
+            initValue={
+              this.state.location === null
+                ? strings.select
+                : this.state.location
+            }
+            onChange={option => {
+              this.setState({ location: option.label });
+            }}
+            selectTextStyle={{
+              color: colors.dark
+            }}
+            optionTextStyle={{
+              color: colors.notQuiteBlack
+            }}
+          />
+        </View>
+        {/* low price selector */}
+        <View style={styles.optionWrapper}>
+          <Text>Price min.</Text>
+          <ModalSelector
+            style={styles.breedSelector}
+            data={this.lowPrices()}
+            initValue={
+              this.state.priceLow === null
+                ? strings.select
+                : this.state.priceLow
+            }
+            onChange={option => {
+              this.setState({
+                priceLow: option.label
+              });
+            }}
+            selectTextStyle={{
+              color: colors.dark
+            }}
+            optionTextStyle={{
+              color: colors.notQuiteBlack
+            }}
+          />
+        </View>
         <TouchableHighlight onPress={() => this.handleUpdate()}>
           <Text>{strings.updateSearch}</Text>
         </TouchableHighlight>
