@@ -65,18 +65,16 @@ class Filter extends Component {
     return prices;
   };
 
-  render() {
-    const breedSelector = (
+  filterOptionSkeleton = props => {
+    return (
       <View style={styles.optionWrapper}>
         <View style={styles.optionWrapperLeft}>
-          <View style={styles.iconWrapper}>
-            <IconAwesome name="dog" size={45} color={colors.primary} />
-          </View>
+          <View style={styles.iconWrapper}>{props.icon}</View>
         </View>
         <View style={styles.optionWrapperRight}>
           <View style={styles.topRightWrapper}>
             <View style={styles.textWrapper}>
-              <Text style={styles.nameText}>Breed</Text>
+              <Text style={styles.nameText}>{props.filterName}</Text>
             </View>
             <View style={styles.resetBtnWrapper}>
               <IconAwesome
@@ -86,15 +84,86 @@ class Filter extends Component {
               />
             </View>
           </View>
-          {/* consider using a picker instead */}
+          {props.filterOptions}
+        </View>
+      </View>
+    );
+  };
+
+  render() {
+    const breedOptions = (
+      <ModalSelector
+        style={styles.modalSelector}
+        data={this.props.breeds}
+        initValue={
+          this.state.breed === null ? strings.select : this.state.breed
+        }
+        onChange={option => {
+          this.setState({ breed: option.label });
+        }}
+        selectTextStyle={{
+          color: colors.dark
+        }}
+        optionTextStyle={{
+          color: colors.notQuiteBlack
+        }}
+      />
+    );
+
+    const locationOptions = (
+      <View style={styles.statesWrapper}>
+        <View style={styles.topRowStates}>
+          <Text>WA</Text>
+          <Text>NT</Text>
+          <Text>QLD</Text>
+          <Text>VIC</Text>
+        </View>
+        <View style={styles.bottomRowStates}>
+          <Text>SA</Text>
+          <Text>NSW</Text>
+          <Text>ACT</Text>
+          <Text>TAS</Text>
+        </View>
+      </View>
+    );
+
+    const priceOptions = (
+      <View style={styles.priceWrapper}>
+        <View style={styles.minPriceWrapper}>
+          <Text>Price min.</Text>
           <ModalSelector
-            style={styles.modalSelector}
-            data={this.props.breeds}
+            data={this.minPrices()}
             initValue={
-              this.state.breed === null ? strings.select : this.state.breed
+              this.state.priceMin === null
+                ? strings.select
+                : this.state.priceMin
             }
             onChange={option => {
-              this.setState({ breed: option.label });
+              this.setState({
+                priceMin: option.label
+              });
+            }}
+            selectTextStyle={{
+              color: colors.dark
+            }}
+            optionTextStyle={{
+              color: colors.notQuiteBlack
+            }}
+          />
+        </View>
+        <View style={styles.maxPriceWrapper}>
+          <Text>Price max.</Text>
+          <ModalSelector
+            data={this.maxPrices()}
+            initValue={
+              this.state.priceMax === null
+                ? strings.select
+                : this.state.priceMax
+            }
+            onChange={option => {
+              this.setState({
+                priceMax: option.label
+              });
             }}
             selectTextStyle={{
               color: colors.dark
@@ -107,130 +176,14 @@ class Filter extends Component {
       </View>
     );
 
-    const locationSelector = (
-      <View style={styles.optionWrapper}>
-        <View style={styles.optionWrapperLeft}>
-          <View style={styles.iconWrapper}>
-            <IconEntypo name="location-pin" size={45} color={colors.primary} />
-          </View>
-        </View>
-        <View style={styles.optionWrapperRight}>
-          <View style={styles.topRightWrapper}>
-            <View style={styles.textWrapper}>
-              <Text style={styles.nameText}>Location</Text>
-            </View>
-            <View style={styles.resetBtnWrapper}>
-              <IconAwesome
-                name="window-close"
-                size={20}
-                color={colors.primary}
-              />
-            </View>
-          </View>
-          <View style={styles.statesWrapper}>
-            <View style={styles.topRowStates}>
-              <Text>WA</Text>
-              <Text>NT</Text>
-              <Text>QLD</Text>
-              <Text>VIC</Text>
-            </View>
-            <View style={styles.bottomRowStates}>
-              <Text>SA</Text>
-              <Text>NSW</Text>
-              <Text>ACT</Text>
-              <Text>TAS</Text>
-            </View>
-          </View>
-          {/* <ModalSelector
-            style={styles.breedSelector}
-            data={this.locations()}
-            initValue={
-              this.state.location === null
-                ? strings.select
-                : this.state.location
-            }
-            onChange={option => {
-              this.setState({ location: option.label });
-            }}
-            selectTextStyle={{
-              color: colors.dark
-            }}
-            optionTextStyle={{
-              color: colors.notQuiteBlack
-            }}
-          /> */}
-        </View>
-      </View>
+    const breedIcon = (
+      <IconAwesome name="dog" size={45} color={colors.primary} />
     );
-
-    const priceSelector = (
-      <View style={styles.optionWrapper}>
-        <View style={styles.optionWrapperLeft}>
-          <View style={styles.iconWrapper}>
-            <IconAwesome name="dollar-sign" size={45} color={colors.primary} />
-          </View>
-        </View>
-        <View style={styles.optionWrapperRight}>
-          <View style={styles.topRightWrapper}>
-            <View style={styles.textWrapper}>
-              <Text style={styles.nameText}>Price</Text>
-            </View>
-            <View style={styles.resetBtnWrapper}>
-              <IconAwesome
-                name="window-close"
-                size={20}
-                color={colors.primary}
-              />
-            </View>
-          </View>
-          <View style={styles.priceWrapper}>
-            <View style={styles.minPriceWrapper}>
-              <Text>Price min.</Text>
-              <ModalSelector
-                data={this.minPrices()}
-                initValue={
-                  this.state.priceMin === null
-                    ? strings.select
-                    : this.state.priceMin
-                }
-                onChange={option => {
-                  this.setState({
-                    priceMin: option.label
-                  });
-                }}
-                selectTextStyle={{
-                  color: colors.dark
-                }}
-                optionTextStyle={{
-                  color: colors.notQuiteBlack
-                }}
-              />
-            </View>
-            <View style={styles.maxPriceWrapper}>
-              <Text>Price max.</Text>
-              <ModalSelector
-                data={this.maxPrices()}
-                initValue={
-                  this.state.priceMax === null
-                    ? strings.select
-                    : this.state.priceMax
-                }
-                onChange={option => {
-                  this.setState({
-                    priceMax: option.label
-                  });
-                }}
-                selectTextStyle={{
-                  color: colors.dark
-                }}
-                optionTextStyle={{
-                  color: colors.notQuiteBlack
-                }}
-              />
-            </View>
-          </View>
-        </View>
-      </View>
+    const locationIcon = (
+      <IconEntypo name="location-pin" size={45} color={colors.primary} />
+    );
+    const priceIcon = (
+      <IconAwesome name="dollar-sign" size={45} color={colors.primary} />
     );
 
     const matches = (
@@ -252,11 +205,23 @@ class Filter extends Component {
     return (
       <SafeAreaView style={styles.parent}>
         {/* breed selector */}
-        {breedSelector}
+        {this.filterOptionSkeleton({
+          icon: breedIcon,
+          filterName: "Breed",
+          filterOptions: breedOptions
+        })}
         {/* location selector */}
-        {locationSelector}
+        {this.filterOptionSkeleton({
+          icon: locationIcon,
+          filterName: "Location",
+          filterOptions: locationOptions
+        })}
         {/* price selector */}
-        {priceSelector}
+        {this.filterOptionSkeleton({
+          icon: priceIcon,
+          filterName: "Price",
+          filterOptions: priceOptions
+        })}
         {/* number of matches */}
         {matches}
         {/* apply changes button */}

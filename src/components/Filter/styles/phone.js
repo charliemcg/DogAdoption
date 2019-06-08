@@ -12,7 +12,7 @@ export default {
   },
   optionWrapper: {
     flexDirection: "row",
-    width: width * 0.8,
+    width: width * 0.85,
     height: width * 0.3
   },
   optionWrapperLeft: {
