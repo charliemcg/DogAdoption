@@ -11,7 +11,7 @@ export default {
     alignItems: "center"
   },
   imageWrapper: {
-    width: width * 0.8,
+    width: width * 0.85,
     height: width * 0.6
   },
   image: {
@@ -46,8 +46,7 @@ export default {
   },
   description: {
     height: "20%",
-    paddingLeft: "3%",
-    paddingRight: "3%"
+    width: width * 0.85
   },
   fade: {
     top: width * 0.7,
