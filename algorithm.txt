@@ -1,0 +1,7 @@
+The search algorithm works as follows:
+
+There are three parameters: breed, location and price
+
+Every dog in the system is subjected to the algorithm. For every parameter a dog matches on it gets a point. Price has an upper and lower limit so both of these parameters must be met in order to get a point. If a parameter is unspecified (null) then the dog automatically gets a point.
+
+Dogs with three points are exact matches and are first to be shown in the search results followed by dogs with two points and dogs with one point.

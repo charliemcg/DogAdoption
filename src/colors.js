@@ -6,6 +6,5 @@ export default {
   black: "black",
   white: "white",
   notQuiteBlack: "#111",
-  notQuiteWhite: "#eee",
-  disabled: "#ddd"
+  notQuiteWhite: "#eee"
 };

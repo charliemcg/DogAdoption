@@ -85,6 +85,23 @@ class Filter extends Component {
     );
   };
 
+  //The radio buttons for selecting location
+  stateButton = location => {
+    return (
+      <View style={stateStyle(constants.states[location])}>
+        <Text
+          style={{ textAlign: "center" }}
+          onPress={() => {
+            this.setState({ location: constants.states[location] });
+            this.updateResults();
+          }}
+        >
+          {constants.states[location]}
+        </Text>
+      </View>
+    );
+  };
+
   //this is the layout for each of the filter options. To be populated with data relevant to the each filter
   filterOptionSkeleton = props => {
     return (
@@ -163,80 +180,16 @@ class Filter extends Component {
     const locationOptions = (
       <View style={styles.statesWrapper}>
         <View style={styles.topRowStates}>
-          <Text
-            style={stateStyle(constants.states[0])}
-            onPress={() => {
-              this.setState({ location: constants.states[0] });
-              this.updateResults();
-            }}
-          >
-            {constants.states[0]}
-          </Text>
-          <Text
-            style={stateStyle(constants.states[1])}
-            onPress={() => {
-              this.setState({ location: constants.states[1] });
-              this.updateResults();
-            }}
-          >
-            {constants.states[1]}
-          </Text>
-          <Text
-            style={stateStyle(constants.states[3])}
-            onPress={() => {
-              this.setState({ location: constants.states[3] });
-              this.updateResults();
-            }}
-          >
-            {constants.states[3]}
-          </Text>
-          <Text
-            style={stateStyle(constants.states[6])}
-            onPress={() => {
-              this.setState({ location: constants.states[6] });
-              this.updateResults();
-            }}
-          >
-            {constants.states[6]}
-          </Text>
+          {this.stateButton(0)}
+          {this.stateButton(1)}
+          {this.stateButton(3)}
+          {this.stateButton(6)}
         </View>
         <View style={styles.bottomRowStates}>
-          <Text
-            style={stateStyle(constants.states[2])}
-            onPress={() => {
-              this.setState({ location: constants.states[2] });
-              this.updateResults();
-            }}
-          >
-            {constants.states[2]}
-          </Text>
-          <Text
-            style={stateStyle(constants.states[4])}
-            onPress={() => {
-              this.setState({ location: constants.states[4] });
-              this.updateResults();
-            }}
-          >
-            {constants.states[4]}
-          </Text>
-          <Text
-            style={stateStyle(constants.states[5])}
-            onPress={() => {
-              this.setState({ location: constants.states[5] });
-              this.updateResults();
-            }}
-          >
-            {constants.states[5]}
-          </Text>
-          <Text
-            style={stateStyle(constants.states[7])}
-            onPress={() => {
-              this.setState({ location: constants.states[7] });
-              this.updateResults();
-            }}
-          >
-            {constants.states[7]}
-          </Text>
+          {this.stateButton(2)}
+          {this.stateButton(4)}
+          {this.stateButton(5)}
+          {this.stateButton(7)}
         </View>
       </View>
     );

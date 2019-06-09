@@ -82,7 +82,7 @@ export default {
   selectedState: {
     backgroundColor: colors.primary,
     width: "20%",
-    textAlign: "center"
+    borderRadius: 10
   },
   //price
   priceWrapper: {
