@@ -160,7 +160,7 @@ class Filter extends Component {
             this.updateResults();
           }}
           selectTextStyle={{
-            color: colors.dark
+            color: colors.black
           }}
           optionTextStyle={{
             color: colors.notQuiteBlack
@@ -215,7 +215,7 @@ class Filter extends Component {
                 this.updateResults();
               }}
               selectTextStyle={{
-                color: colors.dark
+                color: colors.black
               }}
               optionTextStyle={{
                 color: colors.notQuiteBlack
@@ -241,7 +241,7 @@ class Filter extends Component {
                 this.updateResults();
               }}
               selectTextStyle={{
-                color: colors.dark
+                color: colors.black
               }}
               optionTextStyle={{
                 color: colors.notQuiteBlack
@@ -275,10 +275,11 @@ class Filter extends Component {
 
     const updateButton = (
       <TouchableHighlight
-        onPress={() => this.handleUpdate()}
+        onPress={() => this.props.navigation.navigate("Home")}
         style={styles.updateBtn}
+        underlayColor={colors.light}
       >
-        <Text style={styles.nameText}>{strings.updateSearch}</Text>
+        <Text style={styles.btnText}>{strings.updateSearch}</Text>
       </TouchableHighlight>
     );
 

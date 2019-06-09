@@ -42,7 +42,7 @@ export default {
   },
   nameText: {
     fontSize: 20,
-    color: "#333"
+    color: colors.fadedText
   },
   topRightWrapper: {
     flex: 2,
@@ -93,7 +93,7 @@ export default {
   maxPriceWrapper: { flex: 1, paddingRight: 5 },
   priceSelectorWrapper: { alignItems: "center" },
   priceSelector: { width: "90%" },
-  priceText: { color: "#333", paddingLeft: "8%" },
+  priceText: { color: colors.fadedText, paddingLeft: "8%" },
   //matches
   matchesCountWrapper: {
     flexDirection: "row"
@@ -115,5 +115,9 @@ export default {
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10
+  },
+  btnText: {
+    fontSize: 20,
+    color: colors.contrast
   }
 };
