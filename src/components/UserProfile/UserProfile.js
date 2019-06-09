@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, TouchableHighlight, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TouchableHighlight,
+  TextInput,
+  ImageBackground
+} from "react-native";
 import styles from "./styles";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
@@ -7,11 +13,16 @@ import colors from "../../colors";
 import strings from "../../strings";
 import { signInOut } from "../../actions";
 import { connect } from "react-redux";
+import backgroundImg from "../../images/backgroundWhite.png";
 
 class UserProfile extends Component {
   render() {
     return (
-      <View style={styles.parent}>
+      <ImageBackground
+        style={styles.parent}
+        resizeMode="cover"
+        source={backgroundImg}
+      >
         {/* icon */}
         <View style={styles.iconWrapper}>
           <IconAwesome name="dog" size={100} color={colors.primary} />
@@ -48,7 +59,7 @@ class UserProfile extends Component {
             <Text>View messages</Text>
           </TouchableHighlight>
         </View>
-      </View>
+      </ImageBackground>
     );
   }
 }

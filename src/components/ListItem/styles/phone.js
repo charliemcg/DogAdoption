@@ -5,14 +5,14 @@ const width = Dimensions.get("window").width;
 
 export default {
   parent: {
-    height: width * 0.95,
+    height: width * 0.9875,
     width,
     backgroundColor: colors.notQuiteWhite,
     alignItems: "center"
   },
   imageWrapper: {
     width: width * 0.85,
-    height: width * 0.6
+    height: width * 0.6375
   },
   image: {
     position: "absolute",
@@ -75,7 +75,7 @@ export default {
     width: width * 0.85
   },
   fade: {
-    top: width * 0.7,
+    top: width * 0.7375,
     width,
     height: "20%",
     position: "absolute"

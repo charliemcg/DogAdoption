@@ -1,14 +1,25 @@
 import React, { Component } from "react";
-import { View, Text, TouchableHighlight, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TouchableHighlight,
+  TextInput,
+  ImageBackground
+} from "react-native";
 import styles from "./styles";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import colors from "../../colors";
+import backgroundImg from "../../images/backgroundWhite.png";
 
 export default class SignIn extends Component {
   render() {
     return (
-      <View style={styles.parent}>
+      <ImageBackground
+        style={styles.parent}
+        resizeMode="cover"
+        source={backgroundImg}
+      >
         {/* icon */}
         <View style={styles.iconWrapper}>
           <IconAwesome name="dog" size={100} color={colors.primary} />
@@ -55,12 +66,6 @@ export default class SignIn extends Component {
             <Text>Sign Up</Text>
           </TouchableHighlight>
         </View>
-        {/* sign in with Facebook */}
-        {/* <View style={styles.facebookWrapper}>
-          <TouchableHighlight style={styles.facebook}>
-            <Text>Sign in with Facebook</Text>
-          </TouchableHighlight>
-        </View> */}
         {/* new user link */}
         <View style={styles.privacyWrapper}>
           <Text
@@ -70,7 +75,7 @@ export default class SignIn extends Component {
             Privacy Policy
           </Text>
         </View>
-      </View>
+      </ImageBackground>
     );
   }
 }

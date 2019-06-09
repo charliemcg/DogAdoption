@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, ImageBackground, Image } from "react-native";
 import styles from "./styles";
 import strings from "../../strings";
+import backgroundImg from "../../images/background.png";
+import titleImg from "../../images/titleNoBase.png";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import colors from "../../colors";
 
 class Splash extends Component {
   componentDidMount() {
@@ -11,9 +15,24 @@ class Splash extends Component {
   }
   render() {
     return (
-      <View style={styles.parent}>
-        <Text style={styles.title}>{strings.appName}</Text>
-      </View>
+      // paw image from freepik
+      <ImageBackground
+        style={styles.parent}
+        resizeMode="cover"
+        source={backgroundImg}
+      >
+        <View style={styles.iconWrapper}>
+          <Icon name="dog" size={175} color={colors.contrast} />
+        </View>
+        <View style={styles.titleWrapper}>
+          {/* <Text style={styles.title}>{strings.appName}</Text> */}
+          <Image
+            style={styles.titleBase}
+            source={titleImg}
+            resizeMode="contain"
+          />
+        </View>
+      </ImageBackground>
     );
   }
 }

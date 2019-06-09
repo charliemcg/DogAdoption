@@ -61,7 +61,6 @@ const Stack = createStackNavigator(
     //     header: null
     //   }
     // },
-    // Filter,
     Home: {
       screen: Home,
       navigationOptions: {

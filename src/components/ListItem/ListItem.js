@@ -66,7 +66,7 @@ class ListItem extends Component {
             Location: {this.props.item.location}
           </Text>
           <View style={styles.price}>
-            <Text>Price:</Text>
+            <Text>Price: </Text>
             <Text style={styles.coloredPrice}>{this.props.item.price}</Text>
           </View>
         </View>
