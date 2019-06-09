@@ -13,6 +13,11 @@ import LinearGradient from "react-native-linear-gradient";
 import { selectedDog } from "../../actions";
 
 class ListItem extends Component {
+  formattedDate = () => {
+    date = new Date(this.props.item.date);
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+  };
+
   render() {
     return (
       <View style={styles.parent}>
@@ -30,6 +35,7 @@ class ListItem extends Component {
         </View>
         <View style={styles.breedRow}>
           <Text style={styles.breed}>{this.props.item.breed}</Text>
+          <Text style={styles.date}>{this.formattedDate()}</Text>
         </View>
         <Text style={styles.description}>{this.props.item.description}</Text>
         <LinearGradient

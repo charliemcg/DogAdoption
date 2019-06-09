@@ -11,7 +11,8 @@ function getPlaceholderData() {
       location: null,
       price: null,
       breed: null,
-      description: null
+      description: null,
+      date: null
     },
     //all the different types of breeds
     breeds: [],

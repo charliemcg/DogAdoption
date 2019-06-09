@@ -102,6 +102,7 @@ class Home extends Component {
         <TouchableHighlight
           style={styles.filterTouchable}
           onPress={() => this.props.navigation.navigate("Filter")}
+          underlayColor={colors.light}
         >
           <View style={styles.fabButton}>
             <View style={styles.fabIconWrapper}>
@@ -124,6 +125,7 @@ class Home extends Component {
         <TouchableHighlight
           style={styles.sortTouchable}
           onPress={() => alert("Sort pressed")}
+          underlayColor={colors.light}
         >
           <View style={styles.fabButton}>
             <View style={styles.fabIconWrapper}>

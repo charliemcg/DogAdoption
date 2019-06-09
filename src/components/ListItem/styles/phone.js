@@ -25,7 +25,8 @@ export default {
   },
   breedRow: {
     height: "5%",
-    width
+    width,
+    flexDirection: "row"
   },
   breed: {
     paddingLeft: "10%"
@@ -35,6 +36,13 @@ export default {
     paddingLeft: "10%"
   },
   price: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    textAlign: "right",
+    paddingRight: "10%"
+  },
+  date: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "flex-end",
