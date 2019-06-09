@@ -23,6 +23,13 @@ export default {
   blurredImage: {
     flex: 1
   },
+  favorite: {
+    height: width * 0.1,
+    width: width * 0.1,
+    position: "absolute",
+    top: "5%",
+    right: "3%"
+  },
   locationRow: {
     height: "5%",
     width,
@@ -56,7 +63,8 @@ export default {
     paddingRight: "10%"
   },
   coloredPrice: {
-    color: colors.dark
+    color: colors.dark,
+    fontWeight: "bold"
   },
   description: {
     height: "20%",

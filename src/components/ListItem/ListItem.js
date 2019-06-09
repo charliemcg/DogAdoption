@@ -11,6 +11,8 @@ import styles from "./styles";
 import colors from "../../colors";
 import LinearGradient from "react-native-linear-gradient";
 import { selectedDog } from "../../actions";
+import heartImg from "../../images/heart.png";
+import heartFilledImg from "../../images/heartFilled.png";
 
 class ListItem extends Component {
   formattedDate = () => {
@@ -32,6 +34,8 @@ class ListItem extends Component {
             style={styles.image}
             resizeMode="contain"
           />
+          {/* icon by Smash Icons */}
+          <Image source={heartImg} style={styles.favorite} />
         </View>
         <View style={styles.locationRow}>
           <Text style={styles.location}>
