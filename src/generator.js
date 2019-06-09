@@ -30,6 +30,9 @@ export function loadAllDogsInSystem() {
         if (subBreedIndex > 0) {
           trimmedString = trimmedString.replace(subTailString, "");
         }
+        //capitalizing the breed
+        trimmedString =
+          trimmedString.charAt(0).toUpperCase() + trimmedString.slice(1);
         imgArr.push({
           key: String(data.message[i]),
           location: constants.states[Math.floor(Math.random() * 8)],

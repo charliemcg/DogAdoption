@@ -76,6 +76,8 @@ class Home extends Component {
         let breedsArr = [];
         let index = 0;
         for (let key in data.message) {
+          //capitalizing the breed
+          key = key.charAt(0).toUpperCase() + key.slice(1);
           breedsArr.push({ key: index++, label: key });
         }
         this.props.breedsList(breedsArr);
