@@ -47,3 +47,10 @@ export function addToFavorites(dog) {
     payload: dog
   };
 }
+
+export function removeFromFavorites(dog) {
+  return {
+    type: constants.actions.removeFromFavorites,
+    payload: dog
+  };
+}

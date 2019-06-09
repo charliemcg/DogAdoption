@@ -10,7 +10,11 @@ import { connect } from "react-redux";
 import styles from "./styles";
 import colors from "../../colors";
 import LinearGradient from "react-native-linear-gradient";
-import { selectedDog, addToFavorites } from "../../actions";
+import {
+  selectedDog,
+  addToFavorites,
+  removeFromFavorites
+} from "../../actions";
 import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
 
@@ -24,6 +28,13 @@ class ListItem extends Component {
     return this.props.favorites.includes(this.props.item)
       ? heartFilledImg
       : heartImg;
+  };
+
+  handleFavorite = () => {
+    const { favorites, item } = this.props;
+    favorites.includes(item)
+      ? this.props.removeFromFavorites(item)
+      : this.props.addToFavorites(item);
   };
 
   render() {
@@ -44,7 +55,7 @@ class ListItem extends Component {
           <TouchableHighlight
             style={styles.favorite}
             onPress={() => {
-              this.props.addToFavorites(this.props.item);
+              this.handleFavorite();
             }}
           >
             <Image source={this.getFavoriteIcon()} style={styles.heart} />
@@ -99,6 +110,9 @@ const mapDispatchToProps = dispatch => {
     },
     addToFavorites: dog => {
       dispatch(addToFavorites(dog));
+    },
+    removeFromFavorites: dog => {
+      dispatch(removeFromFavorites(dog));
     }
   };
 };

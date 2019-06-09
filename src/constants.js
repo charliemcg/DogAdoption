@@ -12,7 +12,8 @@ export default {
     setSearchFilters: "SET_SEARCH_FILTERS",
     setResults: "SET_RESULTS",
     signInOut: "SIGN_IN_OUT",
-    addToFavorites: "ADD_TO_FAVORITES"
+    addToFavorites: "ADD_TO_FAVORITES",
+    removeFromFavorites: "REMOVE_FROM_FAVORITES"
   },
   states: ["WA", "NT", "SA", "QLD", "NSW", "ACT", "VIC", "TAS"],
   legal: {

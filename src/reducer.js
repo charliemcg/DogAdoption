@@ -77,6 +77,7 @@ const reducer = (state = getPlaceholderData(), action) => {
         ...state,
         signedIn: !state.signedIn
       };
+      break;
     //adding new dog to favorites
     case constants.actions.addToFavorites:
       let newArr = [...state.favorites];
@@ -85,6 +86,17 @@ const reducer = (state = getPlaceholderData(), action) => {
         ...state,
         favorites: newArr
       };
+      break;
+    //removing dog from favorites
+    case constants.actions.removeFromFavorites:
+      const index = state.favorites.indexOf(action.payload);
+      let removeFavoriteArr = [...state.favorites];
+      removeFavoriteArr.splice(index, 1);
+      state = {
+        ...state,
+        favorites: removeFavoriteArr
+      };
+      break;
     default:
       return state;
   }
