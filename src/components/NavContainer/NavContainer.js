@@ -61,7 +61,7 @@ const Stack = createStackNavigator(
     //     header: null
     //   }
     // },
-    Filter,
+    // Filter,
     Home: {
       screen: Home,
       navigationOptions: {
@@ -78,7 +78,7 @@ const Stack = createStackNavigator(
     SignIn,
     SignUp,
     PrivacyPolicy,
-    // Filter,
+    Filter,
     UserProfile,
     // putting drawer screens in stack so that they will have a back button
     Favorites,

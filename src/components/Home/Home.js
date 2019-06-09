@@ -85,7 +85,7 @@ class Home extends Component {
 
   render() {
     const theList =
-      this.props.searchResults.length === 0 ? (
+      this.props.searchResults === null ? (
         <ActivityIndicator size="large" style={{ flex: 1 }} />
       ) : (
         <FlatList

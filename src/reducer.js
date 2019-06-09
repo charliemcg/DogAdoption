@@ -23,7 +23,7 @@ function getPlaceholderData() {
       priceMax: null
     },
     //all the dogs in the system accounting for user selected filters
-    searchResults: [],
+    searchResults: null,
     //user user signed in
     signedIn: false
   };

@@ -24,22 +24,24 @@ class Filter extends Component {
     };
   }
 
-  handleUpdate = () => {
+  //called every time the user changes a filter
+  updateResults = () => {
     this.props.setSearchFilters(this.state);
-    // setting results to nothing will bring up the activity indicator for better UX
-    this.props.setResults([]);
-    getDogs();
-    this.props.navigation.navigate("Home");
+    //setting results to nothing will bring up the activity indicator for better UX
+    this.props.setResults(null); // <- replace with a loading flag in state
+    setTimeout(() => getDogs(), 3000); // <- shouldn't need this fake loader
+    // getDogs();
   };
 
-  // locations = () => {
-  //   let locations = [];
-  //   for (let i = 0; i < constants.states.length; i++) {
-  //     locations.push({ key: i, label: constants.states[i] });
-  //   }
-  //   return locations;
+  // handleUpdate = () => {
+  //   this.props.setSearchFilters(this.state);
+  //   // setting results to nothing will bring up the activity indicator for better UX
+  //   this.props.setResults([]);
+  //   getDogs();
+  //   this.props.navigation.navigate("Home");
   // };
 
+  //these are the options for the minimum price modal selector
   minPrices = () => {
     let { priceMax } = this.state;
     const upperRange =
@@ -52,6 +54,7 @@ class Filter extends Component {
     return prices;
   };
 
+  //these are the options for the maximum price modal selector
   maxPrices = () => {
     const { priceMin } = this.state;
     let prices = [];
@@ -66,6 +69,23 @@ class Filter extends Component {
     return prices;
   };
 
+  //the matches. either return match figures or loading indicator
+  matchData = () => {
+    return this.props.searchResults === null ? (
+      <ActivityIndicator
+        size="small"
+        color={colors.dark}
+        style={styles.activityIndicator}
+      />
+    ) : (
+      <View>
+        <Text>//TODO</Text>
+        <Text>{this.props.searchResults.length}</Text>
+      </View>
+    );
+  };
+
+  //this is the layout for each of the filter options. To be populated with data relevant to the each filter
   filterOptionSkeleton = props => {
     return (
       <View style={styles.optionWrapper}>
@@ -77,7 +97,30 @@ class Filter extends Component {
             <View style={styles.textWrapper}>
               <Text style={styles.nameText}>{props.filterName}</Text>
             </View>
-            <IconMCI name="close" size={20} color="#333" />
+            {props.showReset && (
+              <IconMCI
+                name="close"
+                size={20}
+                color="#333"
+                onPress={() => {
+                  switch (props.filterName) {
+                    case "Breed":
+                      this.setState({ breed: null });
+                      this.updateResults();
+                      break;
+                    case "Location":
+                      this.setState({ location: null });
+                      this.updateResults();
+                      break;
+                    case "Price":
+                      this.setState({ priceMin: null });
+                      this.setState({ priceMax: null });
+                      this.updateResults();
+                      break;
+                  }
+                }}
+              />
+            )}
           </View>
           {props.filterOptions}
         </View>
@@ -86,6 +129,7 @@ class Filter extends Component {
   };
 
   render() {
+    //the modal selector for choosing a breed
     const breedOptions = (
       <View style={styles.modalSelectorWrapper}>
         <ModalSelector
@@ -96,6 +140,7 @@ class Filter extends Component {
           }
           onChange={option => {
             this.setState({ breed: option.label });
+            this.updateResults();
           }}
           selectTextStyle={{
             color: colors.dark
@@ -107,36 +152,50 @@ class Filter extends Component {
       </View>
     );
 
+    //selected state has to look different to every other state
     stateStyle = state => {
       return this.state.location === state
         ? styles.selectedState
         : styles.state;
     };
 
+    //custom radio buttons for selecting location
     const locationOptions = (
       <View style={styles.statesWrapper}>
         <View style={styles.topRowStates}>
           <Text
             style={stateStyle(constants.states[0])}
-            onPress={() => this.setState({ location: constants.states[0] })}
+            onPress={() => {
+              this.setState({ location: constants.states[0] });
+              this.updateResults();
+            }}
           >
             {constants.states[0]}
           </Text>
           <Text
             style={stateStyle(constants.states[1])}
-            onPress={() => this.setState({ location: constants.states[1] })}
+            onPress={() => {
+              this.setState({ location: constants.states[1] });
+              this.updateResults();
+            }}
           >
             {constants.states[1]}
           </Text>
           <Text
             style={stateStyle(constants.states[3])}
-            onPress={() => this.setState({ location: constants.states[3] })}
+            onPress={() => {
+              this.setState({ location: constants.states[3] });
+              this.updateResults();
+            }}
           >
             {constants.states[3]}
           </Text>
           <Text
             style={stateStyle(constants.states[6])}
-            onPress={() => this.setState({ location: constants.states[6] })}
+            onPress={() => {
+              this.setState({ location: constants.states[6] });
+              this.updateResults();
+            }}
           >
             {constants.states[6]}
           </Text>
@@ -144,25 +203,37 @@ class Filter extends Component {
         <View style={styles.bottomRowStates}>
           <Text
             style={stateStyle(constants.states[2])}
-            onPress={() => this.setState({ location: constants.states[2] })}
+            onPress={() => {
+              this.setState({ location: constants.states[2] });
+              this.updateResults();
+            }}
           >
             {constants.states[2]}
           </Text>
           <Text
             style={stateStyle(constants.states[4])}
-            onPress={() => this.setState({ location: constants.states[4] })}
+            onPress={() => {
+              this.setState({ location: constants.states[4] });
+              this.updateResults();
+            }}
           >
             {constants.states[4]}
           </Text>
           <Text
             style={stateStyle(constants.states[5])}
-            onPress={() => this.setState({ location: constants.states[5] })}
+            onPress={() => {
+              this.setState({ location: constants.states[5] });
+              this.updateResults();
+            }}
           >
             {constants.states[5]}
           </Text>
           <Text
             style={stateStyle(constants.states[7])}
-            onPress={() => this.setState({ location: constants.states[7] })}
+            onPress={() => {
+              this.setState({ location: constants.states[7] });
+              this.updateResults();
+            }}
           >
             {constants.states[7]}
           </Text>
@@ -170,6 +241,7 @@ class Filter extends Component {
       </View>
     );
 
+    //selectors for choosing price range
     const priceOptions = (
       <View style={styles.priceWrapper}>
         <View style={styles.minPriceWrapper}>
@@ -187,6 +259,7 @@ class Filter extends Component {
                 this.setState({
                   priceMin: option.label
                 });
+                this.updateResults();
               }}
               selectTextStyle={{
                 color: colors.dark
@@ -212,6 +285,7 @@ class Filter extends Component {
                 this.setState({
                   priceMax: option.label
                 });
+                this.updateResults();
               }}
               selectTextStyle={{
                 color: colors.dark
@@ -235,21 +309,14 @@ class Filter extends Component {
       <IconAwesome name="dollar-sign" size={45} color={colors.primary} />
     );
 
+    //everytime user chooses a filter option the number of matches gets updated
     const matches = (
       <View style={styles.matchesCountWrapper}>
         <View style={styles.matchesLabels}>
           <Text>Exact Matches:</Text>
           <Text>Close Matches:</Text>
         </View>
-        <View style={styles.matchesValues}>
-          <Text>1234</Text>
-          <Text>5678</Text>
-          {/* <ActivityIndicator
-            size="small"
-            color={colors.dark}
-            style={styles.activityIndicator}
-          /> */}
-        </View>
+        <View style={styles.matchesValues}>{this.matchData()}</View>
       </View>
     );
 
@@ -268,19 +335,27 @@ class Filter extends Component {
         {this.filterOptionSkeleton({
           icon: breedIcon,
           filterName: "Breed",
-          filterOptions: breedOptions
+          filterOptions: breedOptions,
+          showReset: this.state.breed === null ? false : true
         })}
         {/* location selector */}
         {this.filterOptionSkeleton({
           icon: locationIcon,
           filterName: "Location",
-          filterOptions: locationOptions
+          filterOptions: locationOptions,
+          showReset: this.state.location === null ? false : true
         })}
         {/* price selector */}
         {this.filterOptionSkeleton({
           icon: priceIcon,
           filterName: "Price",
-          filterOptions: priceOptions
+          filterOptions: priceOptions,
+          showReset:
+            this.state.priceMin === null
+              ? this.state.priceMax === null
+                ? false
+                : true
+              : true
         })}
         {/* number of matches */}
         {matches}
@@ -294,7 +369,7 @@ class Filter extends Component {
 const mapStateToProps = state => {
   return {
     searchFilters: state.searchFilters,
-    searchResults: state.searchRsults,
+    searchResults: state.searchResults,
     breeds: state.breeds
   };
 };
