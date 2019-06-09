@@ -22,7 +22,16 @@ class ListItem extends Component {
     return (
       <View style={styles.parent}>
         <View style={styles.imageWrapper}>
-          <Image source={{ uri: this.props.item.key }} style={styles.image} />
+          <Image
+            source={{ uri: this.props.item.key }}
+            style={styles.blurredImage}
+            blurRadius={20}
+          />
+          <Image
+            source={{ uri: this.props.item.key }}
+            style={styles.image}
+            resizeMode="contain"
+          />
         </View>
         <View style={styles.locationRow}>
           <Text style={styles.location}>

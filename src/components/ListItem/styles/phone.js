@@ -15,6 +15,12 @@ export default {
     height: width * 0.6
   },
   image: {
+    position: "absolute",
+    height: "100%",
+    width: "100%",
+    flex: 1
+  },
+  blurredImage: {
     flex: 1
   },
   locationRow: {
