@@ -30,6 +30,10 @@ export default {
     top: "5%",
     right: "3%"
   },
+  heart: {
+    height: "100%",
+    width: "100%"
+  },
   locationRow: {
     height: "5%",
     width,

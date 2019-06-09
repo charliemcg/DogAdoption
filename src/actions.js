@@ -40,3 +40,10 @@ export function signInOut() {
     type: constants.actions.signInOut
   };
 }
+
+export function addToFavorites(dog) {
+  return {
+    type: constants.actions.addToFavorites,
+    payload: dog
+  };
+}

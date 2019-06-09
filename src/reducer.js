@@ -26,7 +26,9 @@ function getPlaceholderData() {
     //all the dogs in the system accounting for user selected filters
     searchResults: null,
     //user user signed in
-    signedIn: false
+    signedIn: false,
+    //dogs selected as favorites by the user
+    favorites: []
   };
 }
 
@@ -34,7 +36,6 @@ const reducer = (state = getPlaceholderData(), action) => {
   switch (action.type) {
     //all dogs in the system
     case constants.actions.setAllDogs:
-      // let moreDogs = state.allDogs;
       let moreDogsArr = [...action.payload];
       let concatenatedArr = moreDogsArr.concat([...state.allDogs]);
       state = {
@@ -70,10 +71,19 @@ const reducer = (state = getPlaceholderData(), action) => {
         searchResults: action.payload
       };
       break;
+    //toggle user as either signed in or out
     case constants.actions.signInOut:
       state = {
         ...state,
         signedIn: !state.signedIn
+      };
+    //adding new dog to favorites
+    case constants.actions.addToFavorites:
+      let newArr = [...state.favorites];
+      newArr.push(action.payload);
+      state = {
+        ...state,
+        favorites: newArr
       };
     default:
       return state;

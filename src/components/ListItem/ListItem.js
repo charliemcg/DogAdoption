@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import styles from "./styles";
 import colors from "../../colors";
 import LinearGradient from "react-native-linear-gradient";
-import { selectedDog } from "../../actions";
+import { selectedDog, addToFavorites } from "../../actions";
 import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
 
@@ -18,6 +18,12 @@ class ListItem extends Component {
   formattedDate = () => {
     date = new Date(this.props.item.date);
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+  };
+
+  getFavoriteIcon = () => {
+    return this.props.favorites.includes(this.props.item)
+      ? heartFilledImg
+      : heartImg;
   };
 
   render() {
@@ -35,7 +41,14 @@ class ListItem extends Component {
             resizeMode="contain"
           />
           {/* icon by Smash Icons */}
-          <Image source={heartImg} style={styles.favorite} />
+          <TouchableHighlight
+            style={styles.favorite}
+            onPress={() => {
+              this.props.addToFavorites(this.props.item);
+            }}
+          >
+            <Image source={this.getFavoriteIcon()} style={styles.heart} />
+          </TouchableHighlight>
         </View>
         <View style={styles.locationRow}>
           <Text style={styles.location}>
@@ -73,15 +86,24 @@ class ListItem extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    favorites: state.favorites
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     selectedDog: dog => {
       dispatch(selectedDog(dog));
+    },
+    addToFavorites: dog => {
+      dispatch(addToFavorites(dog));
     }
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ListItem);
