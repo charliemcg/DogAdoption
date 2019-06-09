@@ -47,14 +47,18 @@ export default {
     flex: 2,
     flexDirection: "row"
   },
+  //breed
   modalSelectorWrapper: {
     flex: 2,
     width: "100%",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "flex-end",
+    paddingBottom: 5
   },
   modalSelector: {
-    width: "90%"
+    width: "95%"
   },
+  //location
   statesWrapper: {
     flex: 2,
     justifyContent: "space-around",
@@ -74,21 +78,41 @@ export default {
     width: "20%",
     textAlign: "center"
   },
+  selectedState: {
+    backgroundColor: colors.primary,
+    width: "20%",
+    textAlign: "center"
+  },
+  //price
   priceWrapper: {
     flexDirection: "row",
     flex: 3
   },
-  minPriceWrapper: { flex: 1 },
-  maxPriceWrapper: { flex: 1 },
+  minPriceWrapper: { flex: 1, paddingLeft: 5 },
+  maxPriceWrapper: { flex: 1, paddingRight: 5 },
   priceSelectorWrapper: { alignItems: "center" },
   priceSelector: { width: "90%" },
   priceText: { color: "#333", paddingLeft: "8%" },
+  //matches
+  matchesCountWrapper: {
+    flexDirection: "row"
+  },
+  matchesLabels: {
+    padding: "3%"
+  },
+  matchesValues: {
+    padding: "3%"
+  },
+  activityIndicator: {
+    marginTop: 7
+  },
+  //update button
   updateBtn: {
     backgroundColor: colors.primary,
     width: width * 0.7,
     height: width * 0.2,
     justifyContent: "center",
-    alignItems: "center"
-  },
-  matchesCountWrapper: {}
+    alignItems: "center",
+    borderRadius: 10
+  }
 };

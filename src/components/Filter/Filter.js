@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { SafeAreaView, Text, View } from "react-native";
+import { SafeAreaView, Text, View, ActivityIndicator } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
 import ModalSelector from "react-native-modal-selector";
@@ -11,13 +11,14 @@ import constants from "../../constants";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
+import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 
 class Filter extends Component {
   constructor(props) {
     super(props);
     this.state = {
       breed: this.props.searchFilters.breed,
-      filter: this.props.searchFilters.location,
+      location: this.props.searchFilters.location,
       priceMin: this.props.searchFilters.priceMin,
       priceMax: this.props.searchFilters.priceMax
     };
@@ -76,7 +77,7 @@ class Filter extends Component {
             <View style={styles.textWrapper}>
               <Text style={styles.nameText}>{props.filterName}</Text>
             </View>
-            <IconAwesome name="window-close" size={20} color="#333" />
+            <IconMCI name="close" size={20} color="#333" />
           </View>
           {props.filterOptions}
         </View>
@@ -106,19 +107,65 @@ class Filter extends Component {
       </View>
     );
 
+    stateStyle = state => {
+      return this.state.location === state
+        ? styles.selectedState
+        : styles.state;
+    };
+
     const locationOptions = (
       <View style={styles.statesWrapper}>
         <View style={styles.topRowStates}>
-          <Text style={styles.state}>WA</Text>
-          <Text style={styles.state}>NT</Text>
-          <Text style={styles.state}>QLD</Text>
-          <Text style={styles.state}>VIC</Text>
+          <Text
+            style={stateStyle(constants.states[0])}
+            onPress={() => this.setState({ location: constants.states[0] })}
+          >
+            {constants.states[0]}
+          </Text>
+          <Text
+            style={stateStyle(constants.states[1])}
+            onPress={() => this.setState({ location: constants.states[1] })}
+          >
+            {constants.states[1]}
+          </Text>
+          <Text
+            style={stateStyle(constants.states[3])}
+            onPress={() => this.setState({ location: constants.states[3] })}
+          >
+            {constants.states[3]}
+          </Text>
+          <Text
+            style={stateStyle(constants.states[6])}
+            onPress={() => this.setState({ location: constants.states[6] })}
+          >
+            {constants.states[6]}
+          </Text>
         </View>
         <View style={styles.bottomRowStates}>
-          <Text style={styles.state}>SA</Text>
-          <Text style={styles.state}>NSW</Text>
-          <Text style={styles.state}>ACT</Text>
-          <Text style={styles.state}>TAS</Text>
+          <Text
+            style={stateStyle(constants.states[2])}
+            onPress={() => this.setState({ location: constants.states[2] })}
+          >
+            {constants.states[2]}
+          </Text>
+          <Text
+            style={stateStyle(constants.states[4])}
+            onPress={() => this.setState({ location: constants.states[4] })}
+          >
+            {constants.states[4]}
+          </Text>
+          <Text
+            style={stateStyle(constants.states[5])}
+            onPress={() => this.setState({ location: constants.states[5] })}
+          >
+            {constants.states[5]}
+          </Text>
+          <Text
+            style={stateStyle(constants.states[7])}
+            onPress={() => this.setState({ location: constants.states[7] })}
+          >
+            {constants.states[7]}
+          </Text>
         </View>
       </View>
     );
@@ -190,8 +237,19 @@ class Filter extends Component {
 
     const matches = (
       <View style={styles.matchesCountWrapper}>
-        <Text>Exact Matches: 1234</Text>
-        <Text>Close Matches: 5678</Text>
+        <View style={styles.matchesLabels}>
+          <Text>Exact Matches:</Text>
+          <Text>Close Matches:</Text>
+        </View>
+        <View style={styles.matchesValues}>
+          <Text>1234</Text>
+          <Text>5678</Text>
+          {/* <ActivityIndicator
+            size="small"
+            color={colors.dark}
+            style={styles.activityIndicator}
+          /> */}
+        </View>
       </View>
     );
 
@@ -236,6 +294,7 @@ class Filter extends Component {
 const mapStateToProps = state => {
   return {
     searchFilters: state.searchFilters,
+    searchResults: state.searchRsults,
     breeds: state.breeds
   };
 };
