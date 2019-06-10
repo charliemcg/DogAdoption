@@ -6,8 +6,11 @@ const width = Dimensions.get("window").width;
 export default {
   parent: {
     flex: 1,
-    backgroundColor: colors.notQuiteWhite,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginLeft: width * 0.02,
+    marginRight: width * 0.02,
+    marginTop: width * 0.01,
+    marginBottom: width * 0.01
   }
 };

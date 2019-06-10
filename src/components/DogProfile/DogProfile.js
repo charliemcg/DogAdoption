@@ -20,6 +20,7 @@ class DogProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      //needed for checking the character count of the user inputted message
       message: ""
     };
   }
@@ -28,12 +29,14 @@ class DogProfile extends Component {
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   };
 
+  //filled if favorited, empty if not
   getFavoriteIcon = () => {
     return this.props.favorites.includes(this.props.item)
       ? heartFilledImg
       : heartImg;
   };
 
+  //add/remove dog from favorites
   handleFavorite = () => {
     const { favorites, item } = this.props;
     favorites.includes(item)
@@ -55,102 +58,128 @@ class DogProfile extends Component {
       </Text>
     );
 
-    return (
-      <SafeAreaView style={styles.parent}>
-        <View style={styles.imageWrapper}>
-          <Image
-            source={{ uri: this.props.selectedDog.key }}
-            style={styles.blurredImage}
-            blurRadius={20}
-          />
-          <Image
-            source={{ uri: this.props.selectedDog.key }}
-            style={styles.image}
-            resizeMode="contain"
-          />
-          {/* icon by Smash Icons */}
-          <TouchableHighlight
-            style={styles.favorite}
-            onPress={() => {
-              this.handleFavorite();
-            }}
+    const photos = (
+      <View style={styles.imageWrapper}>
+        <Image
+          source={{ uri: this.props.selectedDog.key }}
+          style={styles.blurredImage}
+          blurRadius={20}
+        />
+        <Image
+          source={{ uri: this.props.selectedDog.key }}
+          style={styles.image}
+          resizeMode="contain"
+        />
+        {/* icon by Smash Icons */}
+        <TouchableHighlight
+          style={styles.favorite}
+          onPress={() => {
+            this.handleFavorite();
+          }}
+        >
+          <Image source={this.getFavoriteIcon()} style={styles.heart} />
+        </TouchableHighlight>
+      </View>
+    );
+
+    const quickDetailsTopRow = (
+      <View style={styles.locationRow}>
+        <Text style={styles.location}>
+          Location: {this.props.selectedDog.location}
+        </Text>
+        <View style={styles.price}>
+          <Text>Price: </Text>
+          <Text style={styles.coloredPrice}>
+            {this.props.selectedDog.price}
+          </Text>
+        </View>
+      </View>
+    );
+
+    const quickDetailsBottomRow = (
+      <View style={styles.breedRow}>
+        <Text style={styles.breed}>{this.props.selectedDog.breed}</Text>
+        <Text style={styles.date}>{this.formattedDate()}</Text>
+      </View>
+    );
+
+    const sellerDetails = (
+      <View style={styles.sellerWrapper}>
+        <View style={styles.sellerText}>
+          <Text>Uploaded by</Text>
+          <Text
+            style={styles.seller}
+            onPress={() =>
+              alert("create function that redirects to seller profile")
+            }
           >
-            <Image source={this.getFavoriteIcon()} style={styles.heart} />
+            John Smith
+          </Text>
+        </View>
+        <View>
+          <Icon
+            name="user"
+            size={30}
+            color={colors.fadedText}
+            onPress={() =>
+              alert("create function that redirects to seller profile")
+            }
+          />
+        </View>
+      </View>
+    );
+
+    const messageWrapper = (
+      <View style={styles.messageWrapper}>
+        <View style={styles.contactTextWrapper}>
+          <Text style={styles.contactText}>Contact Seller</Text>
+        </View>
+        <TextInput
+          style={styles.message}
+          multiline={true}
+          placeholder="Hi. Is this dog still available?"
+          onChangeText={msg => this.setState({ message: msg })}
+        />
+        <View style={styles.btnWrapper}>
+          <Text style={styles.counter}>{characterLength}/750</Text>
+          <TouchableHighlight
+            style={[
+              styles.sendBtn,
+              {
+                backgroundColor:
+                  message.length <= 750 && message.length > 0
+                    ? colors.primary
+                    : colors.fadedText
+              }
+            ]}
+            //button only active if there is a valid message to send
+            onPress={() =>
+              message.length <= 750 && message.length > 0 && alert("Send")
+            }
+            underlayColor={colors.dark}
+          >
+            <Text>Send</Text>
           </TouchableHighlight>
         </View>
-        <View style={styles.locationRow}>
-          <Text style={styles.location}>
-            Location: {this.props.selectedDog.location}
-          </Text>
-          <View style={styles.price}>
-            <Text>Price: </Text>
-            <Text style={styles.coloredPrice}>
-              {this.props.selectedDog.price}
-            </Text>
-          </View>
-        </View>
-        <View style={styles.breedRow}>
-          <Text style={styles.breed}>{this.props.selectedDog.breed}</Text>
-          <Text style={styles.date}>{this.formattedDate()}</Text>
-        </View>
+      </View>
+    );
+
+    return (
+      <SafeAreaView style={styles.parent}>
+        {/* photos */}
+        {photos}
+        {/* quick details */}
+        {quickDetailsTopRow}
+        {quickDetailsBottomRow}
         <ScrollView style={styles.scrollView}>
-          <View style={styles.userWrapper}>
-            <View style={styles.userText}>
-              <Text>Uploaded by</Text>
-              <Text
-                style={styles.user}
-                onPress={() =>
-                  alert("create function that redirects to seller profile")
-                }
-              >
-                John Smith
-              </Text>
-            </View>
-            <View>
-              <Icon
-                name="user"
-                size={30}
-                color={colors.fadedText}
-                onPress={() =>
-                  alert("create function that redirects to seller profile")
-                }
-              />
-            </View>
-          </View>
+          {/* seller details */}
+          {sellerDetails}
+          {/* description */}
           <Text style={styles.description}>
             {this.props.selectedDog.description}
           </Text>
-          <View style={styles.messageWrapper}>
-            <View style={styles.contactTextWrapper}>
-              <Text style={styles.contactText}>Contact Seller</Text>
-            </View>
-            <TextInput
-              style={styles.message}
-              multiline={true}
-              placeholder="Hi. Is this dog still available?"
-              onChangeText={msg => this.setState({ message: msg })}
-            />
-            <View style={styles.btnWrapper}>
-              <Text style={styles.counter}>{characterLength}/750</Text>
-              <TouchableHighlight
-                style={[
-                  styles.sendBtn,
-                  {
-                    backgroundColor:
-                      message.length <= 750 && message.length > 0
-                        ? colors.primary
-                        : colors.fadedText
-                  }
-                ]}
-                onPress={() =>
-                  message.length <= 750 && message.length > 0 && alert("Send")
-                }
-                underlayColor={colors.dark}
-              >
-                <Text>Send</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
+          {/* message container */}
+          {messageWrapper}
         </ScrollView>
       </SafeAreaView>
     );

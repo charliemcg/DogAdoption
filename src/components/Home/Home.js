@@ -55,16 +55,11 @@ class Home extends Component {
   componentDidMount() {
     this.getBreeds();
     //maximum results returned by api is 50. Necessary to call several times to get a decent size database
-    loadAllDogsInSystem();
-    loadAllDogsInSystem();
-    loadAllDogsInSystem();
-    loadAllDogsInSystem();
-    loadAllDogsInSystem();
-    loadAllDogsInSystem();
-    loadAllDogsInSystem();
-    loadAllDogsInSystem();
-    loadAllDogsInSystem();
-    loadAllDogsInSystem();
+    let count = 0;
+    while (count < 10) {
+      loadAllDogsInSystem();
+      count++;
+    }
   }
 
   getBreeds = () => {

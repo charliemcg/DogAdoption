@@ -78,15 +78,15 @@ export default {
     flex: 1
   },
   // seller details
-  userWrapper: {
+  sellerWrapper: {
     flexDirection: "row",
     margin: width * 0.03,
     justifyContent: "flex-end"
   },
-  userText: {
+  sellerText: {
     marginRight: width * 0.03
   },
-  user: {
+  seller: {
     color: colors.dark,
     textAlign: "right"
   },
