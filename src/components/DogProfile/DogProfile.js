@@ -112,9 +112,7 @@ class DogProfile extends Component {
           <Text
             style={styles.seller}
             onPress={() =>
-              this.props.signedIn
-                ? alert("create function that redirects to seller profile")
-                : this.props.navigation.navigate("SignIn")
+              alert("create function that redirects to seller profile")
             }
           >
             John Smith
@@ -126,9 +124,7 @@ class DogProfile extends Component {
             size={30}
             color={colors.fadedText}
             onPress={() =>
-              this.props.signedIn
-                ? alert("create function that redirects to seller profile")
-                : this.props.navigation.navigate("SignIn")
+              alert("create function that redirects to seller profile")
             }
           />
         </View>

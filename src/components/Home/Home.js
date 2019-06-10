@@ -12,7 +12,8 @@ import colors from "../../colors";
 import constants from "../../constants";
 import ListItem from "../ListItem";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
-import IconAwesome from "react-native-vector-icons/FontAwesome5";
+import IconAwesome5 from "react-native-vector-icons/FontAwesome5";
+import IconAwesome from "react-native-vector-icons/FontAwesome";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { breedsList } from "../../actions";
@@ -22,26 +23,35 @@ import store from "../../store";
 class Home extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
+      headerRight:
+        /**
+         * consider reenabling drawer if there are enough items to populate it
+         */
+        [
+          <IconEntypo
+            name="message"
+            size={35}
+            color={colors.contrast}
+            onPress={() => {
+              store.getState().signedIn
+                ? navigation.navigate("Messages")
+                : navigation.navigate("SignIn");
+            }}
+          />,
+          <IconAwesome
+            style={{ paddingRight: 10, paddingLeft: 8 }}
+            name="heart-o"
+            size={30}
+            color={colors.contrast}
+            onPress={() => {
+              store.getState().signedIn
+                ? navigation.navigate("Favorites")
+                : navigation.navigate("SignIn");
+            }}
+          />
+        ],
       headerLeft: (
-        <IconMCI
-          name="menu"
-          size={35}
-          color={colors.contrast}
-          onPress={() => navigation.toggleDrawer()}
-        />
-      ),
-      headerRight: [
-        <IconEntypo
-          name="message"
-          size={35}
-          color={colors.contrast}
-          onPress={() => {
-            store.getState().signedIn
-              ? navigation.navigate("Messages")
-              : navigation.navigate("SignIn");
-          }}
-        />,
-        <IconAwesome
+        <IconAwesome5
           style={{ paddingRight: 10, paddingLeft: 8 }}
           name="user-circle"
           size={30}
@@ -52,7 +62,7 @@ class Home extends Component {
               : navigation.navigate("SignIn");
           }}
         />
-      ]
+      )
     };
   };
 

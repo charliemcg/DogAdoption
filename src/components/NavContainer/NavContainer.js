@@ -26,33 +26,63 @@ import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import store from "../../store";
 
-const DrawerHeader = props => (
-  <View>
-    <LinearGradient
-      colors={[colors.primary, colors.primary, colors.dark]}
-      style={{
-        height: "40%",
-        alignItems: "center",
-        justifyContent: "center"
-      }}
-    >
-      <IconAwesome name="dog" size={50} color={colors.contrast} />
-      <Text
-        style={{
-          color: colors.contrast,
-          fontSize: 30,
-          textAlign: "center",
-          paddingLeft: "3%",
-          paddingRight: "3%",
-          paddingBottom: "3%"
-        }}
-      >
-        {strings.appName}
-      </Text>
-    </LinearGradient>
-    <DrawerItems {...props} />
-  </View>
-);
+/**
+ *  consider reenabling drawer if there are enough items to populate it
+ */
+
+// const DrawerHeader = props => (
+//   <View>
+//     <LinearGradient
+//       colors={[colors.primary, colors.primary, colors.dark]}
+//       style={{
+//         height: "40%",
+//         alignItems: "center",
+//         justifyContent: "center"
+//       }}
+//     >
+//       <IconAwesome name="dog" size={50} color={colors.contrast} />
+//       <Text
+//         style={{
+//           color: colors.contrast,
+//           fontSize: 30,
+//           textAlign: "center",
+//           paddingLeft: "3%",
+//           paddingRight: "3%",
+//           paddingBottom: "3%"
+//         }}
+//       >
+//         {strings.appName}
+//       </Text>
+//     </LinearGradient>
+//     <DrawerItems {...props} />
+//   </View>
+// );
+
+// const Drawer = createDrawerNavigator(
+//   {
+//     Home: {
+//       screen: Stack
+//     },
+//     Favorites: {
+//       screen: Favorites
+//     },
+//     Resolution: {
+//       screen: Resolution
+//     }
+//   },
+//   {
+//     drawerBackgroundColor: colors.notQuiteWhite,
+//     contentOptions: {
+//       activeTintColor: colors.dark,
+//       inactiveTintColor: colors.notQuiteBlack,
+//       activeBackgroundColor: colors.notQuiteWhite,
+//       labelStyle: {
+//         fontSize: 15
+//       }
+//     },
+//     contentComponent: DrawerHeader
+//   }
+// );
 
 const Stack = createStackNavigator(
   {
@@ -96,30 +126,4 @@ const Stack = createStackNavigator(
   { headerLayoutPreset: "center" }
 );
 
-const Drawer = createDrawerNavigator(
-  {
-    Home: {
-      screen: Stack
-    },
-    Favorites: {
-      screen: Favorites
-    },
-    Resolution: {
-      screen: Resolution
-    }
-  },
-  {
-    drawerBackgroundColor: colors.notQuiteWhite,
-    contentOptions: {
-      activeTintColor: colors.dark,
-      inactiveTintColor: colors.notQuiteBlack,
-      activeBackgroundColor: colors.notQuiteWhite,
-      labelStyle: {
-        fontSize: 15
-      }
-    },
-    contentComponent: DrawerHeader
-  }
-);
-
-export default (NavContainer = createAppContainer(Drawer));
+export default (NavContainer = createAppContainer(Stack));
