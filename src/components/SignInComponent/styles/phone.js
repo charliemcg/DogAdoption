@@ -7,16 +7,7 @@ const componentHeight = width * 0.15;
 
 export default {
   parent: {
-    flex: 1,
-    backgroundColor: colors.white,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  iconWrapper: {
-    flex: 3,
-    width,
-    justifyContent: "center",
-    alignItems: "center"
+    flex: 3
   },
   usernameWrapper: {
     flex: 1,
@@ -58,25 +49,6 @@ export default {
     width: componentWidth,
     height: componentHeight,
     backgroundColor: colors.primary,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  facebookWrapper: {
-    flex: 1,
-    width,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  facebook: {
-    width: componentWidth,
-    height: componentHeight,
-    backgroundColor: "blue",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  privacyWrapper: {
-    flex: 2,
-    width,
     justifyContent: "center",
     alignItems: "center"
   }

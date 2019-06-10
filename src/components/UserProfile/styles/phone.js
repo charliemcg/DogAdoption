@@ -2,8 +2,6 @@ import colors from "../../../colors";
 import { Dimensions } from "react-native";
 
 const width = Dimensions.get("window").width;
-const componentWidth = width * 0.7;
-const componentHeight = width * 0.15;
 
 export default {
   parent: {
@@ -13,41 +11,55 @@ export default {
     alignItems: "center"
   },
   iconWrapper: {
-    flex: 3,
+    height: "29%",
     width,
-    // backgroundColor: "#f00",
     justifyContent: "center",
     alignItems: "center"
   },
-  textInput: {
-    width: componentWidth,
-    height: componentHeight,
-    flexDirection: "row",
-    // backgroundColor: "#f00",
+  details: {
+    height: "15%",
+    width,
     justifyContent: "center",
-    alignItems: "center",
-    borderBottomStyle: "solid",
-    borderBottomColor: colors.primary,
-    borderBottomWidth: 2
+    alignItems: "center"
   },
-  inputIcon: {
-    flex: 1
-  },
-  inputText: {
-    flex: 4
+  gridRow: {
+    height: "22%",
+    width,
+    flexDirection: "row",
+    paddingRight: "2%",
+    paddingLeft: "2%"
   },
   buttonWrapper: {
     flex: 1,
-    width,
-    // backgroundColor: "#ff0",
     justifyContent: "center",
     alignItems: "center"
   },
   button: {
-    width: componentWidth,
-    height: componentHeight,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "90%",
+    height: "90%",
+    backgroundColor: colors.primary
+  },
+  signOutBtnWrapper: {
+    height: "12%",
+    width,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingRight: "2%",
+    paddingLeft: "2%"
+  },
+  signOutBtn: {
+    width: "95%",
+    height: "90%",
     backgroundColor: colors.primary,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20
+  },
+  btnText: {
+    color: colors.contrast,
+    fontSize: 20
   }
 };

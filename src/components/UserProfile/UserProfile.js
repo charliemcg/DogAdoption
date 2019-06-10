@@ -4,7 +4,8 @@ import {
   Text,
   TouchableHighlight,
   TextInput,
-  ImageBackground
+  ImageBackground,
+  SafeAreaView
 } from "react-native";
 import styles from "./styles";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
@@ -23,42 +24,69 @@ class UserProfile extends Component {
         resizeMode="cover"
         source={backgroundImg}
       >
-        {/* icon */}
-        <View style={styles.iconWrapper}>
-          <IconAwesome name="dog" size={100} color={colors.primary} />
-        </View>
-        {/* personal details */}
-        <Text>Name, address, etc</Text>
-        {/* sign out */}
-        <View style={styles.buttonWrapper}>
-          <TouchableHighlight
-            style={styles.button}
-            onPress={() => {
-              this.props.signInOut();
-              this.props.navigation.navigate("Home");
-            }}
-          >
-            <Text>Sign out</Text>
-          </TouchableHighlight>
-        </View>
-        {/* view ads */}
-        <View style={styles.buttonWrapper}>
-          <TouchableHighlight style={styles.button}>
-            <Text>View ads</Text>
-          </TouchableHighlight>
-        </View>
-        {/* view favourites */}
-        <View style={styles.buttonWrapper}>
-          <TouchableHighlight style={styles.button}>
-            <Text>View favourites</Text>
-          </TouchableHighlight>
-        </View>
-        {/* view messages */}
-        <View style={styles.buttonWrapper}>
-          <TouchableHighlight style={styles.button}>
-            <Text>View messages</Text>
-          </TouchableHighlight>
-        </View>
+        <SafeAreaView>
+          {/* icon */}
+          <View style={styles.iconWrapper}>
+            <IconAwesome name="user-circle" size={175} color={colors.primary} />
+          </View>
+          {/* personal details */}
+          <View style={styles.details}>
+            <Text>Dog Lover</Text>
+            <Text>123 Fake Street</Text>
+            <Text>Springfield</Text>
+            <Text>allthedogs@gmail.com</Text>
+          </View>
+          <View style={styles.gridRow}>
+            {/* view favourites */}
+            <View style={styles.buttonWrapper}>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => {
+                  this.props.navigation.navigate("Favorites");
+                }}
+              >
+                <Text style={styles.btnText}>View Favorites</Text>
+              </TouchableHighlight>
+            </View>
+            {/* view messages */}
+            <View style={styles.buttonWrapper}>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => {
+                  this.props.navigation.navigate("Messages");
+                }}
+              >
+                <Text style={styles.btnText}>View Messages</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+          <View style={styles.gridRow}>
+            {/* sell dog */}
+            <View style={styles.buttonWrapper}>
+              <TouchableHighlight style={styles.button}>
+                <Text style={styles.btnText}>Sell A Dog</Text>
+              </TouchableHighlight>
+            </View>
+            {/* view ads */}
+            <View style={styles.buttonWrapper}>
+              <TouchableHighlight style={styles.button}>
+                <Text style={styles.btnText}>View My Ads</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+          {/* sign out */}
+          <View style={styles.signOutBtnWrapper}>
+            <TouchableHighlight
+              style={styles.signOutBtn}
+              onPress={() => {
+                this.props.signInOut();
+                this.props.navigation.navigate("Home");
+              }}
+            >
+              <Text style={styles.btnText}>Sign Out</Text>
+            </TouchableHighlight>
+          </View>
+        </SafeAreaView>
       </ImageBackground>
     );
   }

@@ -14,6 +14,7 @@ import strings from "../../strings";
 import { signInOut } from "../../actions";
 import { connect } from "react-redux";
 import backgroundImg from "../../images/backgroundWhite.png";
+import SignInComponent from "../SignInComponent";
 
 class SignIn extends Component {
   render() {
@@ -27,53 +28,8 @@ class SignIn extends Component {
         <View style={styles.iconWrapper}>
           <IconAwesome name="dog" size={100} color={colors.primary} />
         </View>
-        {/* username */}
-        <View style={styles.usernameWrapper}>
-          <View style={styles.textInput}>
-            <IconAwesome
-              name="user"
-              size={30}
-              color={colors.primary}
-              style={styles.inputIcon}
-            />
-            {/* textContentType is for autofill */}
-            <TextInput
-              textContentType="username"
-              placeholder="Email"
-              style={styles.inputText}
-            />
-          </View>
-        </View>
-        {/* password */}
-        <View style={styles.passwordWrapper}>
-          <View style={styles.textInput}>
-            <IconMCI
-              name="textbox-password"
-              size={30}
-              color={colors.primary}
-              style={styles.inputIcon}
-            />
-            {/* textContentType is for autofill use newPassword for sign up page */}
-            <TextInput
-              textContentType="password"
-              placeholder="Password"
-              secureTextEntry={true}
-              style={styles.inputText}
-            />
-          </View>
-        </View>
-        {/* sign in */}
-        <View style={styles.signInWrapper}>
-          <TouchableHighlight
-            style={styles.signIn}
-            onPress={() => {
-              this.props.signInOut();
-              this.props.navigation.navigate("Home");
-            }}
-          >
-            <Text>Sign In</Text>
-          </TouchableHighlight>
-        </View>
+        {/* sign in component */}
+        <SignInComponent navigation={this.props.navigation} />
         {/* sign in with Facebook */}
         <View style={styles.facebookWrapper}>
           <TouchableHighlight style={styles.facebook}>
@@ -95,15 +51,4 @@ class SignIn extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    signInOut: () => {
-      dispatch(signInOut());
-    }
-  };
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(SignIn);
+export default SignIn;
