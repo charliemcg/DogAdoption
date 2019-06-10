@@ -32,14 +32,27 @@ class FavListItem extends Component {
 
   handleFavorite = () => {
     const { favorites, item } = this.props;
-    // favorites.includes(item)
-    //   ? this.props.removeFromFavorites(item)
-    //   : this.props.addToFavorites(item);
     this.props.signedIn
       ? favorites.includes(item)
         ? this.props.removeFromFavorites(item)
         : this.props.addToFavorites(item)
       : this.props.navigation.navigate("SignIn");
+  };
+
+  showFav = () => {
+    return (
+      this.props.showFav && (
+        // icon by Smash Icons
+        <TouchableHighlight
+          style={styles.favorite}
+          onPress={() => {
+            this.handleFavorite();
+          }}
+        >
+          <Image source={this.getFavoriteIcon()} style={styles.heart} />
+        </TouchableHighlight>
+      )
+    );
   };
 
   render() {
@@ -55,15 +68,7 @@ class FavListItem extends Component {
           style={styles.image}
           resizeMode="contain"
         />
-        {/* icon by Smash Icons */}
-        <TouchableHighlight
-          style={styles.favorite}
-          onPress={() => {
-            this.handleFavorite();
-          }}
-        >
-          <Image source={this.getFavoriteIcon()} style={styles.heart} />
-        </TouchableHighlight>
+        {this.showFav()}
         <View style={styles.price}>
           <Text style={styles.coloredPrice}>{this.props.item.price}</Text>
         </View>

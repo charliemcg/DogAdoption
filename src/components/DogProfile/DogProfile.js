@@ -6,15 +6,21 @@ import {
   Image,
   TouchableHighlight,
   ScrollView,
-  TextInput
+  TextInput,
+  FlatList
 } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
 import colors from "../../colors";
-import { addToFavorites, removeFromFavorites } from "../../actions";
+import {
+  addToFavorites,
+  removeFromFavorites,
+  addToRecents
+} from "../../actions";
 import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import FavListItem from "../FavListItem";
 
 class DogProfile extends Component {
   constructor(props) {
@@ -24,6 +30,13 @@ class DogProfile extends Component {
       message: ""
     };
   }
+
+  componentDidMount() {
+    const { recentlyViewed, selectedDog, addToRecents } = this.props;
+    //check that doesn't already exist in recents
+    !recentlyViewed.includes(selectedDog) && addToRecents(selectedDog);
+  }
+
   formattedDate = () => {
     date = new Date(this.props.selectedDog.date);
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
@@ -31,18 +44,18 @@ class DogProfile extends Component {
 
   //filled if favorited, empty if not
   getFavoriteIcon = () => {
-    return this.props.favorites.includes(this.props.item)
+    return this.props.favorites.includes(this.props.selectedDog)
       ? heartFilledImg
       : heartImg;
   };
 
   //add/remove dog from favorites
   handleFavorite = () => {
-    const { favorites, item } = this.props;
+    const { favorites, selectedDog } = this.props;
     this.props.signedIn
-      ? favorites.includes(item)
-        ? this.props.removeFromFavorites(item)
-        : this.props.addToFavorites(item)
+      ? favorites.includes(selectedDog)
+        ? this.props.removeFromFavorites(selectedDog)
+        : this.props.addToFavorites(selectedDog)
       : this.props.navigation.navigate("SignIn");
   };
 
@@ -170,6 +183,26 @@ class DogProfile extends Component {
       </View>
     );
 
+    const recentlyViewed = (
+      <View>
+        <Text style={styles.recents}>Recently Viewed</Text>
+        <FlatList
+          data={this.props.recentlyViewed}
+          horizontal={true}
+          renderItem={({ item }) =>
+            // don't show the currently selected dog in the recents
+            item !== this.props.selectedDog && (
+              <FavListItem
+                item={item}
+                navigation={this.props.navigation}
+                showFav={false}
+              />
+            )
+          }
+        />
+      </View>
+    );
+
     return (
       <SafeAreaView style={styles.parent}>
         {/* photos */}
@@ -186,6 +219,13 @@ class DogProfile extends Component {
           </Text>
           {/* message container */}
           {messageWrapper}
+          {/* recently viewed */}
+          {/* only show if there are recent dogs in the array. The currently selected dog does not count. */}
+          {this.props.recentlyViewed.length > 0 &&
+          this.props.recentlyViewed.length === 1
+            ? this.props.recentlyViewed[0] !== this.props.selectedDog &&
+              recentlyViewed
+            : recentlyViewed}
         </ScrollView>
       </SafeAreaView>
     );
@@ -196,7 +236,8 @@ const mapStateToProps = state => {
   return {
     favorites: state.favorites,
     selectedDog: state.selectedDog,
-    signedIn: state.signedIn
+    signedIn: state.signedIn,
+    recentlyViewed: state.recentlyViewed
   };
 };
 
@@ -207,6 +248,9 @@ const mapDispatchToProps = dispatch => {
     },
     removeFromFavorites: dog => {
       dispatch(removeFromFavorites(dog));
+    },
+    addToRecents: dog => {
+      dispatch(addToRecents(dog));
     }
   };
 };

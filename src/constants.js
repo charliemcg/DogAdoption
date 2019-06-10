@@ -13,7 +13,8 @@ export default {
     setResults: "SET_RESULTS",
     signInOut: "SIGN_IN_OUT",
     addToFavorites: "ADD_TO_FAVORITES",
-    removeFromFavorites: "REMOVE_FROM_FAVORITES"
+    removeFromFavorites: "REMOVE_FROM_FAVORITES",
+    addToRecents: "ADD_TO_RECENTS"
   },
   states: ["WA", "NT", "SA", "QLD", "NSW", "ACT", "VIC", "TAS"]
 };

@@ -54,3 +54,10 @@ export function removeFromFavorites(dog) {
     payload: dog
   };
 }
+
+export function addToRecents(dog) {
+  return {
+    type: constants.actions.addToRecents,
+    payload: dog
+  };
+}

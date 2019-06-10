@@ -28,7 +28,9 @@ function getPlaceholderData() {
     //user user signed in
     signedIn: false,
     //dogs selected as favorites by the user
-    favorites: []
+    favorites: [],
+    //recently viewed dogs
+    recentlyViewed: []
   };
 }
 
@@ -81,7 +83,7 @@ const reducer = (state = getPlaceholderData(), action) => {
     //adding new dog to favorites
     case constants.actions.addToFavorites:
       let newArr = [...state.favorites];
-      newArr.push(action.payload);
+      newArr.unshift(action.payload);
       state = {
         ...state,
         favorites: newArr
@@ -95,6 +97,16 @@ const reducer = (state = getPlaceholderData(), action) => {
       state = {
         ...state,
         favorites: removeFavoriteArr
+      };
+      break;
+    //adding recently viewed dogs
+    case constants.actions.addToRecents:
+      let newRecents = [...state.recentlyViewed];
+      newRecents.unshift(action.payload);
+      newRecents.length > 10 && newRecents.pop();
+      state = {
+        ...state,
+        recentlyViewed: newRecents
       };
       break;
     default:

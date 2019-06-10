@@ -27,7 +27,11 @@ class Favorites extends Component {
             data={this.props.favorites}
             numColumns={2}
             renderItem={({ item }) => (
-              <FavListItem item={item} navigation={this.props.navigation} />
+              <FavListItem
+                item={item}
+                navigation={this.props.navigation}
+                showFav={true}
+              />
             )}
           />
         </SafeAreaView>
