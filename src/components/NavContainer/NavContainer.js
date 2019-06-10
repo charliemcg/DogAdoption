@@ -24,6 +24,7 @@ import strings from "../../strings";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
+import store from "../../store";
 
 const DrawerHeader = props => (
   <View>
@@ -110,10 +111,9 @@ const Drawer = createDrawerNavigator(
   {
     drawerBackgroundColor: colors.notQuiteWhite,
     contentOptions: {
-      activeTintColor: colors.notQuiteWhite,
+      activeTintColor: colors.dark,
       inactiveTintColor: colors.notQuiteBlack,
-      activeBackgroundColor: colors.primary,
-      inactiveBackgroundColor: colors.notQuiteWhite,
+      activeBackgroundColor: colors.notQuiteWhite,
       labelStyle: {
         fontSize: 15
       }

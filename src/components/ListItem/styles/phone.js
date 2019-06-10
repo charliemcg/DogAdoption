@@ -10,6 +10,7 @@ export default {
     backgroundColor: colors.notQuiteWhite,
     alignItems: "center"
   },
+  // photo
   imageWrapper: {
     width: width * 0.85,
     height: width * 0.6375
@@ -34,13 +35,14 @@ export default {
     height: "100%",
     width: "100%"
   },
-  locationRow: {
+  // quick details
+  quickDetailsRowOne: {
     height: "5%",
     width,
     flexDirection: "row",
     alignItems: "center"
   },
-  breedRow: {
+  quickDetailsRowTwo: {
     height: "5%",
     width,
     flexDirection: "row"
@@ -70,6 +72,7 @@ export default {
     color: colors.dark,
     fontWeight: "bold"
   },
+  // dexription
   description: {
     height: "20%",
     width: width * 0.85

@@ -15,9 +15,5 @@ export default {
     addToFavorites: "ADD_TO_FAVORITES",
     removeFromFavorites: "REMOVE_FROM_FAVORITES"
   },
-  states: ["WA", "NT", "SA", "QLD", "NSW", "ACT", "VIC", "TAS"],
-  legal: {
-    privacy:
-      "This app will not do anything with your data except blah blah blah"
-  }
+  states: ["WA", "NT", "SA", "QLD", "NSW", "ACT", "VIC", "TAS"]
 };

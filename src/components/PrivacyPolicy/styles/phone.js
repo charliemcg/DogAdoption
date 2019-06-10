@@ -8,6 +8,7 @@ export default {
     flex: 1,
     backgroundColor: colors.white,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    margin: 5
   }
 };

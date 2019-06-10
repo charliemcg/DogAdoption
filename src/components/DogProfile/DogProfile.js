@@ -39,9 +39,11 @@ class DogProfile extends Component {
   //add/remove dog from favorites
   handleFavorite = () => {
     const { favorites, item } = this.props;
-    favorites.includes(item)
-      ? this.props.removeFromFavorites(item)
-      : this.props.addToFavorites(item);
+    this.props.signedIn
+      ? favorites.includes(item)
+        ? this.props.removeFromFavorites(item)
+        : this.props.addToFavorites(item)
+      : this.props.navigation.navigate("SignIn");
   };
 
   render() {
@@ -110,7 +112,9 @@ class DogProfile extends Component {
           <Text
             style={styles.seller}
             onPress={() =>
-              alert("create function that redirects to seller profile")
+              this.props.signedIn
+                ? alert("create function that redirects to seller profile")
+                : this.props.navigation.navigate("SignIn")
             }
           >
             John Smith
@@ -122,7 +126,9 @@ class DogProfile extends Component {
             size={30}
             color={colors.fadedText}
             onPress={() =>
-              alert("create function that redirects to seller profile")
+              this.props.signedIn
+                ? alert("create function that redirects to seller profile")
+                : this.props.navigation.navigate("SignIn")
             }
           />
         </View>
@@ -154,7 +160,11 @@ class DogProfile extends Component {
             ]}
             //button only active if there is a valid message to send
             onPress={() =>
-              message.length <= 750 && message.length > 0 && alert("Send")
+              message.length <= 750 && message.length > 0
+                ? this.props.signedIn
+                  ? alert("Send")
+                  : this.props.navigation.navigate("SignIn")
+                : alert("add shake animation")
             }
             underlayColor={colors.dark}
           >
@@ -189,7 +199,8 @@ class DogProfile extends Component {
 const mapStateToProps = state => {
   return {
     favorites: state.favorites,
-    selectedDog: state.selectedDog
+    selectedDog: state.selectedDog,
+    signedIn: state.signedIn
   };
 };
 

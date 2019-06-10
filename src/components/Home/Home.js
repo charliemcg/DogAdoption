@@ -35,7 +35,11 @@ class Home extends Component {
           name="message"
           size={35}
           color={colors.contrast}
-          onPress={() => navigation.navigate("Messages")}
+          onPress={() => {
+            store.getState().signedIn
+              ? navigation.navigate("Messages")
+              : navigation.navigate("SignIn");
+          }}
         />,
         <IconAwesome
           style={{ paddingRight: 10, paddingLeft: 8 }}

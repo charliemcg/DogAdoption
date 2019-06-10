@@ -32,48 +32,62 @@ class ListItem extends Component {
 
   handleFavorite = () => {
     const { favorites, item } = this.props;
-    favorites.includes(item)
-      ? this.props.removeFromFavorites(item)
-      : this.props.addToFavorites(item);
+    this.props.signedIn
+      ? favorites.includes(item)
+        ? this.props.removeFromFavorites(item)
+        : this.props.addToFavorites(item)
+      : this.props.navigation.navigate("SignIn");
   };
 
   render() {
+    const imageWrapper = (
+      <View style={styles.imageWrapper}>
+        <Image
+          source={{ uri: this.props.item.key }}
+          style={styles.blurredImage}
+          blurRadius={20}
+        />
+        <Image
+          source={{ uri: this.props.item.key }}
+          style={styles.image}
+          resizeMode="contain"
+        />
+        {/* icon by Smash Icons */}
+        <TouchableHighlight
+          style={styles.favorite}
+          onPress={() => {
+            this.handleFavorite();
+          }}
+        >
+          <Image source={this.getFavoriteIcon()} style={styles.heart} />
+        </TouchableHighlight>
+      </View>
+    );
+
+    const quickDetailsRowOne = (
+      <View style={styles.quickDetailsRowOne}>
+        <Text style={styles.location}>
+          Location: {this.props.item.location}
+        </Text>
+        <View style={styles.price}>
+          <Text>Price: </Text>
+          <Text style={styles.coloredPrice}>{this.props.item.price}</Text>
+        </View>
+      </View>
+    );
+
+    const quickDetailsRowTwo = (
+      <View style={styles.quickDetailsRowTwo}>
+        <Text style={styles.breed}>{this.props.item.breed}</Text>
+        <Text style={styles.date}>{this.formattedDate()}</Text>
+      </View>
+    );
+
     return (
       <View style={styles.parent}>
-        <View style={styles.imageWrapper}>
-          <Image
-            source={{ uri: this.props.item.key }}
-            style={styles.blurredImage}
-            blurRadius={20}
-          />
-          <Image
-            source={{ uri: this.props.item.key }}
-            style={styles.image}
-            resizeMode="contain"
-          />
-          {/* icon by Smash Icons */}
-          <TouchableHighlight
-            style={styles.favorite}
-            onPress={() => {
-              this.handleFavorite();
-            }}
-          >
-            <Image source={this.getFavoriteIcon()} style={styles.heart} />
-          </TouchableHighlight>
-        </View>
-        <View style={styles.locationRow}>
-          <Text style={styles.location}>
-            Location: {this.props.item.location}
-          </Text>
-          <View style={styles.price}>
-            <Text>Price: </Text>
-            <Text style={styles.coloredPrice}>{this.props.item.price}</Text>
-          </View>
-        </View>
-        <View style={styles.breedRow}>
-          <Text style={styles.breed}>{this.props.item.breed}</Text>
-          <Text style={styles.date}>{this.formattedDate()}</Text>
-        </View>
+        {imageWrapper}
+        {quickDetailsRowOne}
+        {quickDetailsRowTwo}
         <Text style={styles.description}>{this.props.item.description}</Text>
         <LinearGradient
           colors={[
@@ -99,7 +113,8 @@ class ListItem extends Component {
 
 const mapStateToProps = state => {
   return {
-    favorites: state.favorites
+    favorites: state.favorites,
+    signedIn: state.signedIn
   };
 };
 

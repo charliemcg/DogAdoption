@@ -32,9 +32,14 @@ class FavListItem extends Component {
 
   handleFavorite = () => {
     const { favorites, item } = this.props;
-    favorites.includes(item)
-      ? this.props.removeFromFavorites(item)
-      : this.props.addToFavorites(item);
+    // favorites.includes(item)
+    //   ? this.props.removeFromFavorites(item)
+    //   : this.props.addToFavorites(item);
+    this.props.signedIn
+      ? favorites.includes(item)
+        ? this.props.removeFromFavorites(item)
+        : this.props.addToFavorites(item)
+      : this.props.navigation.navigate("SignIn");
   };
 
   render() {
@@ -78,7 +83,8 @@ class FavListItem extends Component {
 
 const mapStateToProps = state => {
   return {
-    favorites: state.favorites
+    favorites: state.favorites,
+    signedIn: state.signedIn
   };
 };
 
