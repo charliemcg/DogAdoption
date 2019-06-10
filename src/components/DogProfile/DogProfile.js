@@ -21,6 +21,7 @@ import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import FavListItem from "../FavListItem";
+import Map from "../Map";
 
 class DogProfile extends Component {
   constructor(props) {
@@ -217,6 +218,8 @@ class DogProfile extends Component {
           <Text style={styles.description}>
             {this.props.selectedDog.description}
           </Text>
+          {/* map */}
+          <Map />
           {/* message container */}
           {messageWrapper}
           {/* recently viewed */}

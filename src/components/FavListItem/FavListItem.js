@@ -17,6 +17,7 @@ import {
 } from "../../actions";
 import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
+import PropTypes from "prop-types";
 
 class FavListItem extends Component {
   formattedDate = () => {
@@ -74,7 +75,6 @@ class FavListItem extends Component {
         </View>
       </View>
     );
-
     return (
       <View style={styles.parent}>
         {imageWrapper}
@@ -85,6 +85,21 @@ class FavListItem extends Component {
     );
   }
 }
+
+FavListItem.propTypes = {
+  showFav: PropTypes.bool,
+  navigation: PropTypes.shape({
+    state: PropTypes.shape({
+      routeName: PropTypes.string.isRequired,
+      key: PropTypes.string.isRequired
+    }).isRequired,
+    actions: PropTypes.object.isRequired
+  })
+};
+
+FavListItem.defaultProps = {
+  showFav: false
+};
 
 const mapStateToProps = state => {
   return {

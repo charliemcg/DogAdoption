@@ -17,6 +17,7 @@ import {
 } from "../../actions";
 import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
+import PropTypes from "prop-types";
 
 class ListItem extends Component {
   formattedDate = () => {
@@ -110,6 +111,16 @@ class ListItem extends Component {
     );
   }
 }
+
+ListItem.propTypes = {
+  navigation: PropTypes.shape({
+    state: PropTypes.shape({
+      routeName: PropTypes.string.isRequired,
+      key: PropTypes.string.isRequired
+    }).isRequired,
+    actions: PropTypes.object.isRequired
+  })
+};
 
 const mapStateToProps = state => {
   return {
