@@ -3,7 +3,7 @@ import { SafeAreaView, Text, FlatList, ImageBackground } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
 import colors from "../../colors";
-import FavListItem from "../FavListItem";
+import MiniListItem from "../MiniListItem";
 import backgroundImg from "../../images/backgroundWhite.png";
 
 class Favorites extends Component {
@@ -27,7 +27,7 @@ class Favorites extends Component {
             data={this.props.favorites}
             numColumns={2}
             renderItem={({ item }) => (
-              <FavListItem
+              <MiniListItem
                 item={item}
                 navigation={this.props.navigation}
                 showFav={true}

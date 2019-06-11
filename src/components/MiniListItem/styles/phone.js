@@ -11,8 +11,14 @@ export default {
     paddingTop: width * 0.03,
     borderRadius: 10
   },
-  imageWrapper: {
+  touchable: {
     width: width * 0.4,
+    height: width * 0.4,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5
+  },
+  imageWrapper: {
+    width: "100%",
     height: width * 0.3
   },
   image: {

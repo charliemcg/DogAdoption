@@ -19,7 +19,7 @@ import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
 import PropTypes from "prop-types";
 
-class FavListItem extends Component {
+class MiniListItem extends Component {
   formattedDate = () => {
     date = new Date(this.props.item.date);
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
@@ -77,16 +77,26 @@ class FavListItem extends Component {
     );
     return (
       <View style={styles.parent}>
-        {imageWrapper}
-        <View style={styles.breed}>
-          <Text>{this.props.item.breed}</Text>
-        </View>
+        <TouchableHighlight
+          style={styles.touchable}
+          onPress={() => {
+            this.props.selectedDog(this.props.item);
+            this.props.navigation.navigate("DogProfile");
+          }}
+        >
+          <View>
+            {imageWrapper}
+            <View style={styles.breed}>
+              <Text>{this.props.item.breed}</Text>
+            </View>
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }
 }
 
-FavListItem.propTypes = {
+MiniListItem.propTypes = {
   showFav: PropTypes.bool,
   navigation: PropTypes.shape({
     state: PropTypes.shape({
@@ -97,7 +107,7 @@ FavListItem.propTypes = {
   })
 };
 
-FavListItem.defaultProps = {
+MiniListItem.defaultProps = {
   showFav: false
 };
 
@@ -125,4 +135,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FavListItem);
+)(MiniListItem);

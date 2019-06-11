@@ -20,7 +20,7 @@ import {
 import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import FavListItem from "../FavListItem";
+import MiniListItem from "../MiniListItem";
 import Map from "../Map";
 
 class DogProfile extends Component {
@@ -193,7 +193,7 @@ class DogProfile extends Component {
           renderItem={({ item }) =>
             // don't show the currently selected dog in the recents
             item !== this.props.selectedDog && (
-              <FavListItem
+              <MiniListItem
                 item={item}
                 navigation={this.props.navigation}
                 showFav={false}
