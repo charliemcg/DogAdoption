@@ -129,7 +129,9 @@ class UserProfile extends Component {
               <Text>Got a question?</Text>
               <Text
                 style={{ color: colors.dark }}
-                onPress={() => this.props.navigation.navigate("Resolution")}
+                onPress={() =>
+                  this.props.navigation.navigate("UnderConstruction")
+                }
               >
                 Get in touch!
               </Text>

@@ -130,12 +130,18 @@ export default {
     margin: 5,
     color: colors.fadedText
   },
-  sendBtn: {
+  sendAnimatable: {
     width: width * 0.3,
     height: width * 0.1,
     justifyContent: "center",
     alignItems: "center",
     margin: 5,
-    borderRadius: 10
+    borderRadius: 5
+  },
+  sendBtn: {
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center"
   }
 };

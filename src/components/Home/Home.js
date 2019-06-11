@@ -35,7 +35,7 @@ class Home extends Component {
             color={colors.contrast}
             onPress={() => {
               store.getState().signedIn
-                ? navigation.navigate("Messages")
+                ? navigation.navigate("UnderConstruction")
                 : navigation.navigate("SignIn");
             }}
           />,

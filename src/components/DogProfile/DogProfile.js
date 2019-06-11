@@ -7,7 +7,8 @@ import {
   TouchableHighlight,
   TouchableWithoutFeedback,
   ScrollView,
-  TextInput
+  TextInput,
+  Dimensions
 } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
@@ -23,6 +24,8 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import Map from "../Map";
 import * as Animatable from "react-native-animatable";
 import RecentlyViewed from "../RecentlyViewed";
+
+const width = Dimensions.get("window").width;
 
 class DogProfile extends Component {
   constructor(props) {
@@ -66,6 +69,13 @@ class DogProfile extends Component {
     } else {
       this.props.navigation.navigate("SignIn");
     }
+  };
+
+  //only send message if it is valid
+  handleSend = () => {
+    this.state.message.length <= 750 && this.state.message.length > 0
+      ? alert("Send")
+      : this.refs["shake"].shake(500);
   };
 
   render() {
@@ -164,9 +174,10 @@ class DogProfile extends Component {
         />
         <View style={styles.btnWrapper}>
           <Text style={styles.counter}>{characterLength}/750</Text>
-          <TouchableHighlight
+          <Animatable.View
+            ref="shake"
             style={[
-              styles.sendBtn,
+              styles.sendAnimatable,
               {
                 backgroundColor:
                   message.length <= 750 && message.length > 0
@@ -174,18 +185,23 @@ class DogProfile extends Component {
                     : colors.fadedText
               }
             ]}
-            //button only active if there is a valid message to send
-            onPress={() =>
-              message.length <= 750 && message.length > 0
-                ? this.props.signedIn
-                  ? alert("Send")
-                  : this.props.navigation.navigate("SignIn")
-                : alert("add shake animation")
-            }
-            underlayColor={colors.dark}
           >
-            <Text>Send</Text>
-          </TouchableHighlight>
+            <TouchableWithoutFeedback
+              //button only active if there is a valid message to send
+              onPress={() => this.handleSend()}
+            >
+              <View
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <Text>Send</Text>
+              </View>
+            </TouchableWithoutFeedback>
+          </Animatable.View>
         </View>
       </View>
     );
