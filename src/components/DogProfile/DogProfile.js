@@ -5,6 +5,7 @@ import {
   Text,
   Image,
   TouchableHighlight,
+  TouchableWithoutFeedback,
   ScrollView,
   TextInput,
   FlatList
@@ -22,6 +23,7 @@ import heartFilledImg from "../../images/heartFilled.png";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import MiniListItem from "../MiniListItem";
 import Map from "../Map";
+import * as Animatable from "react-native-animatable";
 
 class DogProfile extends Component {
   constructor(props) {
@@ -53,11 +55,18 @@ class DogProfile extends Component {
   //add/remove dog from favorites
   handleFavorite = () => {
     const { favorites, selectedDog } = this.props;
-    this.props.signedIn
-      ? favorites.includes(selectedDog)
-        ? this.props.removeFromFavorites(selectedDog)
-        : this.props.addToFavorites(selectedDog)
-      : this.props.navigation.navigate("SignIn");
+    if (this.props.signedIn) {
+      if (favorites.includes(selectedDog)) {
+        this.props.removeFromFavorites(selectedDog);
+      } else {
+        //bounce the heart when adding to favorites
+        this.refs["bounce"]
+          .bounce(500)
+          .then(this.props.addToFavorites(selectedDog));
+      }
+    } else {
+      this.props.navigation.navigate("SignIn");
+    }
   };
 
   render() {
@@ -86,15 +95,17 @@ class DogProfile extends Component {
           style={styles.image}
           resizeMode="contain"
         />
-        {/* icon by Smash Icons */}
-        <TouchableHighlight
-          style={styles.favorite}
-          onPress={() => {
-            this.handleFavorite();
-          }}
-        >
-          <Image source={this.getFavoriteIcon()} style={styles.heart} />
-        </TouchableHighlight>
+        <Animatable.View ref="bounce" style={styles.animatable}>
+          <TouchableWithoutFeedback
+            style={styles.favorite}
+            onPress={() => {
+              this.handleFavorite();
+            }}
+          >
+            {/* icon by Smash Icons */}
+            <Image source={this.getFavoriteIcon()} style={styles.heart} />
+          </TouchableWithoutFeedback>
+        </Animatable.View>
       </View>
     );
 

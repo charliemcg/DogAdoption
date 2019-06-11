@@ -4,7 +4,8 @@ import {
   Image,
   Text,
   TouchableHighlight,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableWithoutFeedback
 } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
@@ -18,6 +19,7 @@ import {
 import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
 import PropTypes from "prop-types";
+import * as Animatable from "react-native-animatable";
 
 class ListItem extends Component {
   formattedDate = () => {
@@ -33,11 +35,16 @@ class ListItem extends Component {
 
   handleFavorite = () => {
     const { favorites, item } = this.props;
-    this.props.signedIn
-      ? favorites.includes(item)
-        ? this.props.removeFromFavorites(item)
-        : this.props.addToFavorites(item)
-      : this.props.navigation.navigate("SignIn");
+    if (this.props.signedIn) {
+      if (favorites.includes(item)) {
+        this.props.removeFromFavorites(item);
+      } else {
+        //bounce the heart when adding to favorites
+        this.refs["bounce"].bounce(500).then(this.props.addToFavorites(item));
+      }
+    } else {
+      this.props.navigation.navigate("SignIn");
+    }
   };
 
   render() {
@@ -53,15 +60,17 @@ class ListItem extends Component {
           style={styles.image}
           resizeMode="contain"
         />
-        {/* icon by Smash Icons */}
-        <TouchableHighlight
-          style={styles.favorite}
-          onPress={() => {
-            this.handleFavorite();
-          }}
-        >
-          <Image source={this.getFavoriteIcon()} style={styles.heart} />
-        </TouchableHighlight>
+        <Animatable.View ref="bounce" style={styles.animatable}>
+          {/* icon by Smash Icons */}
+          <TouchableWithoutFeedback
+            style={styles.favorite}
+            onPress={() => {
+              this.handleFavorite();
+            }}
+          >
+            <Image source={this.getFavoriteIcon()} style={styles.heart} />
+          </TouchableWithoutFeedback>
+        </Animatable.View>
       </View>
     );
 

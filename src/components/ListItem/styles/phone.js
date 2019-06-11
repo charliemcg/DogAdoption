@@ -34,12 +34,16 @@ export default {
   blurredImage: {
     flex: 1
   },
-  favorite: {
+  animatable: {
     height: width * 0.1,
     width: width * 0.1,
     position: "absolute",
     top: "5%",
     right: "3%"
+  },
+  favorite: {
+    height: "100%",
+    width: "100%"
   },
   heart: {
     height: "100%",
