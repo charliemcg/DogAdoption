@@ -86,7 +86,16 @@ class MiniListItem extends Component {
         >
           <View>
             {imageWrapper}
-            <View style={styles.breed}>
+            <View
+              style={[
+                styles.breed,
+                {
+                  backgroundColor: this.props.showFav
+                    ? colors.notQuiteWhite
+                    : colors.white
+                }
+              ]}
+            >
               <Text>{this.props.item.breed}</Text>
             </View>
           </View>

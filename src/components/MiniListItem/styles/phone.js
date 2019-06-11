@@ -46,7 +46,6 @@ export default {
     width: width * 0.4,
     justifyContent: "center",
     paddingLeft: "5%",
-    backgroundColor: colors.notQuiteWhite,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5
   },
