@@ -15,6 +15,7 @@ import SignIn from "../SignIn";
 import SignUp from "../SignUp";
 import Favorites from "../Favorites";
 import Resolution from "../Resolution";
+import UnderConstruction from "../UnderConstruction";
 import Filter from "../Filter";
 import PrivacyPolicy from "../PrivacyPolicy";
 import UserProfile from "../UserProfile";
@@ -110,6 +111,7 @@ const Stack = createStackNavigator(
     PrivacyPolicy,
     Filter,
     UserProfile,
+    UnderConstruction,
     // putting drawer screens in stack so that they will have a back button
     Favorites,
     Resolution

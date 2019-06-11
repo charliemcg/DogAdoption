@@ -135,9 +135,7 @@ class DogProfile extends Component {
           <Text>Uploaded by</Text>
           <Text
             style={styles.seller}
-            onPress={() =>
-              alert("create function that redirects to seller profile")
-            }
+            onPress={() => this.props.navigation.navigate("UnderConstruction")}
           >
             John Smith
           </Text>
@@ -147,9 +145,7 @@ class DogProfile extends Component {
             name="user"
             size={30}
             color={colors.fadedText}
-            onPress={() =>
-              alert("create function that redirects to seller profile")
-            }
+            onPress={() => this.props.navigation.navigate("UnderConstruction")}
           />
         </View>
       </View>
