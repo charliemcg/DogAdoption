@@ -10,8 +10,18 @@ export default {
     backgroundColor: colors.notQuiteWhite,
     alignItems: "center"
   },
+  touchable: {
+    width: "100%",
+    height: "100%"
+  },
+  contentWrapper: {
+    width: "100%",
+    height: "100%",
+    alignItems: "center"
+  },
   // photo
   imageWrapper: {
+    // 4 x 3 aspect ratio
     width: width * 0.85,
     height: width * 0.6375
   },
@@ -72,21 +82,15 @@ export default {
     color: colors.dark,
     fontWeight: "bold"
   },
-  // dexription
+  // description
   description: {
-    height: "20%",
+    height: "25%",
     width: width * 0.85
   },
   fade: {
     top: width * 0.7375,
     width,
-    height: "20%",
+    height: "25%",
     position: "absolute"
-  },
-  more: {
-    flex: 1,
-    width,
-    alignItems: "center",
-    backgroundColor: colors.white
   }
 };

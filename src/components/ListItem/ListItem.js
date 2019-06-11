@@ -86,26 +86,30 @@ class ListItem extends Component {
 
     return (
       <View style={styles.parent}>
-        {imageWrapper}
-        {quickDetailsRowOne}
-        {quickDetailsRowTwo}
-        <Text style={styles.description}>{this.props.item.description}</Text>
-        <LinearGradient
-          colors={[
-            "rgba(256, 256, 256, 0.1)",
-            "rgba(256, 256, 256, 0.6)",
-            colors.white
-          ]}
-          style={styles.fade}
-        />
         <TouchableHighlight
-          style={styles.more}
+          style={styles.touchable}
           onPress={() => {
             this.props.selectedDog(this.props.item);
             this.props.navigation.navigate("DogProfile");
           }}
+          underlayColor={colors.notQuiteWhite}
         >
-          <Text>More...</Text>
+          <View style={styles.contentWrapper}>
+            {imageWrapper}
+            {quickDetailsRowOne}
+            {quickDetailsRowTwo}
+            <Text style={styles.description}>
+              {this.props.item.description}
+            </Text>
+            <LinearGradient
+              colors={[
+                "rgba(256, 256, 256, 0.1)",
+                "rgba(256, 256, 256, 0.6)",
+                colors.white
+              ]}
+              style={styles.fade}
+            />
+          </View>
         </TouchableHighlight>
       </View>
     );
