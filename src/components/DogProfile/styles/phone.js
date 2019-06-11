@@ -137,10 +137,5 @@ export default {
     alignItems: "center",
     margin: 5,
     borderRadius: 10
-  },
-  // recently viewed
-  recents: {
-    marginLeft: "3%",
-    fontSize: 17
   }
 };

@@ -7,8 +7,7 @@ import {
   TouchableHighlight,
   TouchableWithoutFeedback,
   ScrollView,
-  TextInput,
-  FlatList
+  TextInput
 } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
@@ -21,9 +20,9 @@ import {
 import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import MiniListItem from "../MiniListItem";
 import Map from "../Map";
 import * as Animatable from "react-native-animatable";
+import RecentlyViewed from "../RecentlyViewed";
 
 class DogProfile extends Component {
   constructor(props) {
@@ -195,26 +194,6 @@ class DogProfile extends Component {
       </View>
     );
 
-    const recentlyViewed = (
-      <View>
-        <Text style={styles.recents}>Recently Viewed</Text>
-        <FlatList
-          data={this.props.recentlyViewed}
-          horizontal={true}
-          renderItem={({ item }) =>
-            // don't show the currently selected dog in the recents
-            item !== this.props.selectedDog && (
-              <MiniListItem
-                item={item}
-                navigation={this.props.navigation}
-                showFav={false}
-              />
-            )
-          }
-        />
-      </View>
-    );
-
     return (
       <SafeAreaView style={styles.parent}>
         {/* photos */}
@@ -236,10 +215,16 @@ class DogProfile extends Component {
           {/* recently viewed */}
           {/* only show if there are recent dogs in the array. The currently selected dog does not count. */}
           {this.props.recentlyViewed.length > 0 &&
-          this.props.recentlyViewed.length === 1
-            ? this.props.recentlyViewed[0] !== this.props.selectedDog &&
-              recentlyViewed
-            : recentlyViewed}
+          this.props.recentlyViewed.length === 1 ? (
+            this.props.recentlyViewed[0] !== this.props.selectedDog && (
+              <RecentlyViewed />
+            )
+          ) : (
+            <RecentlyViewed
+              navigation={this.props.navigation}
+              showFav={false}
+            />
+          )}
         </ScrollView>
       </SafeAreaView>
     );

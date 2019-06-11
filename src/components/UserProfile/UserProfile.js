@@ -3,23 +3,19 @@ import {
   View,
   Text,
   TouchableHighlight,
-  TextInput,
   ImageBackground,
   SafeAreaView,
-  FlatList,
   ScrollView
 } from "react-native";
 import styles from "./styles";
 import IconAwesome5 from "react-native-vector-icons/FontAwesome5";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
-import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import colors from "../../colors";
-import strings from "../../strings";
 import { signInOut } from "../../actions";
 import { connect } from "react-redux";
 import backgroundImg from "../../images/backgroundWhite.png";
-import MiniListItem from "../MiniListItem";
+import RecentlyViewed from "../RecentlyViewed";
 
 class UserProfile extends Component {
   buttonSkeleton = btnProps => (
@@ -52,23 +48,6 @@ class UserProfile extends Component {
       <IconAwesome5 name={"ad"} size={70} color={colors.contrast} />
     );
 
-    const recentlyViewed = (
-      <View>
-        <Text style={styles.recents}>Recently Viewed</Text>
-        <FlatList
-          data={this.props.recentlyViewed}
-          horizontal={true}
-          renderItem={({ item }) => (
-            <MiniListItem
-              item={item}
-              navigation={this.props.navigation}
-              showFav={false}
-            />
-          )}
-        />
-      </View>
-    );
-
     return (
       <ImageBackground
         style={styles.parent}
@@ -92,7 +71,12 @@ class UserProfile extends Component {
               <Text>Springfield</Text>
               <Text>allthedogs@gmail.com</Text>
             </View>
-            {this.props.recentlyViewed.length > 0 && recentlyViewed}
+            {this.props.recentlyViewed.length > 0 && (
+              <RecentlyViewed
+                navigation={this.props.navigation}
+                showFav={false}
+              />
+            )}
             <View style={styles.gridRow}>
               {/* sell dog */}
               {this.buttonSkeleton({
