@@ -11,6 +11,7 @@ import styles from "./styles";
 import colors from "../../colors";
 import constants from "../../constants";
 import ListItem from "../ListItem";
+import LeftButton from "../LeftButton";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconAwesome5 from "react-native-vector-icons/FontAwesome5";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
@@ -50,19 +51,7 @@ class Home extends Component {
             }}
           />
         ],
-      headerLeft: (
-        <IconAwesome5
-          style={{ paddingRight: 10, paddingLeft: 8 }}
-          name="user-circle"
-          size={30}
-          color={colors.contrast}
-          onPress={() => {
-            store.getState().signedIn
-              ? navigation.navigate("UserProfile")
-              : navigation.navigate("SignIn");
-          }}
-        />
-      )
+      headerLeft: <LeftButton navigation={navigation} />
     };
   };
 
@@ -135,7 +124,7 @@ class Home extends Component {
         {/* sort */}
         <TouchableHighlight
           style={styles.sortTouchable}
-          onPress={() => alert("Sort pressed")}
+          onPress={() => alert("This feature is under construction")}
           underlayColor={colors.dark}
         >
           <View style={styles.fabButton}>
