@@ -2,6 +2,7 @@ import colors from "../../../colors";
 import { Dimensions } from "react-native";
 
 const width = Dimensions.get("window").width;
+const height = Dimensions.get("window").height;
 
 export default {
   parent: {
@@ -11,19 +12,23 @@ export default {
     alignItems: "center"
   },
   iconWrapper: {
-    height: "29%",
+    height: height * 0.2,
     width,
     justifyContent: "center",
     alignItems: "center"
   },
   details: {
-    height: "15%",
+    height: height * 0.1,
     width,
     justifyContent: "center",
     alignItems: "center"
   },
+  scrollView: {
+    height: "100%",
+    width
+  },
   gridRow: {
-    height: "22%",
+    height: height * 0.2,
     width,
     flexDirection: "row",
     paddingRight: "2%",
@@ -46,10 +51,11 @@ export default {
     alignItems: "center",
     width: "90%",
     height: "90%",
-    backgroundColor: colors.primary
+    backgroundColor: colors.primary,
+    borderRadius: 5
   },
   signOutBtnWrapper: {
-    height: "12%",
+    height: height * 0.1,
     width,
     justifyContent: "center",
     alignItems: "center",
@@ -62,8 +68,7 @@ export default {
     backgroundColor: colors.primary,
     justifyContent: "center",
     alignItems: "center",
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20
+    borderRadius: 5
   },
   signOutContentsWrapper: {
     flexDirection: "row",
@@ -75,9 +80,14 @@ export default {
     color: colors.contrast,
     fontSize: 20
   },
-  // recently viewed
   recents: {
     marginLeft: "3%",
     fontSize: 17
+  },
+  resolutionWrapper: {
+    width,
+    height: height * 0.075,
+    justifyContent: "center",
+    alignItems: "center"
   }
 };

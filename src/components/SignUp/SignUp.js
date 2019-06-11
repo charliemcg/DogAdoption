@@ -30,7 +30,7 @@ export default class SignIn extends Component {
         {/* new user link */}
         <View style={styles.privacyWrapper}>
           <Text
-            style={{ color: "blue" }}
+            style={{ color: colors.dark }}
             onPress={() => this.props.navigation.navigate("PrivacyPolicy")}
           >
             Privacy Policy

@@ -6,7 +6,8 @@ import {
   TextInput,
   ImageBackground,
   SafeAreaView,
-  FlatList
+  FlatList,
+  ScrollView
 } from "react-native";
 import styles from "./styles";
 import IconAwesome5 from "react-native-vector-icons/FontAwesome5";
@@ -18,6 +19,7 @@ import strings from "../../strings";
 import { signInOut } from "../../actions";
 import { connect } from "react-redux";
 import backgroundImg from "../../images/backgroundWhite.png";
+import MiniListItem from "../MiniListItem";
 
 class UserProfile extends Component {
   buttonSkeleton = btnProps => (
@@ -38,7 +40,7 @@ class UserProfile extends Component {
   );
   render() {
     const favIcon = (
-      <IconAwesome name={"heart-o"} size={70} color={colors.contrast} />
+      <IconAwesome name={"heart"} size={70} color={colors.contrast} />
     );
     const msgIcon = (
       <IconEntypo name={"message"} size={70} color={colors.contrast} />
@@ -74,70 +76,81 @@ class UserProfile extends Component {
         source={backgroundImg}
       >
         <SafeAreaView>
-          {/* icon */}
-          <View style={styles.iconWrapper}>
-            <IconAwesome5
-              name="user-circle"
-              size={175}
-              color={colors.primary}
-            />
-          </View>
-          {/* personal details */}
-          <View style={styles.details}>
-            <Text>Dog Lover</Text>
-            <Text>123 Fake Street</Text>
-            <Text>Springfield</Text>
-            <Text>allthedogs@gmail.com</Text>
-          </View>
-          {/* {recentlyViewed} */}
-          <View style={styles.gridRow}>
-            {/* view favourites */}
-            {this.buttonSkeleton({
-              route: "Favorites",
-              icon: favIcon,
-              text: "View Favorites"
-            })}
-            {/* view messages */}
-            {this.buttonSkeleton({
-              route: "Messages",
-              icon: msgIcon,
-              text: "View Messages"
-            })}
-          </View>
-          <View style={styles.gridRow}>
-            {/* sell dog */}
-            {this.buttonSkeleton({
-              route: "Favorites", // <- change this
-              icon: sellIcon,
-              text: "Sell a Dog"
-            })}
-            {/* view ads */}
-            {this.buttonSkeleton({
-              route: "Favorites", // <- change this
-              icon: adIcon,
-              text: "View My Ads"
-            })}
-          </View>
-          {/* sign out */}
-          <View style={styles.signOutBtnWrapper}>
-            <TouchableHighlight
-              style={styles.signOutBtn}
-              onPress={() => {
-                this.props.signInOut();
-                this.props.navigation.navigate("Home");
-              }}
-              underlayColor={colors.dark}
-            >
-              <View style={styles.signOutContentsWrapper}>
-                <Text style={styles.btnText}>Sign Out</Text>
-                <IconAwesome
-                  name="sign-out"
-                  size={40}
-                  color={colors.contrast}
-                />
-              </View>
-            </TouchableHighlight>
-          </View>
+          <ScrollView style={styles.scrollView}>
+            {/* icon */}
+            <View style={styles.iconWrapper}>
+              <IconAwesome5
+                name="user-circle"
+                size={150}
+                color={colors.primary}
+              />
+            </View>
+            {/* personal details */}
+            <View style={styles.details}>
+              <Text>Dog Lover</Text>
+              <Text>123 Fake Street</Text>
+              <Text>Springfield</Text>
+              <Text>allthedogs@gmail.com</Text>
+            </View>
+            {this.props.recentlyViewed.length > 0 && recentlyViewed}
+            <View style={styles.gridRow}>
+              {/* sell dog */}
+              {this.buttonSkeleton({
+                route: "Favorites", // <- change this
+                icon: sellIcon,
+                text: "Sell a Dog"
+              })}
+              {/* view ads */}
+              {this.buttonSkeleton({
+                route: "Favorites", // <- change this
+                icon: adIcon,
+                text: "View My Ads"
+              })}
+            </View>
+            <View style={styles.gridRow}>
+              {/* view favourites */}
+              {this.buttonSkeleton({
+                route: "Favorites",
+                icon: favIcon,
+                text: "View Favorites"
+              })}
+              {/* view messages */}
+              {this.buttonSkeleton({
+                route: "Messages",
+                icon: msgIcon,
+                text: "View Messages"
+              })}
+            </View>
+            {/* sign out */}
+            <View style={styles.signOutBtnWrapper}>
+              <TouchableHighlight
+                style={styles.signOutBtn}
+                onPress={() => {
+                  this.props.signInOut();
+                  this.props.navigation.navigate("Home");
+                }}
+                underlayColor={colors.dark}
+              >
+                <View style={styles.signOutContentsWrapper}>
+                  <Text style={styles.btnText}>Sign Out</Text>
+                  <IconAwesome
+                    name="sign-out"
+                    size={40}
+                    color={colors.contrast}
+                  />
+                </View>
+              </TouchableHighlight>
+            </View>
+            <View style={styles.resolutionWrapper}>
+              <Text>Got a question?</Text>
+              <Text
+                style={{ color: colors.dark }}
+                onPress={() => this.props.navigation.navigate("Resolution")}
+              >
+                Get in touch!
+              </Text>
+            </View>
+          </ScrollView>
         </SafeAreaView>
       </ImageBackground>
     );
