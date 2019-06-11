@@ -44,6 +44,7 @@ class UserProfile extends Component {
                 onPress={() => {
                   this.props.navigation.navigate("Favorites");
                 }}
+                underlayColor={colors.dark}
               >
                 <Text style={styles.btnText}>View Favorites</Text>
               </TouchableHighlight>
@@ -55,6 +56,7 @@ class UserProfile extends Component {
                 onPress={() => {
                   this.props.navigation.navigate("Messages");
                 }}
+                underlayColor={colors.dark}
               >
                 <Text style={styles.btnText}>View Messages</Text>
               </TouchableHighlight>
@@ -63,13 +65,21 @@ class UserProfile extends Component {
           <View style={styles.gridRow}>
             {/* sell dog */}
             <View style={styles.buttonWrapper}>
-              <TouchableHighlight style={styles.button}>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => alert("Sell a dog")}
+                underlayColor={colors.dark}
+              >
                 <Text style={styles.btnText}>Sell A Dog</Text>
               </TouchableHighlight>
             </View>
             {/* view ads */}
             <View style={styles.buttonWrapper}>
-              <TouchableHighlight style={styles.button}>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => alert("View My Ads")}
+                underlayColor={colors.dark}
+              >
                 <Text style={styles.btnText}>View My Ads</Text>
               </TouchableHighlight>
             </View>
@@ -82,6 +92,7 @@ class UserProfile extends Component {
                 this.props.signInOut();
                 this.props.navigation.navigate("Home");
               }}
+              underlayColor={colors.dark}
             >
               <Text style={styles.btnText}>Sign Out</Text>
             </TouchableHighlight>

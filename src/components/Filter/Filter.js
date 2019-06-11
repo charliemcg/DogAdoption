@@ -277,7 +277,7 @@ class Filter extends Component {
       <TouchableHighlight
         onPress={() => this.props.navigation.navigate("Home")}
         style={styles.updateBtn}
-        underlayColor={colors.light}
+        underlayColor={colors.dark}
       >
         <Text style={styles.btnText}>{strings.updateSearch}</Text>
       </TouchableHighlight>

@@ -54,6 +54,7 @@ class SignInComponent extends Component {
               this.props.signInOut();
               this.props.navigation.navigate("Home");
             }}
+            underlayColor={colors.dark}
           >
             <Text>Sign In</Text>
           </TouchableHighlight>
