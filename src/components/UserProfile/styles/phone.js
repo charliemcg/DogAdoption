@@ -34,6 +34,13 @@ export default {
     justifyContent: "center",
     alignItems: "center"
   },
+  btnContentsWrapper: {
+    height: "90%",
+    width: "100%",
+    marginTop: "5%",
+    justifyContent: "space-around",
+    alignItems: "center"
+  },
   button: {
     justifyContent: "center",
     alignItems: "center",
@@ -58,8 +65,19 @@ export default {
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20
   },
+  signOutContentsWrapper: {
+    flexDirection: "row",
+    width: "40%",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
   btnText: {
     color: colors.contrast,
     fontSize: 20
+  },
+  // recently viewed
+  recents: {
+    marginLeft: "3%",
+    fontSize: 17
   }
 };

@@ -5,11 +5,14 @@ import {
   TouchableHighlight,
   TextInput,
   ImageBackground,
-  SafeAreaView
+  SafeAreaView,
+  FlatList
 } from "react-native";
 import styles from "./styles";
-import IconAwesome from "react-native-vector-icons/FontAwesome5";
+import IconAwesome5 from "react-native-vector-icons/FontAwesome5";
+import IconAwesome from "react-native-vector-icons/FontAwesome";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
+import IconEntypo from "react-native-vector-icons/Entypo";
 import colors from "../../colors";
 import strings from "../../strings";
 import { signInOut } from "../../actions";
@@ -17,7 +20,53 @@ import { connect } from "react-redux";
 import backgroundImg from "../../images/backgroundWhite.png";
 
 class UserProfile extends Component {
+  buttonSkeleton = btnProps => (
+    <View style={styles.buttonWrapper}>
+      <TouchableHighlight
+        style={styles.button}
+        onPress={() => {
+          this.props.navigation.navigate(btnProps.route);
+        }}
+        underlayColor={colors.dark}
+      >
+        <View style={styles.btnContentsWrapper}>
+          {btnProps.icon}
+          <Text style={styles.btnText}>{btnProps.text}</Text>
+        </View>
+      </TouchableHighlight>
+    </View>
+  );
   render() {
+    const favIcon = (
+      <IconAwesome name={"heart-o"} size={70} color={colors.contrast} />
+    );
+    const msgIcon = (
+      <IconEntypo name={"message"} size={70} color={colors.contrast} />
+    );
+    const sellIcon = (
+      <IconAwesome name={"dollar"} size={70} color={colors.contrast} />
+    );
+    const adIcon = (
+      <IconAwesome5 name={"ad"} size={70} color={colors.contrast} />
+    );
+
+    const recentlyViewed = (
+      <View>
+        <Text style={styles.recents}>Recently Viewed</Text>
+        <FlatList
+          data={this.props.recentlyViewed}
+          horizontal={true}
+          renderItem={({ item }) => (
+            <MiniListItem
+              item={item}
+              navigation={this.props.navigation}
+              showFav={false}
+            />
+          )}
+        />
+      </View>
+    );
+
     return (
       <ImageBackground
         style={styles.parent}
@@ -27,7 +76,11 @@ class UserProfile extends Component {
         <SafeAreaView>
           {/* icon */}
           <View style={styles.iconWrapper}>
-            <IconAwesome name="user-circle" size={175} color={colors.primary} />
+            <IconAwesome5
+              name="user-circle"
+              size={175}
+              color={colors.primary}
+            />
           </View>
           {/* personal details */}
           <View style={styles.details}>
@@ -36,53 +89,34 @@ class UserProfile extends Component {
             <Text>Springfield</Text>
             <Text>allthedogs@gmail.com</Text>
           </View>
+          {/* {recentlyViewed} */}
           <View style={styles.gridRow}>
             {/* view favourites */}
-            <View style={styles.buttonWrapper}>
-              <TouchableHighlight
-                style={styles.button}
-                onPress={() => {
-                  this.props.navigation.navigate("Favorites");
-                }}
-                underlayColor={colors.dark}
-              >
-                <Text style={styles.btnText}>View Favorites</Text>
-              </TouchableHighlight>
-            </View>
+            {this.buttonSkeleton({
+              route: "Favorites",
+              icon: favIcon,
+              text: "View Favorites"
+            })}
             {/* view messages */}
-            <View style={styles.buttonWrapper}>
-              <TouchableHighlight
-                style={styles.button}
-                onPress={() => {
-                  this.props.navigation.navigate("Messages");
-                }}
-                underlayColor={colors.dark}
-              >
-                <Text style={styles.btnText}>View Messages</Text>
-              </TouchableHighlight>
-            </View>
+            {this.buttonSkeleton({
+              route: "Messages",
+              icon: msgIcon,
+              text: "View Messages"
+            })}
           </View>
           <View style={styles.gridRow}>
             {/* sell dog */}
-            <View style={styles.buttonWrapper}>
-              <TouchableHighlight
-                style={styles.button}
-                onPress={() => alert("Sell a dog")}
-                underlayColor={colors.dark}
-              >
-                <Text style={styles.btnText}>Sell A Dog</Text>
-              </TouchableHighlight>
-            </View>
+            {this.buttonSkeleton({
+              route: "Favorites", // <- change this
+              icon: sellIcon,
+              text: "Sell a Dog"
+            })}
             {/* view ads */}
-            <View style={styles.buttonWrapper}>
-              <TouchableHighlight
-                style={styles.button}
-                onPress={() => alert("View My Ads")}
-                underlayColor={colors.dark}
-              >
-                <Text style={styles.btnText}>View My Ads</Text>
-              </TouchableHighlight>
-            </View>
+            {this.buttonSkeleton({
+              route: "Favorites", // <- change this
+              icon: adIcon,
+              text: "View My Ads"
+            })}
           </View>
           {/* sign out */}
           <View style={styles.signOutBtnWrapper}>
@@ -94,7 +128,14 @@ class UserProfile extends Component {
               }}
               underlayColor={colors.dark}
             >
-              <Text style={styles.btnText}>Sign Out</Text>
+              <View style={styles.signOutContentsWrapper}>
+                <Text style={styles.btnText}>Sign Out</Text>
+                <IconAwesome
+                  name="sign-out"
+                  size={40}
+                  color={colors.contrast}
+                />
+              </View>
             </TouchableHighlight>
           </View>
         </SafeAreaView>
@@ -102,6 +143,12 @@ class UserProfile extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    recentlyViewed: state.recentlyViewed
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -112,6 +159,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(UserProfile);
