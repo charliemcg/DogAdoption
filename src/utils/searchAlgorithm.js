@@ -1,5 +1,5 @@
-import store from "./store";
-import { setResults } from "./actions";
+import store from "../store";
+import { setResults } from "../actions";
 
 //get dogs filtered by search results
 export function getDogs() {

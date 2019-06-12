@@ -20,13 +20,9 @@ import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
 import PropTypes from "prop-types";
 import * as Animatable from "react-native-animatable";
+import { dateFormatter } from "../../utils/dateFormatter";
 
 class ListItem extends Component {
-  formattedDate = () => {
-    date = new Date(this.props.item.date);
-    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-  };
-
   getFavoriteIcon = () => {
     return this.props.favorites.includes(this.props.item)
       ? heartFilledImg
@@ -89,7 +85,7 @@ class ListItem extends Component {
     const quickDetailsRowTwo = (
       <View style={styles.quickDetailsRowTwo}>
         <Text style={styles.breed}>{this.props.item.breed}</Text>
-        <Text style={styles.date}>{this.formattedDate()}</Text>
+        <Text style={styles.date}>{dateFormatter(this.props.item.date)}</Text>
       </View>
     );
 

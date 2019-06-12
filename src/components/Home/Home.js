@@ -18,7 +18,7 @@ import IconAwesome from "react-native-vector-icons/FontAwesome";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { breedsList } from "../../actions";
-import { loadAllDogsInSystem } from "../../generator";
+import { loadAllDogsInSystem } from "../../utils/generator";
 import store from "../../store";
 
 class Home extends Component {

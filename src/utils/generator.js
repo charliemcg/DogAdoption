@@ -1,6 +1,6 @@
-import store from "./store";
-import constants from "./constants";
-import { setAllDogs } from "./actions";
+import store from "../store";
+import constants from "../constants";
+import { setAllDogs } from "../actions";
 import { getDogs } from "./searchAlgorithm";
 
 export function loadAllDogsInSystem() {

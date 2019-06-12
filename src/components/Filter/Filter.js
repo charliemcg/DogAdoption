@@ -5,7 +5,7 @@ import styles from "./styles";
 import ModalSelector from "react-native-modal-selector";
 import colors from "../../colors";
 import { setSearchFilters, setResults } from "../../actions";
-import { getDogs } from "../../searchAlgorithm";
+import { getDogs } from "../../utils/searchAlgorithm";
 import strings from "../../strings";
 import constants from "../../constants";
 import { TouchableHighlight } from "react-native-gesture-handler";
@@ -32,14 +32,6 @@ class Filter extends Component {
     setTimeout(() => getDogs(), 3000); // <- shouldn't need this fake loader
     // getDogs();
   };
-
-  // handleUpdate = () => {
-  //   this.props.setSearchFilters(this.state);
-  //   // setting results to nothing will bring up the activity indicator for better UX
-  //   this.props.setResults([]);
-  //   getDogs();
-  //   this.props.navigation.navigate("Home");
-  // };
 
   //these are the options for the minimum price modal selector
   minPrices = () => {

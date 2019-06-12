@@ -50,6 +50,7 @@ export default {
     height: componentHeight,
     backgroundColor: colors.primary,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderRadius: 10
   }
 };

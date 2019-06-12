@@ -9,6 +9,6 @@ export default {
     backgroundColor: colors.white,
     justifyContent: "center",
     alignItems: "center",
-    margin: 5
+    margin: 10
   }
 };

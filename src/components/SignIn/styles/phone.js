@@ -72,7 +72,8 @@ export default {
     height: componentHeight,
     backgroundColor: "blue",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderRadius: 10
   },
   privacyWrapper: {
     flex: 2,

@@ -32,7 +32,10 @@ class SignIn extends Component {
         <SignInComponent navigation={this.props.navigation} />
         {/* sign in with Facebook */}
         <View style={styles.facebookWrapper}>
-          <TouchableHighlight style={styles.facebook}>
+          <TouchableHighlight
+            style={styles.facebook}
+            onPress={() => this.props.navigation.navigate("UnderConstruction")}
+          >
             <Text>Sign in with Facebook</Text>
           </TouchableHighlight>
         </View>

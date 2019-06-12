@@ -24,8 +24,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import Map from "../Map";
 import * as Animatable from "react-native-animatable";
 import RecentlyViewed from "../RecentlyViewed";
-
-const width = Dimensions.get("window").width;
+import { dateFormatter } from "../../utils/dateFormatter";
 
 class DogProfile extends Component {
   constructor(props) {
@@ -41,11 +40,6 @@ class DogProfile extends Component {
     //check that doesn't already exist in recents
     !recentlyViewed.includes(selectedDog) && addToRecents(selectedDog);
   }
-
-  formattedDate = () => {
-    date = new Date(this.props.selectedDog.date);
-    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-  };
 
   //filled if favorited, empty if not
   getFavoriteIcon = () => {
@@ -135,7 +129,9 @@ class DogProfile extends Component {
     const quickDetailsBottomRow = (
       <View style={styles.breedRow}>
         <Text style={styles.breed}>{this.props.selectedDog.breed}</Text>
-        <Text style={styles.date}>{this.formattedDate()}</Text>
+        <Text style={styles.date}>
+          {dateFormatter(this.props.selectedDog.date)}
+        </Text>
       </View>
     );
 
