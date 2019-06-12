@@ -29,8 +29,8 @@ class Filter extends Component {
     this.props.setSearchFilters(this.state);
     //setting results to nothing will bring up the activity indicator for better UX
     this.props.setResults(null); // <- replace with a loading flag in state
-    setTimeout(() => getDogs(), 3000); // <- shouldn't need this fake loader
-    // getDogs();
+    // setTimeout(() => getDogs(), 3000); // <- shouldn't need this fake loader
+    getDogs();
   };
 
   //these are the options for the minimum price modal selector
@@ -84,14 +84,18 @@ class Filter extends Component {
         <Text
           style={{ textAlign: "center" }}
           onPress={() => {
-            this.setState({ location: constants.states[location] });
-            this.updateResults();
+            this.asyncUpdate({ location: constants.states[location] });
           }}
         >
           {constants.states[location]}
         </Text>
       </View>
     );
+  };
+
+  asyncUpdate = async nullifiedState => {
+    await this.setState(nullifiedState);
+    this.updateResults();
   };
 
   //this is the layout for each of the filter options. To be populated with data relevant to the each filter
@@ -114,17 +118,13 @@ class Filter extends Component {
                 onPress={() => {
                   switch (props.filterName) {
                     case "Breed":
-                      this.setState({ breed: null });
-                      this.updateResults();
+                      this.asyncUpdate({ breed: null });
                       break;
                     case "Location":
-                      this.setState({ location: null });
-                      this.updateResults();
+                      this.asyncUpdate({ location: null });
                       break;
                     case "Price":
-                      this.setState({ priceMin: null });
-                      this.setState({ priceMax: null });
-                      this.updateResults();
+                      this.asyncUpdate({ priceMin: null, priceMax: null });
                       break;
                   }
                 }}
