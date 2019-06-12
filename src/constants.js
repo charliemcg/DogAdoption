@@ -15,7 +15,8 @@ export default {
     addToFavorites: "ADD_TO_FAVORITES",
     removeFromFavorites: "REMOVE_FROM_FAVORITES",
     addToRecents: "ADD_TO_RECENTS",
-    setExactMatches: "SET_EXACT_MATCHES"
+    setExactMatches: "SET_EXACT_MATCHES",
+    toggleError: "TOGGLE_ERROR"
   },
   states: ["WA", "NT", "SA", "QLD", "NSW", "ACT", "VIC", "TAS"]
 };

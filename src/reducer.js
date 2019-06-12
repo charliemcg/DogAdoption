@@ -32,7 +32,9 @@ function getPlaceholderData() {
     //dogs selected as favorites by the user
     favorites: [],
     //recently viewed dogs
-    recentlyViewed: []
+    recentlyViewed: [],
+    //there was an error with getting data
+    error: false
   };
 }
 
@@ -118,6 +120,12 @@ const reducer = (state = getPlaceholderData(), action) => {
         recentlyViewed: newRecents
       };
       break;
+    //is there an error with retrieving data
+    case constants.actions.toggleError:
+      state = {
+        ...state,
+        error: action.payload
+      };
     default:
       return state;
   }

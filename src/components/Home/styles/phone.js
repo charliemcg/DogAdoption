@@ -10,6 +10,7 @@ export default {
     justifyContent: "center",
     alignItems: "center"
   },
+  //fab
   fab: {
     height: width * 0.08,
     width: "40%",
@@ -63,5 +64,42 @@ export default {
   },
   text: {
     color: colors.contrast
-  }
+  },
+  //error screen
+  retryWrapper: {
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  errorTextWrapper: {
+    flex: 1,
+    color: colors.fadedText,
+    width,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    paddingBottom: "5%"
+  },
+  errText: {
+    color: colors.fadedText,
+    fontSize: 18
+  },
+  retryBtnWrapper: {
+    alignItems: "center",
+    flex: 1,
+    width
+  },
+  errTouchable: { borderRadius: 10 },
+  retryTextWrapper: {
+    paddingLeft: "10%",
+    paddingRight: "5%",
+    justifyContent: "space-around",
+    alignItems: "center",
+    height: width * 0.12,
+    width: width * 0.32,
+    flexDirection: "row",
+    borderRadius: 10,
+    backgroundColor: colors.primary
+  },
+  retryText: { color: colors.contrast, fontSize: 17 }
 };

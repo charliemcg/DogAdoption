@@ -17,7 +17,7 @@ import IconAwesome5 from "react-native-vector-icons/FontAwesome5";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import { TouchableHighlight } from "react-native-gesture-handler";
-import { breedsList } from "../../actions";
+import { breedsList, toggleError } from "../../actions";
 import { loadAllDogsInSystem } from "../../utils/generator";
 import store from "../../store";
 
@@ -51,6 +51,7 @@ class Home extends Component {
             }}
           />
         ],
+      //left button changes based on whether or not user is logged in
       headerLeft: <LeftButton navigation={navigation} />
     };
   };
@@ -84,9 +85,44 @@ class Home extends Component {
   };
 
   render() {
+    //shown when there is an error getting data
+    const errorScreen = (
+      <View style={styles.retryWrapper}>
+        <View style={styles.errorTextWrapper}>
+          <Text style={styles.errText}>There was an error...</Text>
+        </View>
+        <View style={styles.retryBtnWrapper}>
+          <TouchableHighlight
+            onPress={() => {
+              this.props.toggleError(false);
+              this.componentDidMount();
+            }}
+            style={styles.errTouchable}
+          >
+            <View style={styles.retryTextWrapper}>
+              <Text style={styles.retryText}>Retry</Text>
+              <IconAwesome
+                style={{ paddingRight: 10, paddingLeft: 8 }}
+                name="refresh"
+                size={25}
+                color={colors.contrast}
+              />
+            </View>
+          </TouchableHighlight>
+        </View>
+      </View>
+    );
+
+    //need to determine if the absence of data is due to loading or network error
+    const noData = this.props.error ? (
+      errorScreen
+    ) : (
+      <ActivityIndicator size="large" style={{ flex: 1 }} />
+    );
+
     const theList =
       this.props.searchResults === null ? (
-        <ActivityIndicator size="large" style={{ flex: 1 }} />
+        noData
       ) : (
         <FlatList
           data={this.props.searchResults}
@@ -96,7 +132,7 @@ class Home extends Component {
         />
       );
 
-    const fab = (
+    const fab = this.props.searchResults !== null && (
       <View style={styles.fab}>
         {/* filter */}
         <TouchableHighlight
@@ -154,7 +190,8 @@ const mapStateToProps = state => {
   return {
     breeds: state.breeds,
     searchResults: state.searchResults,
-    signedIn: state.signedIn
+    signedIn: state.signedIn,
+    error: state.error
   };
 };
 
@@ -162,6 +199,9 @@ const mapDispatchToProps = dispatch => {
   return {
     breedsList: breeds => {
       dispatch(breedsList(breeds));
+    },
+    toggleError: err => {
+      dispatch(toggleError(err));
     }
   };
 };

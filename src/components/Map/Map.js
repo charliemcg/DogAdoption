@@ -33,7 +33,7 @@ export default class Map extends Component {
       case "TAS":
         return { lat: -42.8821, lng: 147.3272 };
       default:
-        return { lat: 0, lng: 0 }; // <- return an error message instead
+        return { lat: 0, lng: 0 }; // <- TODO return an error message instead
     }
   };
 

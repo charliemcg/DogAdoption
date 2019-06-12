@@ -1,6 +1,6 @@
 import store from "../store";
 import constants from "../constants";
-import { setAllDogs } from "../actions";
+import { setAllDogs, toggleError } from "../actions";
 import { getDogs } from "./searchAlgorithm";
 
 export function loadAllDogsInSystem() {
@@ -46,7 +46,7 @@ export function loadAllDogsInSystem() {
       store.dispatch(setAllDogs(imgArr));
       getDogs();
     })
-    .catch(e => console.log(e));
+    .catch(e => store.dispatch(toggleError(true)));
 }
 
 //generating placeholder prices. Not to be used in production

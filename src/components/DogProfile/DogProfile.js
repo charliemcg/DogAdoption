@@ -41,6 +41,12 @@ class DogProfile extends Component {
     !recentlyViewed.includes(selectedDog) && addToRecents(selectedDog);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.selectedDog !== prevProps.selectedDog) {
+      alert("I'm in here");
+    }
+  }
+
   //filled if favorited, empty if not
   getFavoriteIcon = () => {
     return this.props.favorites.includes(this.props.selectedDog)

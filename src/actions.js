@@ -68,3 +68,10 @@ export function addToRecents(dog) {
     payload: dog
   };
 }
+
+export function toggleError(err) {
+  return {
+    type: constants.actions.toggleError,
+    payload: err
+  };
+}
