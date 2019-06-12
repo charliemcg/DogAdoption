@@ -68,7 +68,7 @@ class DogProfile extends Component {
   //only send message if it is valid
   handleSend = () => {
     this.state.message.length <= 750 && this.state.message.length > 0
-      ? alert("Send")
+      ? alert("This feature is under construction")
       : this.refs["shake"].shake(500);
   };
 
@@ -217,7 +217,7 @@ class DogProfile extends Component {
             {this.props.selectedDog.description}
           </Text>
           {/* map */}
-          <Map />
+          <Map location={this.props.selectedDog.location} />
           {/* message container */}
           {messageWrapper}
           {/* recently viewed */}
