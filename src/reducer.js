@@ -25,6 +25,8 @@ function getPlaceholderData() {
     },
     //all the dogs in the system accounting for user selected filters
     searchResults: null,
+    //inform user how many exact matches there are after applying filters
+    exactMatches: 0,
     //user user signed in
     signedIn: false,
     //dogs selected as favorites by the user
@@ -71,6 +73,13 @@ const reducer = (state = getPlaceholderData(), action) => {
       state = {
         ...state,
         searchResults: action.payload
+      };
+      break;
+    //the exact matches
+    case constants.actions.setExactMatches:
+      state = {
+        ...state,
+        exactMatches: action.payload
       };
       break;
     //toggle user as either signed in or out

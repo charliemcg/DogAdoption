@@ -35,6 +35,13 @@ export function setResults(results) {
   };
 }
 
+export function setExactMatches(results) {
+  return {
+    type: constants.actions.setExactMatches,
+    payload: results
+  };
+}
+
 export function signInOut() {
   return {
     type: constants.actions.signInOut

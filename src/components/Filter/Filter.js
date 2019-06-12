@@ -71,7 +71,7 @@ class Filter extends Component {
       />
     ) : (
       <View>
-        <Text>//TODO</Text>
+        <Text>{this.props.exactMatches}</Text>
         <Text>{this.props.searchResults.length}</Text>
       </View>
     );
@@ -93,6 +93,7 @@ class Filter extends Component {
     );
   };
 
+  // need to ensure that state is updated before updating the results
   asyncUpdate = async nullifiedState => {
     await this.setState(nullifiedState);
     this.updateResults();
@@ -162,8 +163,8 @@ class Filter extends Component {
     );
 
     //selected state has to look different to every other state
-    stateStyle = state => {
-      return this.state.location === state
+    stateStyle = location => {
+      return this.state.location === location
         ? styles.selectedState
         : styles.state;
     };
@@ -201,9 +202,7 @@ class Filter extends Component {
                   : this.state.priceMin
               }
               onChange={option => {
-                this.setState({
-                  priceMin: option.label
-                });
+                this.setState({ priceMin: option.label });
                 this.updateResults();
               }}
               selectTextStyle={{
@@ -227,9 +226,7 @@ class Filter extends Component {
                   : this.state.priceMax
               }
               onChange={option => {
-                this.setState({
-                  priceMax: option.label
-                });
+                this.setState({ priceMax: option.label });
                 this.updateResults();
               }}
               selectTextStyle={{
@@ -316,6 +313,7 @@ const mapStateToProps = state => {
   return {
     searchFilters: state.searchFilters,
     searchResults: state.searchResults,
+    exactMatches: state.exactMatches,
     breeds: state.breeds
   };
 };

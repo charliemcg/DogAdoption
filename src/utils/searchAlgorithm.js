@@ -1,5 +1,5 @@
 import store from "../store";
-import { setResults } from "../actions";
+import { setResults, setExactMatches } from "../actions";
 
 //get dogs filtered by search results
 export function getDogs() {
@@ -16,6 +16,7 @@ export function getDogs() {
     priceMax === null
   ) {
     store.dispatch(setResults(store.getState().allDogs));
+    store.dispatch(setExactMatches(0));
     //apply filters
   } else {
     const unfilteredDogsArr = [...store.getState().allDogs];
@@ -28,8 +29,10 @@ export function getDogs() {
       let count = 0;
       //check if breed matches
       dog.breed === breed && count++;
+      breed === null && count++;
       //check if location matches
       dog.location === location && count++;
+      location === null && count++;
       //increment for a positive result when checking the min and max price each
       let priceChecks = 0;
       //checking minimum price
@@ -69,5 +72,6 @@ export function getDogs() {
       .concat(oneDegreeFromExactArr)
       .concat(twoDegreesFromExactArr);
     store.dispatch(setResults(orderedByMatchArr));
+    store.dispatch(setExactMatches(exactMatchesArr.length));
   }
 }

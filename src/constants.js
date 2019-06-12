@@ -14,7 +14,8 @@ export default {
     signInOut: "SIGN_IN_OUT",
     addToFavorites: "ADD_TO_FAVORITES",
     removeFromFavorites: "REMOVE_FROM_FAVORITES",
-    addToRecents: "ADD_TO_RECENTS"
+    addToRecents: "ADD_TO_RECENTS",
+    setExactMatches: "SET_EXACT_MATCHES"
   },
   states: ["WA", "NT", "SA", "QLD", "NSW", "ACT", "VIC", "TAS"]
 };
