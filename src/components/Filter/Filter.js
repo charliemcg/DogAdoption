@@ -17,25 +17,28 @@ class Filter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      breed: this.props.searchFilters.breed,
-      location: this.props.searchFilters.location,
-      priceMin: this.props.searchFilters.priceMin,
-      priceMax: this.props.searchFilters.priceMax
+      filters: {
+        breed: this.props.searchFilters.breed,
+        location: this.props.searchFilters.location,
+        priceMin: this.props.searchFilters.priceMin,
+        priceMax: this.props.searchFilters.priceMax
+      },
+      loading: false
     };
   }
 
   //called every time the user changes a filter
   updateResults = () => {
-    this.props.setSearchFilters(this.state);
-    //setting results to nothing will bring up the activity indicator for better UX
-    this.props.setResults(null); // <- replace with a loading flag in state
-    // setTimeout(() => getDogs(), 3000); // <- shouldn't need this fake loader
+    this.props.setSearchFilters(this.state.filters);
+    //briefly showing the activity indicator for better UX. The actual update time is nearly instant
+    this.setState({ loading: true });
+    setTimeout(() => this.setState({ loading: false }), 1000);
     getDogs();
   };
 
   //these are the options for the minimum price modal selector
   minPrices = () => {
-    let { priceMax } = this.state;
+    let { priceMax } = this.state.filters;
     const upperRange =
       priceMax === null ? 2000 : priceMax === "Free" ? 0 : priceMax;
     let prices = [];
@@ -48,7 +51,7 @@ class Filter extends Component {
 
   //these are the options for the maximum price modal selector
   maxPrices = () => {
-    const { priceMin } = this.state;
+    const { priceMin } = this.state.filters;
     let prices = [];
     //make it so that user cannot select a value lower than the selected minimum
     for (
@@ -63,7 +66,7 @@ class Filter extends Component {
 
   //the matches. either return match figures or loading indicator
   matchData = () => {
-    return this.props.searchResults === null ? (
+    return this.state.loading ? (
       <ActivityIndicator
         size="small"
         color={colors.dark}
@@ -84,7 +87,10 @@ class Filter extends Component {
         <Text
           style={{ textAlign: "center" }}
           onPress={() => {
-            this.asyncUpdate({ location: constants.states[location] });
+            this.asyncUpdate({
+              ...this.state.filters,
+              location: constants.states[location]
+            });
           }}
         >
           {constants.states[location]}
@@ -95,7 +101,7 @@ class Filter extends Component {
 
   // need to ensure that state is updated before updating the results
   asyncUpdate = async nullifiedState => {
-    await this.setState(nullifiedState);
+    await this.setState({ filters: nullifiedState });
     this.updateResults();
   };
 
@@ -119,13 +125,20 @@ class Filter extends Component {
                 onPress={() => {
                   switch (props.filterName) {
                     case "Breed":
-                      this.asyncUpdate({ breed: null });
+                      this.asyncUpdate({ ...this.state.filters, breed: null });
                       break;
                     case "Location":
-                      this.asyncUpdate({ location: null });
+                      this.asyncUpdate({
+                        ...this.state.filters,
+                        location: null
+                      });
                       break;
                     case "Price":
-                      this.asyncUpdate({ priceMin: null, priceMax: null });
+                      this.asyncUpdate({
+                        ...this.state.filters,
+                        priceMin: null,
+                        priceMax: null
+                      });
                       break;
                   }
                 }}
@@ -146,11 +159,12 @@ class Filter extends Component {
           style={styles.modalSelector}
           data={this.props.breeds}
           initValue={
-            this.state.breed === null ? strings.select : this.state.breed
+            this.state.filters.breed === null
+              ? strings.select
+              : this.state.filters.breed
           }
           onChange={option => {
-            this.setState({ breed: option.label });
-            this.updateResults();
+            this.asyncUpdate({ ...this.state.filters, breed: option.label });
           }}
           selectTextStyle={{
             color: colors.black
@@ -164,7 +178,7 @@ class Filter extends Component {
 
     //selected state has to look different to every other state
     stateStyle = location => {
-      return this.state.location === location
+      return this.state.filters.location === location
         ? styles.selectedState
         : styles.state;
     };
@@ -197,13 +211,15 @@ class Filter extends Component {
               style={styles.priceSelector}
               data={this.minPrices()}
               initValue={
-                this.state.priceMin === null
+                this.state.filters.priceMin === null
                   ? strings.select
-                  : this.state.priceMin
+                  : this.state.filters.priceMin
               }
               onChange={option => {
-                this.setState({ priceMin: option.label });
-                this.updateResults();
+                this.asyncUpdate({
+                  ...this.state.filters,
+                  priceMin: option.label
+                });
               }}
               selectTextStyle={{
                 color: colors.black
@@ -221,13 +237,15 @@ class Filter extends Component {
               style={styles.priceSelector}
               data={this.maxPrices()}
               initValue={
-                this.state.priceMax === null
+                this.state.filters.priceMax === null
                   ? strings.select
-                  : this.state.priceMax
+                  : this.state.filters.priceMax
               }
               onChange={option => {
-                this.setState({ priceMax: option.label });
-                this.updateResults();
+                this.asyncUpdate({
+                  ...this.state.filters,
+                  priceMax: option.label
+                });
               }}
               selectTextStyle={{
                 color: colors.black
@@ -279,14 +297,14 @@ class Filter extends Component {
           icon: breedIcon,
           filterName: "Breed",
           filterOptions: breedOptions,
-          showReset: this.state.breed === null ? false : true
+          showReset: this.state.filters.breed === null ? false : true
         })}
         {/* location selector */}
         {this.filterOptionSkeleton({
           icon: locationIcon,
           filterName: "Location",
           filterOptions: locationOptions,
-          showReset: this.state.location === null ? false : true
+          showReset: this.state.filters.location === null ? false : true
         })}
         {/* price selector */}
         {this.filterOptionSkeleton({
@@ -294,8 +312,8 @@ class Filter extends Component {
           filterName: "Price",
           filterOptions: priceOptions,
           showReset:
-            this.state.priceMin === null
-              ? this.state.priceMax === null
+            this.state.filters.priceMin === null
+              ? this.state.filters.priceMax === null
                 ? false
                 : true
               : true
