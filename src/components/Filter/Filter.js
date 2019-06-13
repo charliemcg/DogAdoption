@@ -333,38 +333,40 @@ class Filter extends Component {
     );
 
     return (
-      <SafeAreaView style={styles.parent}>
-        {/* breed selector */}
-        {this.filterOptionSkeleton({
-          icon: breedIcon,
-          filterName: "Breed",
-          filterOptions: breedOptions,
-          showReset: this.state.filters.breed === null ? false : true
-        })}
-        {/* location selector */}
-        {this.filterOptionSkeleton({
-          icon: locationIcon,
-          filterName: "Location",
-          filterOptions: locationOptions,
-          showReset: this.state.filters.location === null ? false : true
-        })}
-        {/* price selector */}
-        {this.filterOptionSkeleton({
-          icon: priceIcon,
-          filterName: "Price",
-          filterOptions: priceOptions,
-          showReset:
-            this.state.filters.priceMin === null
-              ? this.state.filters.priceMax === null
-                ? false
+      <View style={styles.parent}>
+        <SafeAreaView style={styles.parent}>
+          {/* breed selector */}
+          {this.filterOptionSkeleton({
+            icon: breedIcon,
+            filterName: "Breed",
+            filterOptions: breedOptions,
+            showReset: this.state.filters.breed === null ? false : true
+          })}
+          {/* location selector */}
+          {this.filterOptionSkeleton({
+            icon: locationIcon,
+            filterName: "Location",
+            filterOptions: locationOptions,
+            showReset: this.state.filters.location === null ? false : true
+          })}
+          {/* price selector */}
+          {this.filterOptionSkeleton({
+            icon: priceIcon,
+            filterName: "Price",
+            filterOptions: priceOptions,
+            showReset:
+              this.state.filters.priceMin === null
+                ? this.state.filters.priceMax === null
+                  ? false
+                  : true
                 : true
-              : true
-        })}
-        {/* number of matches */}
-        {matches}
-        {/* apply changes button */}
-        {updateButton}
-      </SafeAreaView>
+          })}
+          {/* number of matches */}
+          {matches}
+          {/* apply changes button */}
+          {updateButton}
+        </SafeAreaView>
+      </View>
     );
   }
 }

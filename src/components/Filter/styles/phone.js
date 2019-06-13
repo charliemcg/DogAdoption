@@ -9,7 +9,8 @@ export default {
     flex: 1,
     backgroundColor: colors.notQuiteWhite,
     justifyContent: "space-around",
-    alignItems: "center"
+    alignItems: "center",
+    paddingTop: "10%"
   },
   optionWrapper: {
     flexDirection: "row",

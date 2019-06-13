@@ -4,7 +4,8 @@ import {
   Text,
   FlatList,
   ImageBackground,
-  View
+  View,
+  ActivityIndicator
 } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
@@ -22,6 +23,13 @@ class Favorites extends Component {
     };
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      fakeLoading: false
+    };
+  }
+
   render() {
     // list of favorites
     const thereAreFavorites = (
@@ -34,6 +42,12 @@ class Favorites extends Component {
             item={item}
             navigation={this.props.navigation}
             showFav={true}
+            fakeLoad={() => {
+              this.setState({ fakeLoading: true });
+              setTimeout(() => {
+                this.setState({ fakeLoading: false });
+              }, 350);
+            }}
           />
         )}
       />
@@ -68,9 +82,13 @@ class Favorites extends Component {
             <Text style={styles.title}>Your Favorites</Text>
           </View>
           {/* check if favorites exist */}
-          {this.props.favorites.length === 0
-            ? thereAreNoFavorites
-            : thereAreFavorites}
+          {this.state.fakeLoading ? (
+            <ActivityIndicator size="large" style={{ flex: 1 }} />
+          ) : this.props.favorites.length === 0 ? (
+            thereAreNoFavorites
+          ) : (
+            thereAreFavorites
+          )}
         </SafeAreaView>
       </ImageBackground>
     );

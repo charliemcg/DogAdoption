@@ -47,6 +47,7 @@ class MiniListItem extends Component {
         <TouchableHighlight
           style={styles.favorite}
           onPress={() => {
+            this.props.fakeLoad();
             this.handleFavorite();
           }}
         >
