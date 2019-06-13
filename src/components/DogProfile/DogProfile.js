@@ -26,8 +26,27 @@ import Map from "../Map";
 import * as Animatable from "react-native-animatable";
 import RecentlyViewed from "../RecentlyViewed";
 import { dateFormatter } from "../../utils/dateFormatter";
+import { HeaderBackButton } from "react-navigation";
 
 class DogProfile extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    headerLeft: navigation.state.params ? (
+      navigation.state.params.headerLeft
+    ) : (
+      <HeaderBackButton
+        onPress={() => navigation.goBack(null)}
+        tintColor={colors.contrast}
+        title="Dog Adoption"
+        backTitleVisible={true}
+      />
+    ),
+    headerStyle: {
+      backgroundColor: navigation.state.params
+        ? navigation.state.params.headerStyle.backgroundColor
+        : colors.primary
+    }
+  });
+
   constructor(props) {
     super(props);
     this.state = {
@@ -98,9 +117,15 @@ class DogProfile extends Component {
       <View style={styles.imageWrapper}>
         <TouchableHighlight
           style={{ height: "100%", width: "100%" }}
-          onPress={() =>
-            this.setState({ ...this.state, fullScreenPhoto: true })
-          }
+          onPress={() => {
+            this.setState({ ...this.state, fullScreenPhoto: true });
+            this.props.navigation.setParams({
+              headerLeft: null,
+              headerStyle: {
+                backgroundColor: colors.black
+              }
+            });
+          }}
         >
           <View style={{ height: "100%", width: "100%" }}>
             <Image
@@ -237,6 +262,19 @@ class DogProfile extends Component {
           color={colors.notQuiteWhite}
           onPress={() => {
             this.setState({ ...this.state, fullScreenPhoto: false });
+            this.props.navigation.setParams({
+              headerLeft: (
+                <HeaderBackButton
+                  onPress={() => this.props.navigation.goBack(null)}
+                  tintColor={colors.contrast}
+                  title="Dog Adoption"
+                  backTitleVisible={true}
+                />
+              ),
+              headerStyle: {
+                backgroundColor: colors.primary
+              }
+            });
           }}
           style={{
             position: "absolute",
@@ -260,6 +298,7 @@ class DogProfile extends Component {
 
     return (
       <SafeAreaView style={styles.parent}>
+        {/* show full screen photo if required */}
         {this.state.fullScreenPhoto && showPhotoFullScreen}
         {/* photos */}
         {photos}
@@ -327,38 +366,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(DogProfile);
-
-// {/* photos */}
-// {photos}
-// {/* quick details */}
-// {quickDetailsTopRow}
-// {quickDetailsBottomRow}
-// <ScrollView style={styles.scrollView} ref="scrollView">
-//   {/* seller details */}
-//   {sellerDetails}
-//   {/* description */}
-//   <Text style={styles.description}>
-//     {this.props.selectedDog.description}
-//   </Text>
-//   {/* map */}
-//   <Map location={this.props.selectedDog.location} />
-//   {/* message container */}
-//   {messageWrapper}
-//   {/* recently viewed */}
-//   {/* only show if there are recent dogs in the array. The currently selected dog does not count. */}
-//   {this.props.recentlyViewed.length > 0 &&
-//   this.props.recentlyViewed.length === 1 ? (
-//     //there may ba one dog in the recents but if it's the same as currently selected then don't show recents
-//     this.props.recentlyViewed[0] !== this.props.selectedDog && (
-//       <RecentlyViewed
-//         navigation={this.props.navigation}
-//         showFav={false}
-//       />
-//     )
-//   ) : (
-//     <RecentlyViewed
-//       navigation={this.props.navigation}
-//       showFav={false}
-//     />
-//   )}
-// </ScrollView>
