@@ -101,7 +101,8 @@ const Stack = createStackNavigator(
           fontSize: 17,
           width: Dimensions.get("window").width,
           color: colors.contrast
-        }
+        },
+        headerBackTitle: "Back"
       }
     },
     DogProfile,

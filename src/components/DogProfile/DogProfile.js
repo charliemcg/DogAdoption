@@ -37,7 +37,7 @@ class DogProfile extends Component {
       <HeaderBackButton
         onPress={() => navigation.goBack(null)}
         tintColor={colors.contrast}
-        title="Dog Adoption"
+        title="Back"
         backTitleVisible={true}
       />
     ),
@@ -247,7 +247,7 @@ class DogProfile extends Component {
                 <HeaderBackButton
                   onPress={() => this.props.navigation.goBack(null)}
                   tintColor={colors.contrast}
-                  title="Dog Adoption"
+                  title="Back"
                   backTitleVisible={true}
                 />
               ),
