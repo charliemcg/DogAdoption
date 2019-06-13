@@ -135,20 +135,20 @@ class DogProfile extends Component {
             />
             <Image
               source={{ uri: this.props.selectedDog.key }}
-              style={styles.image}
+              style={[styles.fillView, styles.image]}
               resizeMode="contain"
             />
           </View>
         </TouchableHighlight>
         <Animatable.View ref="bounce" style={styles.animatable}>
           <TouchableWithoutFeedback
-            style={styles.favorite}
+            style={styles.fillView}
             onPress={() => {
               this.handleFavorite();
             }}
           >
             {/* icon by Smash Icons */}
-            <Image source={this.getFavoriteIcon()} style={styles.heart} />
+            <Image source={this.getFavoriteIcon()} style={styles.fillView} />
           </TouchableWithoutFeedback>
         </Animatable.View>
       </View>
@@ -285,12 +285,7 @@ class DogProfile extends Component {
         />
         <Image
           source={{ uri: this.props.selectedDog.key }}
-          style={{
-            height: "100%",
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
+          style={styles.fillView}
           resizeMode="contain"
         />
       </View>

@@ -15,10 +15,7 @@ export default {
     height: width * 0.75
   },
   image: {
-    position: "absolute",
-    height: "100%",
-    width: "100%",
-    flex: 1
+    position: "absolute"
   },
   blurredImage: {
     flex: 1
@@ -29,14 +26,6 @@ export default {
     position: "absolute",
     top: "5%",
     right: "3%"
-  },
-  favorite: {
-    height: "100%",
-    width: "100%"
-  },
-  heart: {
-    height: "100%",
-    width: "100%"
   },
   // quick details top row
   locationRow: {
@@ -138,9 +127,10 @@ export default {
     margin: 5,
     borderRadius: 5
   },
-  sendBtn: {
-    width: "100%",
+  //generic style for filling a view
+  fillView: {
     height: "100%",
+    width: "100%",
     justifyContent: "center",
     alignItems: "center"
   }
