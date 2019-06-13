@@ -43,7 +43,7 @@ class DogProfile extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.selectedDog !== prevProps.selectedDog) {
-      alert("I'm in here");
+      this.refs["scrollView"].scrollTo({ y: 0 });
     }
   }
 
@@ -215,7 +215,7 @@ class DogProfile extends Component {
         {/* quick details */}
         {quickDetailsTopRow}
         {quickDetailsBottomRow}
-        <ScrollView style={styles.scrollView}>
+        <ScrollView style={styles.scrollView} ref="scrollView">
           {/* seller details */}
           {sellerDetails}
           {/* description */}
