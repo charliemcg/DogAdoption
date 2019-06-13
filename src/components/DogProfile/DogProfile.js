@@ -267,7 +267,16 @@ class DogProfile extends Component {
     );
 
     return (
-      <SafeAreaView style={styles.parent}>
+      <SafeAreaView
+        style={[
+          styles.parent,
+          {
+            backgroundColor: this.state.fullScreenPhoto
+              ? colors.black
+              : colors.white
+          }
+        ]}
+      >
         {/* show full screen photo if required */}
         {this.state.fullScreenPhoto && showPhotoFullScreen}
         {/* photos */}
