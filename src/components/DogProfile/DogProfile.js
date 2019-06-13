@@ -141,17 +141,6 @@ class DogProfile extends Component {
             />
           </View>
         </TouchableHighlight>
-        <Animatable.View ref="bounce" style={styles.animatable}>
-          <TouchableWithoutFeedback
-            style={styles.fillView}
-            onPress={() => {
-              this.handleFavorite();
-            }}
-          >
-            {/* icon by Smash Icons */}
-            <Image source={this.getFavoriteIcon()} style={styles.fillView} />
-          </TouchableWithoutFeedback>
-        </Animatable.View>
       </View>
     );
 
@@ -284,12 +273,16 @@ class DogProfile extends Component {
         {/* photos */}
         <Swiper
           showsButtons={true}
-          activeDotColor={colors.primary}
+          activeDotColor={colors.notQuiteWhite}
           nextButton={
-            <Text style={{ color: colors.primary, fontSize: 70 }}>›</Text>
+            <Text style={{ color: "rgba(255, 255, 255, 0.5)", fontSize: 70 }}>
+              ›
+            </Text>
           }
           prevButton={
-            <Text style={{ color: colors.primary, fontSize: 70 }}>‹</Text>
+            <Text style={{ color: "rgba(255, 255, 255, 0.5)", fontSize: 70 }}>
+              ‹
+            </Text>
           }
         >
           {/* if this were a real app there would be an array of photos to iterate over. 
@@ -300,7 +293,18 @@ class DogProfile extends Component {
           {photos}
           {photos}
         </Swiper>
-
+        {/* favorite icon */}
+        <Animatable.View ref="bounce" style={styles.animatable}>
+          <TouchableWithoutFeedback
+            style={styles.fillView}
+            onPress={() => {
+              this.handleFavorite();
+            }}
+          >
+            {/* icon by Smash Icons */}
+            <Image source={this.getFavoriteIcon()} style={styles.fillView} />
+          </TouchableWithoutFeedback>
+        </Animatable.View>
         {/* quick details */}
         {quickDetailsTopRow}
         {quickDetailsBottomRow}
@@ -319,7 +323,7 @@ class DogProfile extends Component {
           {/* only show if there are recent dogs in the array. The currently selected dog does not count. */}
           {this.props.recentlyViewed.length > 0 &&
           this.props.recentlyViewed.length === 1 ? (
-            //there may ba one dog in the recents but if it's the same as currently selected then don't show recents
+            //there may be one dog in the recents but if it's the same as currently selected then don't show recents
             this.props.recentlyViewed[0] !== this.props.selectedDog && (
               <RecentlyViewed
                 navigation={this.props.navigation}

@@ -131,6 +131,7 @@ class Home extends Component {
         noData
       ) : (
         <FlatList
+          ref="flatList"
           data={this.props.searchResults}
           renderItem={({ item }) => (
             <ListItem item={item} navigation={this.props.navigation} />
@@ -143,7 +144,10 @@ class Home extends Component {
         {/* filter */}
         <TouchableHighlight
           style={styles.filterTouchable}
-          onPress={() => this.props.navigation.navigate("Filter")}
+          onPress={() => {
+            this.props.navigation.navigate("Filter");
+            this.refs["flatList"].scrollToOffset({ animated: true, offset: 0 });
+          }}
           underlayColor={colors.dark}
         >
           <View style={styles.fabButton}>

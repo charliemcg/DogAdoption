@@ -71,7 +71,9 @@ class UserProfile extends Component {
               <Text>Springfield</Text>
               <Text>allthedogs@gmail.com</Text>
             </View>
-            {this.props.recentlyViewed.length > 0 && (
+            {/* recently view */}
+            {/* only show if there are recent dogs in the array. The currently selected dog does not count. */}
+            {this.props.recentlyViewed.length > 1 && (
               <RecentlyViewed
                 navigation={this.props.navigation}
                 showFav={false}

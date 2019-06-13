@@ -24,7 +24,7 @@ export default {
     height: width * 0.1,
     width: width * 0.1,
     position: "absolute",
-    top: "5%",
+    top: "2%",
     right: "3%"
   },
   // quick details top row
