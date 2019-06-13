@@ -127,6 +127,18 @@ export default {
     margin: 5,
     borderRadius: 5
   },
+  //fullscreen image
+  fullScreenWrapper: {
+    position: "absolute",
+    backgroundColor: colors.black,
+    zIndex: 1
+  },
+  fullScreenClose: {
+    position: "absolute",
+    zIndex: 2,
+    top: 5,
+    right: 5
+  },
   //generic style for filling a view
   fillView: {
     height: "100%",

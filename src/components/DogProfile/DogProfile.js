@@ -27,6 +27,7 @@ import * as Animatable from "react-native-animatable";
 import RecentlyViewed from "../RecentlyViewed";
 import { dateFormatter } from "../../utils/dateFormatter";
 import { HeaderBackButton } from "react-navigation";
+import Swiper from "react-native-swiper";
 
 class DogProfile extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -245,17 +246,7 @@ class DogProfile extends Component {
     );
 
     const showPhotoFullScreen = (
-      <View
-        style={{
-          position: "absolute",
-          backgroundColor: "black",
-          height: "100%",
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-          zIndex: 1
-        }}
-      >
+      <View style={[styles.fillView, styles.fullScreenWrapper]}>
         <IconMCI
           name="close"
           size={25}
@@ -276,12 +267,7 @@ class DogProfile extends Component {
               }
             });
           }}
-          style={{
-            position: "absolute",
-            zIndex: 2,
-            top: 5,
-            right: 5
-          }}
+          style={styles.fullScreenClose}
         />
         <Image
           source={{ uri: this.props.selectedDog.key }}
@@ -296,7 +282,25 @@ class DogProfile extends Component {
         {/* show full screen photo if required */}
         {this.state.fullScreenPhoto && showPhotoFullScreen}
         {/* photos */}
-        {photos}
+        <Swiper
+          showsButtons={true}
+          activeDotColor={colors.primary}
+          nextButton={
+            <Text style={{ color: colors.primary, fontSize: 70 }}>›</Text>
+          }
+          prevButton={
+            <Text style={{ color: colors.primary, fontSize: 70 }}>‹</Text>
+          }
+        >
+          {/* if this were a real app there would be an array of photos to iterate over. 
+          Instead the single photo is used five times just to demonstrate the swiper feature */}
+          {photos}
+          {photos}
+          {photos}
+          {photos}
+          {photos}
+        </Swiper>
+
         {/* quick details */}
         {quickDetailsTopRow}
         {quickDetailsBottomRow}
