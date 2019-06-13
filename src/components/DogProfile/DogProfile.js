@@ -20,7 +20,8 @@ import {
 } from "../../actions";
 import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import IconAwesome5 from "react-native-vector-icons/FontAwesome5";
+import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import Map from "../Map";
 import * as Animatable from "react-native-animatable";
 import RecentlyViewed from "../RecentlyViewed";
@@ -31,7 +32,8 @@ class DogProfile extends Component {
     super(props);
     this.state = {
       //needed for checking the character count of the user inputted message
-      message: ""
+      message: "",
+      fullScreenPhoto: false
     };
   }
 
@@ -94,16 +96,25 @@ class DogProfile extends Component {
 
     const photos = (
       <View style={styles.imageWrapper}>
-        <Image
-          source={{ uri: this.props.selectedDog.key }}
-          style={styles.blurredImage}
-          blurRadius={20}
-        />
-        <Image
-          source={{ uri: this.props.selectedDog.key }}
-          style={styles.image}
-          resizeMode="contain"
-        />
+        <TouchableHighlight
+          style={{ height: "100%", width: "100%" }}
+          onPress={() =>
+            this.setState({ ...this.state, fullScreenPhoto: true })
+          }
+        >
+          <View style={{ height: "100%", width: "100%" }}>
+            <Image
+              source={{ uri: this.props.selectedDog.key }}
+              style={styles.blurredImage}
+              blurRadius={20}
+            />
+            <Image
+              source={{ uri: this.props.selectedDog.key }}
+              style={styles.image}
+              resizeMode="contain"
+            />
+          </View>
+        </TouchableHighlight>
         <Animatable.View ref="bounce" style={styles.animatable}>
           <TouchableWithoutFeedback
             style={styles.favorite}
@@ -153,7 +164,7 @@ class DogProfile extends Component {
           </Text>
         </View>
         <View>
-          <Icon
+          <IconAwesome5
             name="user"
             size={30}
             color={colors.fadedText}
@@ -208,8 +219,48 @@ class DogProfile extends Component {
       </View>
     );
 
+    const showPhotoFullScreen = (
+      <View
+        style={{
+          position: "absolute",
+          backgroundColor: "black",
+          height: "100%",
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 1
+        }}
+      >
+        <IconMCI
+          name="close"
+          size={25}
+          color={colors.notQuiteWhite}
+          onPress={() => {
+            this.setState({ ...this.state, fullScreenPhoto: false });
+          }}
+          style={{
+            position: "absolute",
+            zIndex: 2,
+            top: 5,
+            right: 5
+          }}
+        />
+        <Image
+          source={{ uri: this.props.selectedDog.key }}
+          style={{
+            height: "100%",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+          resizeMode="contain"
+        />
+      </View>
+    );
+
     return (
       <SafeAreaView style={styles.parent}>
+        {this.state.fullScreenPhoto && showPhotoFullScreen}
         {/* photos */}
         {photos}
         {/* quick details */}
@@ -276,3 +327,38 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(DogProfile);
+
+// {/* photos */}
+// {photos}
+// {/* quick details */}
+// {quickDetailsTopRow}
+// {quickDetailsBottomRow}
+// <ScrollView style={styles.scrollView} ref="scrollView">
+//   {/* seller details */}
+//   {sellerDetails}
+//   {/* description */}
+//   <Text style={styles.description}>
+//     {this.props.selectedDog.description}
+//   </Text>
+//   {/* map */}
+//   <Map location={this.props.selectedDog.location} />
+//   {/* message container */}
+//   {messageWrapper}
+//   {/* recently viewed */}
+//   {/* only show if there are recent dogs in the array. The currently selected dog does not count. */}
+//   {this.props.recentlyViewed.length > 0 &&
+//   this.props.recentlyViewed.length === 1 ? (
+//     //there may ba one dog in the recents but if it's the same as currently selected then don't show recents
+//     this.props.recentlyViewed[0] !== this.props.selectedDog && (
+//       <RecentlyViewed
+//         navigation={this.props.navigation}
+//         showFav={false}
+//       />
+//     )
+//   ) : (
+//     <RecentlyViewed
+//       navigation={this.props.navigation}
+//       showFav={false}
+//     />
+//   )}
+// </ScrollView>
