@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import NavContainer from "./components/NavContainer";
 import store from "./store";
 import colors from "./colors";
+import { MenuProvider } from "react-native-popup-menu";
 
 // setting the appearance of the status bar
 const MyStatusBar = ({ backgroundColor, ...props }) => (
@@ -26,7 +27,9 @@ class App extends Component {
     return (
       <Provider store={store}>
         <MyStatusBar />
-        <NavContainer />
+        <MenuProvider>
+          <NavContainer />
+        </MenuProvider>
       </Provider>
     );
   }

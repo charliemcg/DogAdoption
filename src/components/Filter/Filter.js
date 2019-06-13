@@ -120,17 +120,8 @@ class Filter extends Component {
       <View style={stateStyle(constants.states[location])}>
         <Text
           style={{ textAlign: "center" }}
-          // onPress={() => {
-          //   this.asyncUpdate({
-          //     ...this.state.filters,
-          //     location: constants.states[location]
-          //   });
-          // }}
-
           onPress={() => {
             this.handleLocationView(location);
-            // this.setState({ locationsExpanded: true });
-            // this.expandLocations();
           }}
         >
           {constants.states[location]}

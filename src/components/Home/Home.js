@@ -20,6 +20,12 @@ import { TouchableHighlight } from "react-native-gesture-handler";
 import { breedsList, toggleError } from "../../actions";
 import { loadAllDogsInSystem } from "../../utils/generator";
 import store from "../../store";
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger
+} from "react-native-popup-menu";
 
 class Home extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -158,20 +164,40 @@ class Home extends Component {
           <View style={styles.divider} />
         </View>
         {/* sort */}
-        <TouchableHighlight
-          style={styles.sortTouchable}
-          onPress={() => alert("This feature is under construction")}
-          underlayColor={colors.dark}
-        >
-          <View style={styles.fabButton}>
-            <View style={styles.fabIconWrapper}>
-              <IconMCI name="sort" size={20} color={colors.contrast} />
-            </View>
-            <View style={styles.fabTextWrapper}>
-              <Text style={styles.text}>Sort</Text>
-            </View>
-          </View>
-        </TouchableHighlight>
+        <Menu>
+          <MenuTrigger>
+            <TouchableHighlight
+              style={styles.sortTouchable}
+              underlayColor={colors.dark}
+            >
+              <View style={styles.fabButton}>
+                <View style={styles.fabIconWrapper}>
+                  <IconMCI name="sort" size={20} color={colors.contrast} />
+                </View>
+                <View style={styles.fabTextWrapper}>
+                  <Text style={styles.text}>Sort</Text>
+                </View>
+              </View>
+            </TouchableHighlight>
+          </MenuTrigger>
+          <MenuOptions>
+            <MenuOption
+              style={{ padding: 12 }}
+              onSelect={() => alert("This feature is under construction")}
+              text="Most Relevant"
+            />
+            <MenuOption
+              style={{ padding: 12 }}
+              onSelect={() => alert("This feature is under construction")}
+              text="Price: Highest First"
+            />
+            <MenuOption
+              style={{ padding: 12 }}
+              onSelect={() => alert("This feature is under construction")}
+              text="Price: Cheapest First"
+            />
+          </MenuOptions>
+        </Menu>
       </View>
     );
 
