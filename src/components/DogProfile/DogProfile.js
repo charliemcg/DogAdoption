@@ -230,8 +230,12 @@ class DogProfile extends Component {
           {/* only show if there are recent dogs in the array. The currently selected dog does not count. */}
           {this.props.recentlyViewed.length > 0 &&
           this.props.recentlyViewed.length === 1 ? (
+            //there may ba one dog in the recents but if it's the same as currently selected then don't show recents
             this.props.recentlyViewed[0] !== this.props.selectedDog && (
-              <RecentlyViewed />
+              <RecentlyViewed
+                navigation={this.props.navigation}
+                showFav={false}
+              />
             )
           ) : (
             <RecentlyViewed
