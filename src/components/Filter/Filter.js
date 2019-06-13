@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { SafeAreaView, Text, View, ActivityIndicator } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  View,
+  ActivityIndicator,
+  Animated
+} from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
 import ModalSelector from "react-native-modal-selector";
@@ -23,9 +29,37 @@ class Filter extends Component {
         priceMin: this.props.searchFilters.priceMin,
         priceMax: this.props.searchFilters.priceMax
       },
-      loading: false
+      loading: false,
+      locationsExpanded: false
     };
   }
+
+  componentWillMount() {
+    //the animatable view needs an animated value
+    this.animatedValue = new Animated.Value(1);
+  }
+
+  //locations must be expanded before user can select an option. Buttons are too small and too close together
+  handleLocationView = location => {
+    if (this.state.locationsExpanded) {
+      this.expandLocations();
+      this.asyncUpdate({
+        ...this.state.filters,
+        location: constants.states[location]
+      });
+      this.setState({ locationsExpanded: false });
+    } else {
+      this.expandLocations();
+      this.setState({ locationsExpanded: true });
+    }
+  };
+
+  //expand location view
+  expandLocations = () => {
+    Animated.spring(this.animatedValue, {
+      toValue: this.state.locationsExpanded ? 1 : 1.3
+    }).start();
+  };
 
   //called every time the user changes a filter
   updateResults = () => {
@@ -86,11 +120,17 @@ class Filter extends Component {
       <View style={stateStyle(constants.states[location])}>
         <Text
           style={{ textAlign: "center" }}
+          // onPress={() => {
+          //   this.asyncUpdate({
+          //     ...this.state.filters,
+          //     location: constants.states[location]
+          //   });
+          // }}
+
           onPress={() => {
-            this.asyncUpdate({
-              ...this.state.filters,
-              location: constants.states[location]
-            });
+            this.handleLocationView(location);
+            // this.setState({ locationsExpanded: true });
+            // this.expandLocations();
           }}
         >
           {constants.states[location]}
@@ -152,6 +192,11 @@ class Filter extends Component {
   };
 
   render() {
+    //used for animating the location options view
+    const animatedStyle = {
+      transform: [{ scale: this.animatedValue }]
+    };
+
     //the modal selector for choosing a breed
     const breedOptions = (
       <View style={styles.modalSelectorWrapper}>
@@ -185,7 +230,13 @@ class Filter extends Component {
 
     //custom radio buttons for selecting location
     const locationOptions = (
-      <View style={styles.statesWrapper}>
+      <Animated.View
+        style={[
+          styles.statesWrapper,
+          animatedStyle,
+          this.state.locationsExpanded ? styles.expandedStatesWrapper : null
+        ]}
+      >
         <View style={styles.topRowStates}>
           {this.stateButton(0)}
           {this.stateButton(1)}
@@ -198,7 +249,7 @@ class Filter extends Component {
           {this.stateButton(5)}
           {this.stateButton(7)}
         </View>
-      </View>
+      </Animated.View>
     );
 
     //selectors for choosing price range

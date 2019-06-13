@@ -29,7 +29,8 @@ export default {
     flex: 7,
     alignItems: "flex-end",
     backgroundColor: colors.white,
-    borderBottomRightRadius: 8
+    borderBottomRightRadius: 8,
+    borderTopRightRadius: 8
   },
   iconWrapper: {
     flex: 2,
@@ -63,7 +64,14 @@ export default {
   statesWrapper: {
     flex: 2,
     justifyContent: "space-around",
-    width: "100%"
+    width: "100%",
+    backgroundColor: colors.white
+  },
+  expandedStatesWrapper: {
+    borderColor: colors.notQuiteBlack,
+    borderStyle: "solid",
+    borderWidth: 1,
+    marginRight: 20
   },
   topRowStates: {
     flexDirection: "row",
