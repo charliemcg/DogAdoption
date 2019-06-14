@@ -13,6 +13,7 @@ import colors from "../../colors";
 import backgroundImg from "../../images/backgroundWhite.png";
 import SignInComponent from "../SignInComponent";
 import strings from "./strings";
+import Device from "react-native-device-detection";
 
 export default class SignIn extends Component {
   render() {
@@ -24,7 +25,11 @@ export default class SignIn extends Component {
       >
         {/* icon */}
         <View style={styles.iconWrapper}>
-          <IconAwesome name="dog" size={100} color={colors.primary} />
+          <IconAwesome
+            name="dog"
+            size={Device.isTablet ? 150 : 100}
+            color={colors.primary}
+          />
         </View>
         {/* sign in component */}
         <SignInComponent navigation={this.props.navigation} />

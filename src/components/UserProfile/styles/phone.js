@@ -12,13 +12,14 @@ export default {
     alignItems: "center"
   },
   iconWrapper: {
-    height: height * 0.25,
+    height: 165,
     width,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop: 10
   },
   details: {
-    height: height * 0.15,
+    height: 90,
     width,
     justifyContent: "center",
     alignItems: "center"
@@ -28,7 +29,7 @@ export default {
     width
   },
   gridRow: {
-    height: height * 0.25,
+    height: width * 0.4,
     width,
     flexDirection: "row",
     paddingRight: "2%",
@@ -55,7 +56,7 @@ export default {
     borderRadius: 5
   },
   signOutBtnWrapper: {
-    height: height * 0.12,
+    height: 85,
     width,
     justifyContent: "center",
     alignItems: "center",
@@ -86,7 +87,7 @@ export default {
   },
   resolutionWrapper: {
     width,
-    height: height * 0.125,
+    height: 70,
     justifyContent: "center",
     alignItems: "center"
   }

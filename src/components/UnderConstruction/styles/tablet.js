@@ -3,7 +3,7 @@ import colors from "../../../colors";
 export default {
   parent: {
     flex: 1,
-    backgroundColor: colors.light,
+    backgroundColor: colors.notQuiteWhite,
     justifyContent: "center",
     alignItems: "center"
   }

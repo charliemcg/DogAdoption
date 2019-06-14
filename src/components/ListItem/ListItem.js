@@ -74,7 +74,7 @@ class ListItem extends Component {
     );
 
     const quickDetailsRowOne = (
-      <View style={styles.quickDetailsRowOne}>
+      <View style={styles.quickDetailsRow}>
         <Text style={styles.location}>
           {strings.location} {this.props.item.location}
         </Text>
@@ -86,7 +86,7 @@ class ListItem extends Component {
     );
 
     const quickDetailsRowTwo = (
-      <View style={styles.quickDetailsRowTwo}>
+      <View style={styles.quickDetailsRow}>
         <Text style={styles.breed}>{this.props.item.breed}</Text>
         <Text style={styles.date}>{dateFormatter(this.props.item.date)}</Text>
       </View>
@@ -104,19 +104,21 @@ class ListItem extends Component {
         >
           <View style={styles.contentWrapper}>
             {imageWrapper}
-            {quickDetailsRowOne}
-            {quickDetailsRowTwo}
-            <Text style={styles.description}>
-              {this.props.item.description}
-            </Text>
-            <LinearGradient
-              colors={[
-                "rgba(256, 256, 256, 0.1)",
-                "rgba(256, 256, 256, 0.6)",
-                colors.white
-              ]}
-              style={styles.fade}
-            />
+            <View style={styles.detailsWrapper}>
+              {quickDetailsRowOne}
+              {quickDetailsRowTwo}
+              <Text style={styles.description}>
+                {this.props.item.description}
+              </Text>
+              <LinearGradient
+                colors={[
+                  "rgba(256, 256, 256, 0.1)",
+                  "rgba(256, 256, 256, 0.6)",
+                  colors.white
+                ]}
+                style={styles.fade}
+              />
+            </View>
           </View>
         </TouchableHighlight>
       </View>

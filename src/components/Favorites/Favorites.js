@@ -14,6 +14,7 @@ import MiniListItem from "../MiniListItem";
 import backgroundImg from "../../images/backgroundWhite.png";
 import RecentlyViewed from "../RecentlyViewed";
 import strings from "./strings";
+import Device from "react-native-device-detection";
 
 class Favorites extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -37,7 +38,7 @@ class Favorites extends Component {
       <FlatList
         style={styles.list}
         data={this.props.favorites}
-        numColumns={2}
+        numColumns={Device.isTablet ? 3 : 2}
         renderItem={({ item }) => (
           <MiniListItem
             item={item}

@@ -49,18 +49,23 @@ export default {
     height: "100%",
     width: "100%"
   },
+  detailsWrapper: {
+    height: "100%",
+    weight: "100%",
+    alignItems: "center"
+  },
   // quick details
-  quickDetailsRowOne: {
+  quickDetailsRow: {
     height: "5%",
     width,
     flexDirection: "row",
     alignItems: "center"
   },
-  quickDetailsRowTwo: {
-    height: "5%",
-    width,
-    flexDirection: "row"
-  },
+  // quickDetailsRowTwo: {
+  //   height: "5%",
+  //   width,
+  //   flexDirection: "row"
+  // },
   breed: {
     paddingLeft: "10%"
   },
@@ -92,7 +97,7 @@ export default {
     width: width * 0.85
   },
   fade: {
-    top: width * 0.7375,
+    top: "10%",
     width,
     height: "25%",
     position: "absolute"

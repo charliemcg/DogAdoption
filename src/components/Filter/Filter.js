@@ -18,6 +18,7 @@ import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import strings from "./strings";
+import Device from "react-native-device-detection";
 
 class Filter extends Component {
   constructor(props) {
@@ -41,8 +42,8 @@ class Filter extends Component {
 
   //locations must be expanded before user can select an option. Buttons are too small and too close together
   handleLocationView = location => {
-    if (this.state.locationsExpanded) {
-      this.expandLocations();
+    if (this.state.locationsExpanded || Device.isTablet) {
+      !Device.isTablet && this.expandLocations();
       this.asyncUpdate({
         ...this.state.filters,
         location: constants.states[location]
@@ -228,13 +229,13 @@ class Filter extends Component {
           this.state.locationsExpanded ? styles.expandedStatesWrapper : null
         ]}
       >
-        <View style={styles.topRowStates}>
+        <View style={styles.statesRow}>
           {this.stateButton(0)}
           {this.stateButton(1)}
           {this.stateButton(3)}
           {this.stateButton(6)}
         </View>
-        <View style={styles.bottomRowStates}>
+        <View style={styles.statesRow}>
           {this.stateButton(2)}
           {this.stateButton(4)}
           {this.stateButton(5)}
@@ -302,13 +303,25 @@ class Filter extends Component {
     );
 
     const breedIcon = (
-      <IconAwesome name="dog" size={45} color={colors.primary} />
+      <IconAwesome
+        name="dog"
+        size={Device.isTablet ? 70 : 45}
+        color={colors.primary}
+      />
     );
     const locationIcon = (
-      <IconEntypo name="location-pin" size={45} color={colors.primary} />
+      <IconEntypo
+        name="location-pin"
+        size={Device.isTablet ? 70 : 45}
+        color={colors.primary}
+      />
     );
     const priceIcon = (
-      <IconAwesome name="dollar-sign" size={45} color={colors.primary} />
+      <IconAwesome
+        name="dollar-sign"
+        size={Device.isTablet ? 70 : 45}
+        color={colors.primary}
+      />
     );
 
     //everytime user chooses a filter option the number of matches gets updated

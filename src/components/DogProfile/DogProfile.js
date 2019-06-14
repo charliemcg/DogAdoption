@@ -146,12 +146,12 @@ class DogProfile extends Component {
     );
 
     const quickDetailsTopRow = (
-      <View style={styles.locationRow}>
+      <View style={styles.quickDetailsRow}>
         <Text style={styles.location}>
           {strings.location} {this.props.selectedDog.location}
         </Text>
         <View style={styles.price}>
-          <Text>{strings.price} </Text>
+          <Text style={styles.priceText}>{strings.price} </Text>
           <Text style={styles.coloredPrice}>
             {this.props.selectedDog.price}
           </Text>
@@ -160,7 +160,7 @@ class DogProfile extends Component {
     );
 
     const quickDetailsBottomRow = (
-      <View style={styles.breedRow}>
+      <View style={styles.quickDetailsRow}>
         <Text style={styles.breed}>{this.props.selectedDog.breed}</Text>
         <Text style={styles.date}>
           {dateFormatter(this.props.selectedDog.date)}
@@ -239,6 +239,12 @@ class DogProfile extends Component {
       </View>
     );
 
+    const recents = (
+      <View style={styles.recents}>
+        <RecentlyViewed navigation={this.props.navigation} showFav={false} />
+      </View>
+    );
+
     const showPhotoFullScreen = (
       <View style={[styles.fillView, styles.fullScreenWrapper]}>
         <IconMCI
@@ -281,6 +287,7 @@ class DogProfile extends Component {
               : colors.white
           }
         ]}
+        contentContainerStyle="justifyContent"
       >
         {/* show full screen photo if required */}
         {this.state.fullScreenPhoto && showPhotoFullScreen}
@@ -336,20 +343,10 @@ class DogProfile extends Component {
           {/* recently viewed */}
           {/* only show if there are recent dogs in the array. The currently selected dog does not count. */}
           {this.props.recentlyViewed.length > 0 &&
-          this.props.recentlyViewed.length === 1 ? (
-            //there may be one dog in the recents but if it's the same as currently selected then don't show recents
-            this.props.recentlyViewed[0] !== this.props.selectedDog && (
-              <RecentlyViewed
-                navigation={this.props.navigation}
-                showFav={false}
-              />
-            )
-          ) : (
-            <RecentlyViewed
-              navigation={this.props.navigation}
-              showFav={false}
-            />
-          )}
+          this.props.recentlyViewed.length === 1
+            ? //there may be one dog in the recents but if it's the same as currently selected then don't show recents
+              this.props.recentlyViewed[0] !== this.props.selectedDog && recents
+            : recents}
         </ScrollView>
       </SafeAreaView>
     );

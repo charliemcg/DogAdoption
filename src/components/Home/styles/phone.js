@@ -21,7 +21,6 @@ export default {
     borderRadius: width * 0.04
   },
   fabTouchableWrapper: {
-    backgroundColor: "green",
     height: "100%"
   },
   fabButton: {

@@ -74,12 +74,7 @@ export default {
     marginRight: 20,
     backgroundColor: colors.white
   },
-  topRowStates: {
-    flexDirection: "row",
-    width: "100%",
-    justifyContent: "space-around"
-  },
-  bottomRowStates: {
+  statesRow: {
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-around"

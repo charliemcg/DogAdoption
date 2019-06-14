@@ -49,7 +49,7 @@ export default {
     color: colors.dark,
     fontWeight: "bold"
   },
-  // quick details top row
+  // quick details bottom row
   breedRow: {
     width,
     height: "5%",

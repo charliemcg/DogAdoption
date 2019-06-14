@@ -85,12 +85,12 @@ import store from "../../store";
 
 const Stack = createStackNavigator(
   {
-    Splash: {
-      screen: Splash,
-      navigationOptions: {
-        header: null
-      }
-    },
+    // Splash: {
+    //   screen: Splash,
+    //   navigationOptions: {
+    //     header: null
+    //   }
+    // },
     Home: {
       screen: Home,
       navigationOptions: {

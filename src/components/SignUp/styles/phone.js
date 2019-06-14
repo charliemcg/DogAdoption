@@ -15,21 +15,18 @@ export default {
   iconWrapper: {
     flex: 3,
     width,
-    // backgroundColor: "#f00",
     justifyContent: "center",
     alignItems: "center"
   },
   usernameWrapper: {
     flex: 1,
     width,
-    // backgroundColor: "#0f0",
     justifyContent: "center",
     alignItems: "center"
   },
   passwordWrapper: {
     flex: 1,
     width,
-    // backgroundColor: "#00f",
     justifyContent: "center",
     alignItems: "center"
   },
@@ -37,7 +34,6 @@ export default {
     width: componentWidth,
     height: componentHeight,
     flexDirection: "row",
-    // backgroundColor: "#f00",
     justifyContent: "center",
     alignItems: "center",
     borderBottomStyle: "solid",
@@ -53,7 +49,6 @@ export default {
   signInWrapper: {
     flex: 1,
     width,
-    // backgroundColor: "#ff0",
     justifyContent: "center",
     alignItems: "center"
   },
@@ -67,7 +62,6 @@ export default {
   facebookWrapper: {
     flex: 1,
     width,
-    // backgroundColor: "#f0f",
     justifyContent: "center",
     alignItems: "center"
   },
@@ -81,7 +75,6 @@ export default {
   privacyWrapper: {
     flex: 2,
     width,
-    // backgroundColor: "#0ff",
     justifyContent: "center",
     alignItems: "center"
   }

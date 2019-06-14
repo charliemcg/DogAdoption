@@ -6,5 +6,10 @@ export default {
     backgroundColor: colors.notQuiteWhite,
     justifyContent: "center",
     alignItems: "center"
+  },
+  recents: {
+    marginLeft: "1%",
+    fontSize: 22,
+    color: colors.fadedText
   }
 };

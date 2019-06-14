@@ -15,6 +15,7 @@ import { signInOut } from "../../actions";
 import { connect } from "react-redux";
 import backgroundImg from "../../images/backgroundWhite.png";
 import SignInComponent from "../SignInComponent";
+import Device from "react-native-device-detection";
 
 class SignIn extends Component {
   render() {
@@ -26,7 +27,11 @@ class SignIn extends Component {
       >
         {/* icon */}
         <View style={styles.iconWrapper}>
-          <IconAwesome name="dog" size={100} color={colors.primary} />
+          <IconAwesome
+            name="dog"
+            size={Device.isTablet ? 150 : 100}
+            color={colors.primary}
+          />
         </View>
         {/* sign in component */}
         <SignInComponent navigation={this.props.navigation} />

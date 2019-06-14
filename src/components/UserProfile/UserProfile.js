@@ -37,16 +37,16 @@ class UserProfile extends Component {
   );
   render() {
     const favIcon = (
-      <IconAwesome name={"heart"} size={70} color={colors.contrast} />
+      <IconAwesome name={"heart"} size={60} color={colors.contrast} />
     );
     const msgIcon = (
-      <IconEntypo name={"message"} size={70} color={colors.contrast} />
+      <IconEntypo name={"message"} size={60} color={colors.contrast} />
     );
     const sellIcon = (
-      <IconAwesome name={"dollar"} size={70} color={colors.contrast} />
+      <IconAwesome name={"dollar"} size={60} color={colors.contrast} />
     );
     const adIcon = (
-      <IconAwesome5 name={"ad"} size={70} color={colors.contrast} />
+      <IconAwesome5 name={"ad"} size={60} color={colors.contrast} />
     );
 
     return (
@@ -61,7 +61,7 @@ class UserProfile extends Component {
             <View style={styles.iconWrapper}>
               <IconAwesome5
                 name="user-circle"
-                size={120}
+                size={150}
                 color={colors.primary}
               />
             </View>
