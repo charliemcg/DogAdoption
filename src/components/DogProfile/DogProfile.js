@@ -201,7 +201,7 @@ class DogProfile extends Component {
     const messageWrapper = (
       <View style={styles.messageWrapper}>
         <View style={styles.contactTextWrapper}>
-          <Text style={styles.contactText}>Contact Seller</Text>
+          <Text style={styles.contactText}>{strings.contactSeller}</Text>
         </View>
         <TextInput
           style={styles.message}
@@ -230,14 +230,7 @@ class DogProfile extends Component {
               //button only active if there is a valid message to send
               onPress={() => this.handleSend()}
             >
-              <View
-                style={{
-                  height: "100%",
-                  width: "100%",
-                  justifyContent: "center",
-                  alignItems: "center"
-                }}
-              >
+              <View style={styles.fillView}>
                 <Text>{strings.send}</Text>
               </View>
             </TouchableWithoutFeedback>
@@ -251,7 +244,7 @@ class DogProfile extends Component {
         <IconMCI
           name="close"
           size={25}
-          color={colors.notQuiteWhite}
+          color={colors.notQuiteBlack}
           onPress={() => {
             this.setState({ ...this.state, fullScreenPhoto: false });
             this.props.navigation.setParams({

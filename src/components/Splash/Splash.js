@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, ImageBackground, Image } from "react-native";
 import styles from "./styles";
-import strings from "../../strings";
 import backgroundImg from "../../images/background.png";
 import titleImg from "../../images/titleNoBase.png";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -25,7 +24,6 @@ class Splash extends Component {
           <Icon name="dog" size={175} color={colors.contrast} />
         </View>
         <View style={styles.titleWrapper}>
-          {/* <Text style={styles.title}>{strings.appName}</Text> */}
           <Image
             style={styles.titleBase}
             source={titleImg}

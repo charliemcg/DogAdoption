@@ -99,15 +99,15 @@ export default {
   },
   contactTextWrapper: {
     justifyContent: "center",
-    alignItems: "center",
-    width: width * 0.35
+    width: "100%",
+    paddingLeft: "3%"
   },
   contactText: {
     fontSize: 20
   },
   message: {
     flex: 1,
-    padding: 5
+    padding: "3%"
   },
   btnWrapper: {
     justifyContent: "flex-end",
@@ -136,7 +136,8 @@ export default {
     position: "absolute",
     zIndex: 2,
     top: 5,
-    right: 5
+    right: 5,
+    backgroundColor: "rgba(255, 255, 255, 0.3)"
   },
   //generic style for filling a view
   fillView: {

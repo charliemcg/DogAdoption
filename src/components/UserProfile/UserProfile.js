@@ -61,7 +61,7 @@ class UserProfile extends Component {
             <View style={styles.iconWrapper}>
               <IconAwesome5
                 name="user-circle"
-                size={150}
+                size={120}
                 color={colors.primary}
               />
             </View>
