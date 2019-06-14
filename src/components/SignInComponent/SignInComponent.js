@@ -6,6 +6,7 @@ import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import styles from "./styles";
 import colors from "../../colors";
 import { signInOut } from "../../actions";
+import strings from "./strings";
 
 class SignInComponent extends Component {
   render() {
@@ -23,7 +24,7 @@ class SignInComponent extends Component {
             {/* textContentType is for autofill  */}
             <TextInput
               textContentType="username"
-              placeholder="Email"
+              placeholder={strings.email}
               style={styles.inputText}
             />
           </View>
@@ -40,7 +41,7 @@ class SignInComponent extends Component {
             {/* textContentType is for autofill use newPassword for sign up page */}
             <TextInput
               textContentType="password"
-              placeholder="Password"
+              placeholder={strings.password}
               secureTextEntry={true}
               style={styles.inputText}
             />
@@ -52,11 +53,11 @@ class SignInComponent extends Component {
             style={styles.signIn}
             onPress={() => {
               this.props.signInOut();
-              this.props.navigation.navigate("Home");
+              this.props.navigation.navigate(strings.navigation.home);
             }}
             underlayColor={colors.dark}
           >
-            <Text>Sign In</Text>
+            <Text>{strings.signIn}</Text>
           </TouchableHighlight>
         </View>
       </View>

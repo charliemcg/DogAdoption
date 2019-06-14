@@ -12,6 +12,7 @@ import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import colors from "../../colors";
 import backgroundImg from "../../images/backgroundWhite.png";
 import SignInComponent from "../SignInComponent";
+import strings from "./strings";
 
 export default class SignIn extends Component {
   render() {
@@ -31,9 +32,11 @@ export default class SignIn extends Component {
         <View style={styles.privacyWrapper}>
           <Text
             style={{ color: colors.dark }}
-            onPress={() => this.props.navigation.navigate("PrivacyPolicy")}
+            onPress={() =>
+              this.props.navigation.navigate(strings.navigation.privacyPolicy)
+            }
           >
-            Privacy Policy
+            {strings.privacyPolicy}
           </Text>
         </View>
       </ImageBackground>

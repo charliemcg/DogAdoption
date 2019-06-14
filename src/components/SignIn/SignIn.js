@@ -10,7 +10,7 @@ import styles from "./styles";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import colors from "../../colors";
-import strings from "../../strings";
+import strings from "./strings";
 import { signInOut } from "../../actions";
 import { connect } from "react-redux";
 import backgroundImg from "../../images/backgroundWhite.png";
@@ -34,19 +34,25 @@ class SignIn extends Component {
         <View style={styles.facebookWrapper}>
           <TouchableHighlight
             style={styles.facebook}
-            onPress={() => this.props.navigation.navigate("UnderConstruction")}
+            onPress={() =>
+              this.props.navigation.navigate(
+                strings.navigation.underConstruction
+              )
+            }
           >
-            <Text>Sign in with Facebook</Text>
+            <Text>{strings.signInFaceBook}</Text>
           </TouchableHighlight>
         </View>
         {/* new user link */}
         <View style={styles.privacyWrapper}>
-          <Text>New member?</Text>
+          <Text>{strings.newMember}</Text>
           <Text
             style={{ color: colors.dark }}
-            onPress={() => this.props.navigation.navigate("SignUp")}
+            onPress={() =>
+              this.props.navigation.navigate(strings.navigation.signUp)
+            }
           >
-            Sign Up!
+            {strings.signUp}
           </Text>
         </View>
       </ImageBackground>

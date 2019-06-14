@@ -16,6 +16,7 @@ import { signInOut } from "../../actions";
 import { connect } from "react-redux";
 import backgroundImg from "../../images/backgroundWhite.png";
 import RecentlyViewed from "../RecentlyViewed";
+import strings from "./strings";
 
 class UserProfile extends Component {
   buttonSkeleton = btnProps => (
@@ -66,10 +67,10 @@ class UserProfile extends Component {
             </View>
             {/* personal details */}
             <View style={styles.details}>
-              <Text>Dog Lover</Text>
-              <Text>123 Fake Street</Text>
-              <Text>Springfield</Text>
-              <Text>allthedogs@gmail.com</Text>
+              <Text>{strings.name}</Text>
+              <Text>{strings.street}</Text>
+              <Text>{strings.town}</Text>
+              <Text>{strings.email}</Text>
             </View>
             {/* recently view */}
             {/* only show if there are recent dogs in the array. The currently selected dog does not count. */}
@@ -82,29 +83,29 @@ class UserProfile extends Component {
             <View style={styles.gridRow}>
               {/* sell dog */}
               {this.buttonSkeleton({
-                route: "UnderConstruction", // <- change this
+                route: strings.navigation.underConstruction,
                 icon: sellIcon,
-                text: "Sell a Dog"
+                text: strings.sellADog
               })}
               {/* view ads */}
               {this.buttonSkeleton({
-                route: "UnderConstruction", // <- change this
+                route: strings.navigation.underConstruction,
                 icon: adIcon,
-                text: "View My Ads"
+                text: strings.viewMyAds
               })}
             </View>
             <View style={styles.gridRow}>
               {/* view favourites */}
               {this.buttonSkeleton({
-                route: "Favorites",
+                route: strings.navigation.favorites,
                 icon: favIcon,
-                text: "View Favorites"
+                text: strings.viewFavorites
               })}
               {/* view messages */}
               {this.buttonSkeleton({
-                route: "UnderConstruction",
+                route: strings.navigation.underConstruction,
                 icon: msgIcon,
-                text: "View Messages"
+                text: strings.viewMessages
               })}
             </View>
             {/* sign out */}
@@ -113,12 +114,12 @@ class UserProfile extends Component {
                 style={styles.signOutBtn}
                 onPress={() => {
                   this.props.signInOut();
-                  this.props.navigation.navigate("Home");
+                  this.props.navigation.navigate(strings.navigation.home);
                 }}
                 underlayColor={colors.dark}
               >
                 <View style={styles.signOutContentsWrapper}>
-                  <Text style={styles.btnText}>Sign Out</Text>
+                  <Text style={styles.btnText}>{strings.singOut}</Text>
                   <IconAwesome
                     name="sign-out"
                     size={40}
@@ -128,14 +129,16 @@ class UserProfile extends Component {
               </TouchableHighlight>
             </View>
             <View style={styles.resolutionWrapper}>
-              <Text>Got a question?</Text>
+              <Text>{strings.gotAQuestion}</Text>
               <Text
                 style={{ color: colors.dark }}
                 onPress={() =>
-                  this.props.navigation.navigate("UnderConstruction")
+                  this.props.navigation.navigate(
+                    strings.navigation.underConstruction
+                  )
                 }
               >
-                Get in touch!
+                {strings.getInTouch}
               </Text>
             </View>
           </ScrollView>

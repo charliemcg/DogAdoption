@@ -21,6 +21,7 @@ import heartFilledImg from "../../images/heartFilled.png";
 import PropTypes from "prop-types";
 import * as Animatable from "react-native-animatable";
 import { dateFormatter } from "../../utils/dateFormatter";
+import strings from "./strings";
 
 class ListItem extends Component {
   getFavoriteIcon = () => {
@@ -36,10 +37,12 @@ class ListItem extends Component {
         this.props.removeFromFavorites(item);
       } else {
         //bounce the heart when adding to favorites
-        this.refs["bounce"].bounce(500).then(this.props.addToFavorites(item));
+        this.refs[strings.refs.bounce]
+          .bounce(500)
+          .then(this.props.addToFavorites(item));
       }
     } else {
-      this.props.navigation.navigate("SignIn");
+      this.props.navigation.navigate(strings.navigation.signIn);
     }
   };
 
@@ -56,7 +59,7 @@ class ListItem extends Component {
           style={styles.image}
           resizeMode="contain"
         />
-        <Animatable.View ref="bounce" style={styles.animatable}>
+        <Animatable.View ref={strings.refs.bounce} style={styles.animatable}>
           {/* icon by Smash Icons */}
           <TouchableWithoutFeedback
             style={styles.favorite}
@@ -73,10 +76,10 @@ class ListItem extends Component {
     const quickDetailsRowOne = (
       <View style={styles.quickDetailsRowOne}>
         <Text style={styles.location}>
-          Location: {this.props.item.location}
+          {strings.location} {this.props.item.location}
         </Text>
         <View style={styles.price}>
-          <Text>Price: </Text>
+          <Text>{strings.price} </Text>
           <Text style={styles.coloredPrice}>{this.props.item.price}</Text>
         </View>
       </View>
@@ -95,7 +98,7 @@ class ListItem extends Component {
           style={styles.touchable}
           onPress={() => {
             this.props.selectedDog(this.props.item);
-            this.props.navigation.navigate("DogProfile");
+            this.props.navigation.navigate(strings.navigation.dogProfile);
           }}
           underlayColor={colors.notQuiteWhite}
         >

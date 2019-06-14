@@ -28,6 +28,7 @@ import RecentlyViewed from "../RecentlyViewed";
 import { dateFormatter } from "../../utils/dateFormatter";
 import { HeaderBackButton } from "react-navigation";
 import Swiper from "react-native-swiper";
+import strings from "./strings";
 
 class DogProfile extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -37,7 +38,7 @@ class DogProfile extends Component {
       <HeaderBackButton
         onPress={() => navigation.goBack(null)}
         tintColor={colors.contrast}
-        title="Back"
+        title={strings.back}
         backTitleVisible={true}
       />
     ),
@@ -65,7 +66,7 @@ class DogProfile extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.selectedDog !== prevProps.selectedDog) {
-      this.refs["scrollView"].scrollTo({ y: 0 });
+      this.refs[strings.refs.scrollRef].scrollTo({ y: 0 });
     }
   }
 
@@ -84,20 +85,20 @@ class DogProfile extends Component {
         this.props.removeFromFavorites(selectedDog);
       } else {
         //bounce the heart when adding to favorites
-        this.refs["bounce"]
+        this.refs[strings.refs.bounceRef]
           .bounce(500)
           .then(this.props.addToFavorites(selectedDog));
       }
     } else {
-      this.props.navigation.navigate("SignIn");
+      this.props.navigation.navigate(strings.navigation.signIn);
     }
   };
 
   //only send message if it is valid
   handleSend = () => {
     this.state.message.length <= 750 && this.state.message.length > 0
-      ? alert("This feature is under construction")
-      : this.refs["shake"].shake(500);
+      ? alert(strings.underConstruction)
+      : this.refs[strings.refs.shakeRef].shake(500);
   };
 
   render() {
@@ -147,10 +148,10 @@ class DogProfile extends Component {
     const quickDetailsTopRow = (
       <View style={styles.locationRow}>
         <Text style={styles.location}>
-          Location: {this.props.selectedDog.location}
+          {strings.location} {this.props.selectedDog.location}
         </Text>
         <View style={styles.price}>
-          <Text>Price: </Text>
+          <Text>{strings.price} </Text>
           <Text style={styles.coloredPrice}>
             {this.props.selectedDog.price}
           </Text>
@@ -170,12 +171,16 @@ class DogProfile extends Component {
     const sellerDetails = (
       <View style={styles.sellerWrapper}>
         <View style={styles.sellerText}>
-          <Text>Uploaded by</Text>
+          <Text>{strings.uploadedBy}</Text>
           <Text
             style={styles.seller}
-            onPress={() => this.props.navigation.navigate("UnderConstruction")}
+            onPress={() =>
+              this.props.navigation.navigate(
+                strings.navigation.underConstruction
+              )
+            }
           >
-            John Smith
+            {strings.johnSmith}
           </Text>
         </View>
         <View>
@@ -183,7 +188,11 @@ class DogProfile extends Component {
             name="user"
             size={30}
             color={colors.fadedText}
-            onPress={() => this.props.navigation.navigate("UnderConstruction")}
+            onPress={() =>
+              this.props.navigation.navigate(
+                strings.navigation.underConstruction
+              )
+            }
           />
         </View>
       </View>
@@ -197,13 +206,16 @@ class DogProfile extends Component {
         <TextInput
           style={styles.message}
           multiline={true}
-          placeholder="Hi. Is this dog still available?"
+          placeholder={strings.dogStillAvailable}
           onChangeText={msg => this.setState({ message: msg })}
         />
         <View style={styles.btnWrapper}>
-          <Text style={styles.counter}>{characterLength}/750</Text>
+          <Text style={styles.counter}>
+            {characterLength}
+            {strings.seven50}
+          </Text>
           <Animatable.View
-            ref="shake"
+            ref={strings.refs.shakeRef}
             style={[
               styles.sendAnimatable,
               {
@@ -226,7 +238,7 @@ class DogProfile extends Component {
                   alignItems: "center"
                 }}
               >
-                <Text>Send</Text>
+                <Text>{strings.send}</Text>
               </View>
             </TouchableWithoutFeedback>
           </Animatable.View>
@@ -247,7 +259,7 @@ class DogProfile extends Component {
                 <HeaderBackButton
                   onPress={() => this.props.navigation.goBack(null)}
                   tintColor={colors.contrast}
-                  title="Back"
+                  title={strings.back}
                   backTitleVisible={true}
                 />
               ),
@@ -303,7 +315,7 @@ class DogProfile extends Component {
           {photos}
         </Swiper>
         {/* favorite icon */}
-        <Animatable.View ref="bounce" style={styles.animatable}>
+        <Animatable.View ref={strings.refs.bounceRef} style={styles.animatable}>
           <TouchableWithoutFeedback
             style={styles.fillView}
             onPress={() => {
@@ -317,7 +329,7 @@ class DogProfile extends Component {
         {/* quick details */}
         {quickDetailsTopRow}
         {quickDetailsBottomRow}
-        <ScrollView style={styles.scrollView} ref="scrollView">
+        <ScrollView style={styles.scrollView} ref={strings.refs.scrollRef}>
           {/* seller details */}
           {sellerDetails}
           {/* description */}

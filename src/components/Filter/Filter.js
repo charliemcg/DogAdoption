@@ -12,12 +12,12 @@ import ModalSelector from "react-native-modal-selector";
 import colors from "../../colors";
 import { setSearchFilters, setResults } from "../../actions";
 import { getDogs } from "../../utils/searchAlgorithm";
-import strings from "../../strings";
 import constants from "../../constants";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
+import strings from "./strings";
 
 class Filter extends Component {
   constructor(props) {
@@ -74,11 +74,11 @@ class Filter extends Component {
   minPrices = () => {
     let { priceMax } = this.state.filters;
     const upperRange =
-      priceMax === null ? 2000 : priceMax === "Free" ? 0 : priceMax;
+      priceMax === null ? 2000 : priceMax === strings.free ? 0 : priceMax;
     let prices = [];
     //make it so that user cannot select a value greater than the selected maximum
     for (let i = 0; i <= upperRange; i += 100) {
-      prices.push({ key: i / 10, label: i === 0 ? "Free" : i });
+      prices.push({ key: i / 10, label: i === 0 ? strings.free : i });
     }
     return prices;
   };
@@ -89,11 +89,11 @@ class Filter extends Component {
     let prices = [];
     //make it so that user cannot select a value lower than the selected minimum
     for (
-      let i = priceMin === null ? 0 : priceMin === "Free" ? 0 : priceMin;
+      let i = priceMin === null ? 0 : priceMin === strings.free ? 0 : priceMin;
       i <= 2000;
       i += 100
     ) {
-      prices.push({ key: i / 10, label: i === 0 ? "Free" : i });
+      prices.push({ key: i / 10, label: i === 0 ? strings.free : i });
     }
     return prices;
   };
@@ -155,16 +155,16 @@ class Filter extends Component {
                 color="#333"
                 onPress={() => {
                   switch (props.filterName) {
-                    case "Breed":
+                    case strings.breed:
                       this.asyncUpdate({ ...this.state.filters, breed: null });
                       break;
-                    case "Location":
+                    case strings.location:
                       this.asyncUpdate({
                         ...this.state.filters,
                         location: null
                       });
                       break;
-                    case "Price":
+                    case strings.price:
                       this.asyncUpdate({
                         ...this.state.filters,
                         priceMin: null,
@@ -247,7 +247,7 @@ class Filter extends Component {
     const priceOptions = (
       <View style={styles.priceWrapper}>
         <View style={styles.minPriceWrapper}>
-          <Text style={styles.priceText}>Price min.</Text>
+          <Text style={styles.priceText}>{strings.priceMin}</Text>
           <View style={styles.priceSelectorWrapper}>
             <ModalSelector
               style={styles.priceSelector}
@@ -273,7 +273,7 @@ class Filter extends Component {
           </View>
         </View>
         <View style={styles.maxPriceWrapper}>
-          <Text style={styles.priceText}>Price max.</Text>
+          <Text style={styles.priceText}>{strings.priceMax}</Text>
           <View style={styles.priceSelectorWrapper}>
             <ModalSelector
               style={styles.priceSelector}
@@ -315,8 +315,8 @@ class Filter extends Component {
     const matches = (
       <View style={styles.matchesCountWrapper}>
         <View style={styles.matchesLabels}>
-          <Text>Exact Matches:</Text>
-          <Text>Close Matches:</Text>
+          <Text>{strings.exactMatches}</Text>
+          <Text>{strings.closeMatches}</Text>
         </View>
         <View style={styles.matchesValues}>{this.matchData()}</View>
       </View>
@@ -324,7 +324,7 @@ class Filter extends Component {
 
     const updateButton = (
       <TouchableHighlight
-        onPress={() => this.props.navigation.navigate("Home")}
+        onPress={() => this.props.navigation.navigate(strings.navigation.home)}
         style={styles.updateBtn}
         underlayColor={colors.dark}
       >
@@ -338,21 +338,21 @@ class Filter extends Component {
           {/* breed selector */}
           {this.filterOptionSkeleton({
             icon: breedIcon,
-            filterName: "Breed",
+            filterName: strings.breed,
             filterOptions: breedOptions,
             showReset: this.state.filters.breed === null ? false : true
           })}
           {/* location selector */}
           {this.filterOptionSkeleton({
             icon: locationIcon,
-            filterName: "Location",
+            filterName: strings.location,
             filterOptions: locationOptions,
             showReset: this.state.filters.location === null ? false : true
           })}
           {/* price selector */}
           {this.filterOptionSkeleton({
             icon: priceIcon,
-            filterName: "Price",
+            filterName: strings.price,
             filterOptions: priceOptions,
             showReset:
               this.state.filters.priceMin === null

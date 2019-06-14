@@ -18,6 +18,7 @@ import {
 import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
 import PropTypes from "prop-types";
+import strings from "./strings";
 
 class MiniListItem extends Component {
   formattedDate = () => {
@@ -37,7 +38,7 @@ class MiniListItem extends Component {
       ? favorites.includes(item)
         ? this.props.removeFromFavorites(item)
         : this.props.addToFavorites(item)
-      : this.props.navigation.navigate("SignIn");
+      : this.props.navigation.navigate(strings.navigation.signIn);
   };
 
   showFav = () => {
@@ -82,7 +83,7 @@ class MiniListItem extends Component {
           style={styles.touchable}
           onPress={() => {
             this.props.selectedDog(this.props.item);
-            this.props.navigation.navigate("DogProfile");
+            this.props.navigation.navigate(strings.navigation.dogProfile);
           }}
         >
           <View>

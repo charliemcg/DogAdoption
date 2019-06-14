@@ -65,14 +65,14 @@ export default {
   statesWrapper: {
     flex: 2,
     justifyContent: "space-around",
-    width: "100%",
-    backgroundColor: colors.white
+    width: "100%"
   },
   expandedStatesWrapper: {
     borderColor: colors.notQuiteBlack,
     borderStyle: "solid",
     borderWidth: 1,
-    marginRight: 20
+    marginRight: 20,
+    backgroundColor: colors.white
   },
   topRowStates: {
     flexDirection: "row",

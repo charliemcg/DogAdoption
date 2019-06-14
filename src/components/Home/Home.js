@@ -26,6 +26,7 @@ import {
   MenuOption,
   MenuTrigger
 } from "react-native-popup-menu";
+import strings from "./strings";
 
 class Home extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -41,8 +42,8 @@ class Home extends Component {
             color={colors.contrast}
             onPress={() => {
               store.getState().signedIn
-                ? navigation.navigate("UnderConstruction")
-                : navigation.navigate("SignIn");
+                ? navigation.navigate(strings.navigation.underConstruction)
+                : navigation.navigate(strings.navigation.signIn);
             }}
           />,
           <IconAwesome
@@ -52,8 +53,8 @@ class Home extends Component {
             color={colors.contrast}
             onPress={() => {
               store.getState().signedIn
-                ? navigation.navigate("Favorites")
-                : navigation.navigate("SignIn");
+                ? navigation.navigate(strings.navigation.favorites)
+                : navigation.navigate(strings.navigation.signIn);
             }}
           />
         ],
@@ -95,7 +96,7 @@ class Home extends Component {
     const errorScreen = (
       <View style={styles.retryWrapper}>
         <View style={styles.errorTextWrapper}>
-          <Text style={styles.errText}>There was an error...</Text>
+          <Text style={styles.errText}>{strings.thereWasError}</Text>
         </View>
         <View style={styles.retryBtnWrapper}>
           <TouchableHighlight
@@ -106,7 +107,7 @@ class Home extends Component {
             style={styles.errTouchable}
           >
             <View style={styles.retryTextWrapper}>
-              <Text style={styles.retryText}>Retry</Text>
+              <Text style={styles.retryText}>{strings.retry}</Text>
               <IconAwesome
                 style={{ paddingRight: 10, paddingLeft: 8 }}
                 name="refresh"
@@ -131,7 +132,7 @@ class Home extends Component {
         noData
       ) : (
         <FlatList
-          ref="flatList"
+          ref={strings.refs.flatList}
           data={this.props.searchResults}
           renderItem={({ item }) => (
             <ListItem item={item} navigation={this.props.navigation} />
@@ -145,8 +146,11 @@ class Home extends Component {
         <TouchableHighlight
           style={styles.filterTouchable}
           onPress={() => {
-            this.props.navigation.navigate("Filter");
-            this.refs["flatList"].scrollToOffset({ animated: true, offset: 0 });
+            this.props.navigation.navigate(strings.navigation.filter);
+            this.refs[strings.refs.flatList].scrollToOffset({
+              animated: true,
+              offset: 0
+            });
           }}
           underlayColor={colors.dark}
         >
@@ -159,7 +163,7 @@ class Home extends Component {
               />
             </View>
             <View style={styles.fabTextWrapper}>
-              <Text style={styles.text}>Filter</Text>
+              <Text style={styles.text}>{strings.filter}</Text>
             </View>
           </View>
         </TouchableHighlight>
@@ -179,7 +183,7 @@ class Home extends Component {
                   <IconMCI name="sort" size={20} color={colors.contrast} />
                 </View>
                 <View style={styles.fabTextWrapper}>
-                  <Text style={styles.text}>Sort</Text>
+                  <Text style={styles.text}>{strings.sort}</Text>
                 </View>
               </View>
             </TouchableHighlight>
@@ -187,18 +191,18 @@ class Home extends Component {
           <MenuOptions>
             <MenuOption
               style={{ padding: 12 }}
-              onSelect={() => alert("This feature is under construction")}
-              text="Most Relevant"
+              onSelect={() => alert(strings.underConstruction)}
+              text={strings.mostRelevant}
             />
             <MenuOption
               style={{ padding: 12 }}
-              onSelect={() => alert("This feature is under construction")}
-              text="Price: Highest First"
+              onSelect={() => alert(strings.underConstruction)}
+              text={strings.priceHighest}
             />
             <MenuOption
               style={{ padding: 12 }}
-              onSelect={() => alert("This feature is under construction")}
-              text="Price: Cheapest First"
+              onSelect={() => alert(strings.underConstruction)}
+              text={strings.priceCheapest}
             />
           </MenuOptions>
         </Menu>

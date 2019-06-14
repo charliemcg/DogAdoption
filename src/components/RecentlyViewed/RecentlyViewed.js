@@ -3,12 +3,13 @@ import { View, Text, FlatList } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
 import MiniListItem from "../MiniListItem";
+import strings from "./strings";
 
 class RecentlyViewed extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.recents}>Recently Viewed</Text>
+        <Text style={styles.recents}>{strings.recentlyViewed}</Text>
         <FlatList
           data={this.props.recentlyViewed}
           horizontal={true}

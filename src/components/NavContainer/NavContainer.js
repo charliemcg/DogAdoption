@@ -10,18 +10,16 @@ import {
 import Splash from "../Splash";
 import Home from "../Home";
 import DogProfile from "../DogProfile";
-import Messages from "../Messages";
 import SignIn from "../SignIn";
 import SignUp from "../SignUp";
 import Favorites from "../Favorites";
-import Resolution from "../Resolution";
 import UnderConstruction from "../UnderConstruction";
 import Filter from "../Filter";
 import PrivacyPolicy from "../PrivacyPolicy";
 import UserProfile from "../UserProfile";
 import colors from "../../colors";
 import LinearGradient from "react-native-linear-gradient";
-import strings from "../../strings";
+import strings from "./strings";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
@@ -102,20 +100,17 @@ const Stack = createStackNavigator(
           width: Dimensions.get("window").width,
           color: colors.contrast
         },
-        headerBackTitle: "Back"
+        headerBackTitle: strings.back
       }
     },
     DogProfile,
-    Messages,
     SignIn,
     SignUp,
     PrivacyPolicy,
     Filter,
     UserProfile,
     UnderConstruction,
-    // putting drawer screens in stack so that they will have a back button
-    Favorites,
-    Resolution
+    Favorites
   },
   {
     // styling the header for each screen

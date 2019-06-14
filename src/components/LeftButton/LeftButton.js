@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
 import IconAwesome5 from "react-native-vector-icons/FontAwesome5";
 import colors from "../../colors";
+import strings from "./strings";
 
 class LeftButton extends Component {
   render() {
@@ -14,7 +15,7 @@ class LeftButton extends Component {
         size={30}
         color={colors.contrast}
         onPress={() => {
-          this.props.navigation.navigate("UserProfile");
+          this.props.navigation.navigate(strings.navigation.userProfile);
         }}
       />
     ) : (
@@ -24,7 +25,7 @@ class LeftButton extends Component {
         size={30}
         color={colors.contrast}
         onPress={() => {
-          this.props.navigation.navigate("SignIn");
+          this.props.navigation.navigate(strings.navigation.signIn);
         }}
       />
     );

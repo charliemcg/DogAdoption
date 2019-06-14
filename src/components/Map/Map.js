@@ -4,7 +4,7 @@ import MapView from "react-native-maps";
 import styles from "./styles";
 import mapImg from "../../images/mapPlaceholder.png";
 import PropTypes from "prop-types";
-import constants from "../../constants";
+import strings from "./strings";
 
 export default class Map extends Component {
   constructor(props) {
@@ -57,7 +57,7 @@ export default class Map extends Component {
         <View style={styles.mapImg}>
           <Image source={mapImg} style={styles.placeholderImg} />
           <View style={styles.textWrapper}>
-            <Text style={styles.text}>Click to show map</Text>
+            <Text style={styles.text}>{strings.clickToShow}</Text>
           </View>
         </View>
       </TouchableHighlight>

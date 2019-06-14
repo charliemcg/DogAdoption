@@ -13,6 +13,7 @@ import colors from "../../colors";
 import MiniListItem from "../MiniListItem";
 import backgroundImg from "../../images/backgroundWhite.png";
 import RecentlyViewed from "../RecentlyViewed";
+import strings from "./strings";
 
 class Favorites extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -64,7 +65,9 @@ class Favorites extends Component {
     const thereAreNoFavorites = (
       <View style={styles.noFavoritesWrapper}>
         <View style={styles.noFavorites}>
-          <Text style={styles.noFavoritesText}>You have no favorites...</Text>
+          <Text style={styles.noFavoritesText}>
+            {strings.youHaveNoFavorites}
+          </Text>
         </View>
         {/* check there are recents to view */}
         {this.props.recentlyViewed.length > 1 && recents}
@@ -79,7 +82,7 @@ class Favorites extends Component {
       >
         <SafeAreaView style={styles.parent}>
           <View style={styles.titleWrapper}>
-            <Text style={styles.title}>Your Favorites</Text>
+            <Text style={styles.title}>{strings.yourFavorites}</Text>
           </View>
           {/* show activity indicator so user knows fav removal is processing */}
           {this.state.fakeLoading ? (
