@@ -4,7 +4,6 @@ import {
   Image,
   Text,
   TouchableHighlight,
-  ActivityIndicator,
   TouchableWithoutFeedback
 } from "react-native";
 import { connect } from "react-redux";

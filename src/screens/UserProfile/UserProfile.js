@@ -15,7 +15,7 @@ import colors from "../../colors";
 import { signInOut } from "../../actions";
 import { connect } from "react-redux";
 import backgroundImg from "../../images/backgroundWhite.png";
-import RecentlyViewed from "../RecentlyViewed";
+import RecentlyViewed from "../../components/RecentlyViewed";
 import strings from "./strings";
 import Device from "react-native-device-detection";
 

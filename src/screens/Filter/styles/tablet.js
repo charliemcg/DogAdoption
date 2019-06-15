@@ -1,6 +1,5 @@
 import colors from "../../../colors";
 import { Dimensions } from "react-native";
-import store from "../../../store";
 
 const width = Dimensions.get("window").width;
 
@@ -10,12 +9,13 @@ export default {
     backgroundColor: colors.notQuiteWhite,
     justifyContent: "space-around",
     alignItems: "center",
-    paddingTop: "10%"
+    paddingTop: "10%",
+    paddingBottom: "10%"
   },
   optionWrapper: {
     flexDirection: "row",
-    width: width * 0.85,
-    height: width * 0.3
+    width: width * 0.65,
+    height: width * 0.2
   },
   optionWrapperLeft: {
     flex: 3,
@@ -43,7 +43,7 @@ export default {
     paddingTop: "4%"
   },
   nameText: {
-    fontSize: 20,
+    fontSize: 30,
     color: colors.fadedText
   },
   topRightWrapper: {
@@ -77,7 +77,8 @@ export default {
   statesRow: {
     flexDirection: "row",
     width: "100%",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    alignItems: "center"
   },
   state: {
     width: "20%",
@@ -91,7 +92,9 @@ export default {
   //price
   priceWrapper: {
     flexDirection: "row",
-    flex: 3
+    flex: 3,
+    alignItems: "flex-end",
+    paddingBottom: "3%"
   },
   minPriceWrapper: { flex: 1, paddingLeft: 5 },
   maxPriceWrapper: { flex: 1, paddingRight: 5 },
@@ -114,8 +117,8 @@ export default {
   //update button
   updateBtn: {
     backgroundColor: colors.primary,
-    width: width * 0.7,
-    height: width * 0.2,
+    width: width * 0.4,
+    height: width * 0.1,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10

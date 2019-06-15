@@ -1,13 +1,6 @@
 import React, { Component } from "react";
-import {
-  SafeAreaView,
-  Text,
-  TouchableHighlight,
-  ScrollView
-} from "react-native";
+import { SafeAreaView, ScrollView } from "react-native";
 import styles from "./styles";
-import constants from "../../constants";
-import colors from "../../colors";
 import { MarkdownView } from "react-native-markdown-view";
 
 export default class PrivacyPolicy extends Component {

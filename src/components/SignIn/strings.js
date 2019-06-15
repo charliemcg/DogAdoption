@@ -1,9 +1,8 @@
 export default {
-  signInFaceBook: "Sign in with Facebook",
-  newMember: "New member?",
-  signUp: "Sign Up!",
+  email: "Email",
+  password: "Password",
+  signIn: "Sign In",
   navigation: {
-    underConstruction: "UnderConstruction",
-    signUp: "SignUp"
+    home: "Home"
   }
 };

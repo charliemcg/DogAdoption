@@ -10,9 +10,9 @@ import {
 import { connect } from "react-redux";
 import styles from "./styles";
 import colors from "../../colors";
-import MiniListItem from "../MiniListItem";
+import MiniListItem from "../../components/MiniListItem";
 import backgroundImg from "../../images/backgroundWhite.png";
-import RecentlyViewed from "../RecentlyViewed";
+import RecentlyViewed from "../../components/RecentlyViewed";
 import strings from "./strings";
 import Device from "react-native-device-detection";
 

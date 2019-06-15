@@ -1,15 +1,7 @@
 import React, { Component } from "react";
-import {
-  View,
-  Image,
-  Text,
-  TouchableHighlight,
-  ActivityIndicator
-} from "react-native";
+import { View, Image, Text, TouchableHighlight } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
-import colors from "../../colors";
-import LinearGradient from "react-native-linear-gradient";
 import {
   selectedDog,
   addToFavorites,

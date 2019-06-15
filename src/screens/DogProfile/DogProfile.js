@@ -8,7 +8,6 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   TextInput,
-  Dimensions,
   KeyboardAvoidingView
 } from "react-native";
 import { connect } from "react-redux";
@@ -23,9 +22,9 @@ import heartImg from "../../images/heart.png";
 import heartFilledImg from "../../images/heartFilled.png";
 import IconAwesome5 from "react-native-vector-icons/FontAwesome5";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
-import Map from "../Map";
+import Map from "../../components/Map";
 import * as Animatable from "react-native-animatable";
-import RecentlyViewed from "../RecentlyViewed";
+import RecentlyViewed from "../../components/RecentlyViewed";
 import { dateFormatter } from "../../utils/dateFormatter";
 import { HeaderBackButton } from "react-navigation";
 import Swiper from "react-native-swiper";

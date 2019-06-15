@@ -61,11 +61,6 @@ export default {
     flexDirection: "row",
     alignItems: "center"
   },
-  // quickDetailsRowTwo: {
-  //   height: "5%",
-  //   width,
-  //   flexDirection: "row"
-  // },
   breed: {
     paddingLeft: "10%"
   },

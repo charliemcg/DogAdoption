@@ -1,17 +1,10 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  TouchableHighlight,
-  TextInput,
-  ImageBackground
-} from "react-native";
+import { View, Text, ImageBackground } from "react-native";
 import styles from "./styles";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
-import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import colors from "../../colors";
 import backgroundImg from "../../images/backgroundWhite.png";
-import SignInComponent from "../SignInComponent";
+import SignInComponent from "../../components/SignIn";
 import strings from "./strings";
 import Device from "react-native-device-detection";
 

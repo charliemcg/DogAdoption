@@ -7,7 +7,16 @@ const componentHeight = width * 0.1;
 
 export default {
   parent: {
-    flex: 3
+    flex: 1,
+    backgroundColor: colors.white,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  iconWrapper: {
+    flex: 3,
+    width,
+    justifyContent: "center",
+    alignItems: "center"
   },
   usernameWrapper: {
     flex: 1,
@@ -46,12 +55,34 @@ export default {
     alignItems: "center"
   },
   signIn: {
-    width: componentWidth * 0.666,
+    width: componentWidth,
     height: componentHeight,
     backgroundColor: colors.primary,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  facebookWrapper: {
+    flex: 1,
+    width,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  facebook: {
+    width: componentWidth * 0.666,
+    height: componentHeight,
+    backgroundColor: "blue",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10
   },
-  signInText: { color: colors.contrast, fontSize: 20 }
+  facebookText: {
+    color: colors.white,
+    fontSize: 20
+  },
+  privacyWrapper: {
+    flex: 2,
+    width,
+    justifyContent: "center",
+    alignItems: "center"
+  }
 };
