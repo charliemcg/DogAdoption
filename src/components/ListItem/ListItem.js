@@ -115,7 +115,7 @@ class ListItem extends Component {
                 colors={
                   Device.isTablet
                     ? [
-                        "rgba(238, 238, 238, 0.1)",
+                        "rgba(238, 238, 238, 0.0)",
                         "rgba(238, 238, 238, 0.8)",
                         colors.notQuiteWhite
                       ]

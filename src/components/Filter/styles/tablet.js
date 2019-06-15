@@ -118,14 +118,14 @@ export default {
   //update button
   updateBtn: {
     backgroundColor: colors.primary,
-    width: width * 0.55,
-    height: width * 0.15,
+    width: width * 0.4,
+    height: width * 0.1,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10
   },
   btnText: {
-    fontSize: 30,
+    fontSize: 20,
     color: colors.contrast
   }
 };

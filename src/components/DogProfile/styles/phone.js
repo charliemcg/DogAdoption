@@ -26,8 +26,8 @@ export default {
     top: "2%",
     right: "3%"
   },
-  // quick details top row
-  locationRow: {
+  // quick details
+  quickDetailsRow: {
     width,
     height: "5%",
     flexDirection: "row",
@@ -48,12 +48,6 @@ export default {
   coloredPrice: {
     color: colors.dark,
     fontWeight: "bold"
-  },
-  // quick details bottom row
-  breedRow: {
-    width,
-    height: "5%",
-    flexDirection: "row"
   },
   breed: {
     paddingLeft: "10%"

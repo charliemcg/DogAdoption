@@ -5,14 +5,15 @@ const width = Dimensions.get("window").width;
 
 export default {
   parent: {
-    height: width * 0.75,
+    height: width * 0.6,
     width,
     justifyContent: "center",
     alignItems: "center"
   },
   mapContainer: {
-    height: "90%",
-    width: "90%",
+    //4 x 3 aspect ratio
+    height: width * 0.55,
+    width: width * 0.55 * 1.333,
     backgroundColor: colors.black,
     justifyContent: "center",
     alignItems: "center",

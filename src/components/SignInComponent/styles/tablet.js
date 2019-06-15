@@ -46,11 +46,12 @@ export default {
     alignItems: "center"
   },
   signIn: {
-    width: componentWidth,
+    width: componentWidth * 0.666,
     height: componentHeight,
     backgroundColor: colors.primary,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10
-  }
+  },
+  signInText: { color: colors.contrast, fontSize: 20 }
 };

@@ -87,7 +87,11 @@ class Favorites extends Component {
           </View>
           {/* show activity indicator so user knows fav removal is processing */}
           {this.state.fakeLoading ? (
-            <ActivityIndicator size="large" style={{ flex: 1 }} />
+            <ActivityIndicator
+              size="large"
+              color={colors.dark}
+              style={{ flex: 1 }}
+            />
           ) : // check if favorites exist
           this.props.favorites.length === 0 ? (
             thereAreNoFavorites

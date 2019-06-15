@@ -17,7 +17,7 @@ export default {
     flexDirection: "row",
     position: "absolute",
     backgroundColor: colors.primary,
-    bottom: "6%",
+    bottom: "3%",
     borderRadius: width * 0.02
   },
   fabTouchableWrapper: {
@@ -56,7 +56,7 @@ export default {
     alignItems: "flex-end"
   },
   fabTextWrapper: {
-    height: "66%",
+    width: "66%",
     height: width * 0.04,
     justifyContent: "center",
     alignItems: "center"

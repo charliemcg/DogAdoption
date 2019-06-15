@@ -52,5 +52,6 @@ export default {
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10
-  }
+  },
+  signInText: { color: colors.contrast }
 };

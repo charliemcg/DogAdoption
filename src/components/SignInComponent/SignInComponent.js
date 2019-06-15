@@ -57,7 +57,7 @@ class SignInComponent extends Component {
             }}
             underlayColor={colors.dark}
           >
-            <Text>{strings.signIn}</Text>
+            <Text style={styles.signInText}>{strings.signIn}</Text>
           </TouchableHighlight>
         </View>
       </View>

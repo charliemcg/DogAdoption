@@ -124,7 +124,7 @@ class Home extends Component {
     const noData = this.props.error ? (
       errorScreen
     ) : (
-      <ActivityIndicator size="large" style={{ flex: 1 }} />
+      <ActivityIndicator size="large" color={colors.dark} style={{ flex: 1 }} />
     );
 
     const theList =
@@ -156,11 +156,7 @@ class Home extends Component {
         >
           <View style={styles.fabButton}>
             <View style={styles.fabIconWrapper}>
-              <IconMCI
-                name="filter-outline"
-                size={20}
-                color={colors.contrast}
-              />
+              <IconAwesome name="filter" size={20} color={colors.contrast} />
             </View>
             <View style={styles.fabTextWrapper}>
               <Text style={styles.text}>{strings.filter}</Text>

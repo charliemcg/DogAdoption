@@ -45,7 +45,7 @@ class SignIn extends Component {
               )
             }
           >
-            <Text>{strings.signInFaceBook}</Text>
+            <Text style={styles.facebookText}>{strings.signInFaceBook}</Text>
           </TouchableHighlight>
         </View>
         {/* new user link */}

@@ -24,18 +24,21 @@ export default {
     color: colors.fadedText
   },
   // favorites exist
-  list: { width: "100%", height: "90%" },
+  list: {
+    width: "100%",
+    height: "90%"
+  },
   // favorites don't exist
   noFavoritesWrapper: { height: "90%", width },
   noFavorites: {
     width: "100%",
-    height: "70%",
+    height: "65%",
     justifyContent: "center",
     alignItems: "center"
   },
   noFavoritesText: { fontSize: 20, color: colors.fadedText },
   recents: {
-    height: "30%",
+    height: "35%",
     width
   }
 };

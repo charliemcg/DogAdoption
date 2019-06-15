@@ -13,7 +13,8 @@ export default {
   },
   touchable: {
     width: width * 0.3,
-    height: width * 0.3,
+    //height of photo plus height of breed label
+    height: width * 0.3 * 0.75 + width * 0.05,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5
   },
@@ -48,7 +49,8 @@ export default {
     justifyContent: "center",
     paddingLeft: "5%",
     borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5
+    borderBottomRightRadius: 5,
+    backgroundColor: "#ddd"
   },
   price: {
     justifyContent: "center",

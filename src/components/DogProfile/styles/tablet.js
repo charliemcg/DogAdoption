@@ -73,7 +73,8 @@ export default {
   sellerWrapper: {
     flexDirection: "row",
     margin: width * 0.03,
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
+    marginRight: width * 0.05
   },
   sellerText: {
     marginRight: width * 0.03
@@ -90,8 +91,10 @@ export default {
   //contact
   messageWrapper: {
     backgroundColor: colors.white,
-    margin: width * 0.05,
-    height: width * 0.5,
+    height: width * 0.4,
+    width: width * 0.75,
+    marginLeft: width * 0.125,
+    marginBottom: width * 0.02,
     borderColor: "#aaa",
     borderStyle: "solid",
     borderWidth: 1,

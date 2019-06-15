@@ -75,6 +75,9 @@ export default {
     alignItems: "center",
     borderRadius: 10
   },
+  facebookText: {
+    color: colors.white
+  },
   privacyWrapper: {
     flex: 2,
     width,

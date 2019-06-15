@@ -5,21 +5,21 @@ const width = Dimensions.get("window").width;
 
 export default {
   parent: {
-    width: width * 0.46,
-    height: width * 0.46,
+    width: (width * 0.96) / 2,
+    height: (width * 0.96) / 2,
     alignItems: "center",
-    paddingTop: width * 0.03,
-    borderRadius: 10
+    paddingTop: width * 0.03
   },
   touchable: {
     width: width * 0.4,
-    height: width * 0.4,
+    //height of photo plus height of breed label
+    height: width * 0.4 * 0.75 + width * 0.1,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5
   },
   imageWrapper: {
     width: "100%",
-    height: width * 0.3
+    height: width * 0.4 * 0.75
   },
   image: {
     position: "absolute",
@@ -47,7 +47,8 @@ export default {
     justifyContent: "center",
     paddingLeft: "5%",
     borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5
+    borderBottomRightRadius: 5,
+    backgroundColor: "#ddd"
   },
   price: {
     justifyContent: "center",

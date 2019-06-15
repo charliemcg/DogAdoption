@@ -68,12 +68,16 @@ export default {
     alignItems: "center"
   },
   facebook: {
-    width: componentWidth,
+    width: componentWidth * 0.666,
     height: componentHeight,
     backgroundColor: "blue",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10
+  },
+  facebookText: {
+    color: colors.white,
+    fontSize: 20
   },
   privacyWrapper: {
     flex: 2,

@@ -1,5 +1,6 @@
 import colors from "../../../colors";
 import { Dimensions } from "react-native";
+import Device from "react-native-device-detection";
 
 const width = Dimensions.get("window").width;
 
@@ -17,7 +18,7 @@ export default {
     flexDirection: "row",
     position: "absolute",
     backgroundColor: colors.primary,
-    bottom: "6%",
+    bottom: Device.isIphoneX ? "6%" : "3%",
     borderRadius: width * 0.04
   },
   fabTouchableWrapper: {
