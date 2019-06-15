@@ -8,7 +8,8 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   TextInput,
-  Dimensions
+  Dimensions,
+  KeyboardAvoidingView
 } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
@@ -278,77 +279,83 @@ class DogProfile extends Component {
     );
 
     return (
-      <SafeAreaView
-        style={[
-          styles.parent,
-          {
-            backgroundColor: this.state.fullScreenPhoto
-              ? colors.black
-              : colors.white
-          }
-        ]}
-        contentContainerStyle="justifyContent"
-      >
-        {/* show full screen photo if required */}
-        {this.state.fullScreenPhoto && showPhotoFullScreen}
-        {/* photos */}
-        <Swiper
-          showsButtons={true}
-          activeDotColor={colors.notQuiteWhite}
-          nextButton={
-            <Text style={{ color: "rgba(255, 255, 255, 0.5)", fontSize: 70 }}>
-              ›
-            </Text>
-          }
-          prevButton={
-            <Text style={{ color: "rgba(255, 255, 255, 0.5)", fontSize: 70 }}>
-              ‹
-            </Text>
-          }
+      <KeyboardAvoidingView style={styles.fillView} behavior="position" enabled>
+        <SafeAreaView
+          style={[
+            styles.parent,
+            {
+              backgroundColor: this.state.fullScreenPhoto
+                ? colors.black
+                : colors.white
+            }
+          ]}
+          contentContainerStyle="justifyContent"
         >
-          {/* if this were a real app there would be an array of photos to iterate over. 
-          Instead the single photo is used five times just to demonstrate the swiper feature */}
-          {photos}
-          {photos}
-          {photos}
-          {photos}
-          {photos}
-        </Swiper>
-        {/* favorite icon */}
-        <Animatable.View ref={strings.refs.bounceRef} style={styles.animatable}>
-          <TouchableWithoutFeedback
-            style={styles.fillView}
-            onPress={() => {
-              this.handleFavorite();
-            }}
+          {/* show full screen photo if required */}
+          {this.state.fullScreenPhoto && showPhotoFullScreen}
+          {/* photos */}
+          <Swiper
+            showsButtons={true}
+            activeDotColor={colors.notQuiteWhite}
+            nextButton={
+              <Text style={{ color: "rgba(255, 255, 255, 0.5)", fontSize: 70 }}>
+                ›
+              </Text>
+            }
+            prevButton={
+              <Text style={{ color: "rgba(255, 255, 255, 0.5)", fontSize: 70 }}>
+                ‹
+              </Text>
+            }
           >
-            {/* icon by Smash Icons */}
-            <Image source={this.getFavoriteIcon()} style={styles.fillView} />
-          </TouchableWithoutFeedback>
-        </Animatable.View>
-        {/* quick details */}
-        {quickDetailsTopRow}
-        {quickDetailsBottomRow}
-        <ScrollView style={styles.scrollView} ref={strings.refs.scrollRef}>
-          {/* seller details */}
-          {sellerDetails}
-          {/* description */}
-          <Text style={styles.description}>
-            {this.props.selectedDog.description}
-          </Text>
-          {/* map */}
-          <Map location={this.props.selectedDog.location} />
-          {/* message container */}
-          {messageWrapper}
-          {/* recently viewed */}
-          {/* only show if there are recent dogs in the array. The currently selected dog does not count. */}
-          {this.props.recentlyViewed.length > 0 &&
-          this.props.recentlyViewed.length === 1
-            ? //there may be one dog in the recents but if it's the same as currently selected then don't show recents
-              this.props.recentlyViewed[0] !== this.props.selectedDog && recents
-            : recents}
-        </ScrollView>
-      </SafeAreaView>
+            {/* if this were a real app there would be an array of photos to iterate over. 
+          Instead the single photo is used five times just to demonstrate the swiper feature */}
+            {photos}
+            {photos}
+            {photos}
+            {photos}
+            {photos}
+          </Swiper>
+          {/* favorite icon */}
+          <Animatable.View
+            ref={strings.refs.bounceRef}
+            style={styles.animatable}
+          >
+            <TouchableWithoutFeedback
+              style={styles.fillView}
+              onPress={() => {
+                this.handleFavorite();
+              }}
+            >
+              {/* icon by Smash Icons */}
+              <Image source={this.getFavoriteIcon()} style={styles.fillView} />
+            </TouchableWithoutFeedback>
+          </Animatable.View>
+          {/* quick details */}
+          {quickDetailsTopRow}
+          {quickDetailsBottomRow}
+          <ScrollView style={styles.scrollView} ref={strings.refs.scrollRef}>
+            {/* seller details */}
+            {sellerDetails}
+            {/* description */}
+            <Text style={styles.description}>
+              {this.props.selectedDog.description}
+            </Text>
+            {/* map */}
+            <Map location={this.props.selectedDog.location} />
+            {/* message container */}
+            {messageWrapper}
+            {/* recently viewed */}
+            {/* only show if there are recent dogs in the array. The currently selected dog does not count. */}
+            {this.props.recentlyViewed.length > 0 &&
+            this.props.recentlyViewed.length === 1
+              ? //there may be one dog in the recents but if it's the same as currently selected then don't show recents
+                this.props.recentlyViewed[0] !== this.props.selectedDog &&
+                recents
+              : recents}
+          </ScrollView>
+        </SafeAreaView>
+      </KeyboardAvoidingView>
     );
   }
 }

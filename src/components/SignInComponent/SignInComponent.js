@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, Text, TouchableHighlight, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TouchableHighlight,
+  TextInput,
+  KeyboardAvoidingView
+} from "react-native";
 import IconAwesome from "react-native-vector-icons/FontAwesome5";
 import IconMCI from "react-native-vector-icons/MaterialCommunityIcons";
 import styles from "./styles";
@@ -11,7 +17,7 @@ import strings from "./strings";
 class SignInComponent extends Component {
   render() {
     return (
-      <View style={{ flex: 3 }}>
+      <KeyboardAvoidingView style={{ flex: 3 }} behavior="padding" enabled>
         {/* username */}
         <View style={styles.usernameWrapper}>
           <View style={styles.textInput}>
@@ -60,7 +66,7 @@ class SignInComponent extends Component {
             <Text style={styles.signInText}>{strings.signIn}</Text>
           </TouchableHighlight>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
