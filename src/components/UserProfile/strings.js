@@ -7,7 +7,7 @@ export default {
   viewMyAds: "View My Ads",
   viewFavorites: "View Favorites",
   viewMessages: "View Messages",
-  singOut: "Sign Out",
+  signOut: "Sign Out",
   gotAQuestion: "Got a question?",
   getInTouch: "Get in touch!",
   navigation: {

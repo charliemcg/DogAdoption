@@ -22,6 +22,7 @@ import PropTypes from "prop-types";
 import * as Animatable from "react-native-animatable";
 import { dateFormatter } from "../../utils/dateFormatter";
 import strings from "./strings";
+import Device from "react-native-device-detection";
 
 class ListItem extends Component {
   getFavoriteIcon = () => {
@@ -111,11 +112,19 @@ class ListItem extends Component {
                 {this.props.item.description}
               </Text>
               <LinearGradient
-                colors={[
-                  "rgba(256, 256, 256, 0.1)",
-                  "rgba(256, 256, 256, 0.6)",
-                  colors.white
-                ]}
+                colors={
+                  Device.isTablet
+                    ? [
+                        "rgba(238, 238, 238, 0.1)",
+                        "rgba(238, 238, 238, 0.8)",
+                        colors.notQuiteWhite
+                      ]
+                    : [
+                        "rgba(256, 256, 256, 0.1)",
+                        "rgba(256, 256, 256, 0.6)",
+                        colors.white
+                      ]
+                }
                 style={styles.fade}
               />
             </View>

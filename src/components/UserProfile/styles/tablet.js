@@ -2,7 +2,6 @@ import colors from "../../../colors";
 import { Dimensions } from "react-native";
 
 const width = Dimensions.get("window").width;
-const height = Dimensions.get("window").height;
 
 export default {
   parent: {
@@ -40,31 +39,31 @@ export default {
     alignItems: "center"
   },
   btnContentsWrapper: {
-    height: "80%",
-    width: "80%",
-    marginTop: "5%",
+    height: "90%",
+    width: "100%",
     justifyContent: "space-around",
-    alignItems: "center"
+    alignItems: "center",
+    flexDirection: "row-reverse"
   },
   button: {
     justifyContent: "center",
     alignItems: "center",
-    width: "90%",
-    height: "90%",
+    width: "70%",
+    height: "70%",
     backgroundColor: colors.primary,
     borderRadius: 5
   },
   signOutBtnWrapper: {
-    height: 85,
+    height: width * 0.2,
     width,
-    justifyContent: "center",
-    alignItems: "center",
     paddingRight: "2%",
-    paddingLeft: "2%"
+    paddingLeft: "2%",
+    justifyContent: "center",
+    alignItems: "center"
   },
   signOutBtn: {
-    width: "95%",
-    height: "90%",
+    width: "70%",
+    height: "70%",
     backgroundColor: colors.primary,
     justifyContent: "center",
     alignItems: "center",
@@ -72,17 +71,21 @@ export default {
   },
   signOutContentsWrapper: {
     flexDirection: "row",
-    width: "40%",
-    justifyContent: "space-between",
-    alignItems: "center"
+    width: "100%",
+    justifyContent: "space-around",
+    alignItems: "center",
+    paddingLeft: "3%"
   },
   btnText: {
     color: colors.contrast,
     fontSize: 20
   },
+  signOutIcon: {
+    marginLeft: "10%"
+  },
   recents: {
     marginLeft: "3%",
-    fontSize: 17
+    width: "94%"
   },
   resolutionWrapper: {
     width,

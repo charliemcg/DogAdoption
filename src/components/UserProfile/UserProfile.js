@@ -17,6 +17,7 @@ import { connect } from "react-redux";
 import backgroundImg from "../../images/backgroundWhite.png";
 import RecentlyViewed from "../RecentlyViewed";
 import strings from "./strings";
+import Device from "react-native-device-detection";
 
 class UserProfile extends Component {
   buttonSkeleton = btnProps => (
@@ -75,10 +76,12 @@ class UserProfile extends Component {
             {/* recently view */}
             {/* only show if there are recent dogs in the array. The currently selected dog does not count. */}
             {this.props.recentlyViewed.length > 1 && (
-              <RecentlyViewed
-                navigation={this.props.navigation}
-                showFav={false}
-              />
+              <View style={styles.recents}>
+                <RecentlyViewed
+                  navigation={this.props.navigation}
+                  showFav={false}
+                />
+              </View>
             )}
             <View style={styles.gridRow}>
               {/* sell dog */}
@@ -119,11 +122,12 @@ class UserProfile extends Component {
                 underlayColor={colors.dark}
               >
                 <View style={styles.signOutContentsWrapper}>
-                  <Text style={styles.btnText}>{strings.singOut}</Text>
+                  <Text style={styles.btnText}>{strings.signOut}</Text>
                   <IconAwesome
                     name="sign-out"
-                    size={40}
+                    size={Device.isTablet ? 60 : 40}
                     color={colors.contrast}
+                    style={styles.signOutIcon}
                   />
                 </View>
               </TouchableHighlight>
