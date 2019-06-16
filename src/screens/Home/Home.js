@@ -48,7 +48,7 @@ class Home extends Component {
           />,
           <IconAwesome
             style={{ paddingRight: 10, paddingLeft: 8 }}
-            name="heart-o"
+            name="heart"
             size={30}
             color={colors.contrast}
             onPress={() => {

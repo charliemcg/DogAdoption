@@ -90,7 +90,9 @@ export default {
   //price
   priceWrapper: {
     flexDirection: "row",
-    flex: 3
+    flex: 3,
+    alignItems: "flex-end",
+    paddingBottom: "3%"
   },
   minPriceWrapper: { flex: 1, paddingLeft: 5 },
   maxPriceWrapper: { flex: 1, paddingRight: 5 },
