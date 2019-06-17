@@ -34,6 +34,9 @@
     "redux-devtools": "^3.5.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFiles": [
+      "./jest-setup.js"
+    ]
   }
 }
